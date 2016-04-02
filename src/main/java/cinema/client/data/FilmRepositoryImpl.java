@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class FilmRepositoryImpl implements FilmRepository {
 
     List<Film> savedFilms;
-    static final int NUMBER_SAVED_FILMS = 23;
+    static final int NUMBER_SAVED_FILMS = 24;
 //            = new ArrayList<Film>(){{
 //        add(new Film("Золушка", LocalTime.of(1,30),"Каламбия"));
 //        add(new Film("Красавица и чудовище", LocalTime.of(2,10),"Каламбия"));
@@ -20,9 +20,9 @@ public class FilmRepositoryImpl implements FilmRepository {
 //    }};
 
     public FilmRepositoryImpl() {
-        savedFilms = new ArrayList<Film>();
+        savedFilms = new ArrayList<>();
         for (int i = 0; i < NUMBER_SAVED_FILMS; i++) {
-            savedFilms.add(new Film("film"+i, LocalTime.of(i,i+20),"description"+i));
+            savedFilms.add(new Film(i,"film"+i, LocalTime.of(i,i+20),"description"+i));
         }
     }
 
@@ -39,6 +39,11 @@ public class FilmRepositoryImpl implements FilmRepository {
         if (number < savedFilms.size()) {
             return savedFilms.subList(0, number);
         }
+        return savedFilms;
+    }
+
+    @Override
+    public List<Film> findAll() {
         return savedFilms;
     }
 

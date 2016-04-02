@@ -19,22 +19,42 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 public class AfficheControllerTest {
-    @Test
-    public void shouldShowRecentSpittles() throws Exception {
-        final int count = 20;
 
-        List<Film> expectedFilms = createFilmsList(count);
+
+    @Test
+    public void shouldShowRecentFilms() throws Exception {
+        final int numberOfFilms = 20;
+        List<Film> expectedFilms = createFilmsList(numberOfFilms);
         FilmRepository mockRepository =
                 mock(FilmRepository.class);
-        when(mockRepository.findFilms(count))
+        when(mockRepository.findFilms(numberOfFilms))
                 .thenReturn(expectedFilms);
         AfficheController controller =
                 new AfficheController(mockRepository);
         MockMvc mockMvc = standaloneSetup(controller)
-                .setSingleView(
-                        new InternalResourceView("/WEB-INF/views/affiche.jsp"))
+                .setSingleView(new InternalResourceView("/WEB-INF/views/affiche.jsp"))
                 .build();
-        mockMvc.perform(get("/affiche"))
+        mockMvc.perform(get("/affiches"))
+                .andExpect(view().name("affiche"))
+                .andExpect(model().attributeExists("filmList"))
+                .andExpect(model().attribute("filmList",
+                        hasItems(expectedFilms.toArray())));
+    }
+
+    @Test
+    public void shouldShowRequestedNumberOfFilms() throws Exception {
+        final int numberOfFilms = 20;
+        List<Film> expectedFilms = createFilmsList(numberOfFilms);
+        FilmRepository mockRepository =
+                mock(FilmRepository.class);
+        when(mockRepository.findFilms(numberOfFilms))
+                .thenReturn(expectedFilms);
+        AfficheController controller =
+                new AfficheController(mockRepository);
+        MockMvc mockMvc = standaloneSetup(controller)
+                .setSingleView(new InternalResourceView("/WEB-INF/views/affiche.jsp"))
+                .build();
+        mockMvc.perform(get("/affiche?number=" + numberOfFilms))
                 .andExpect(view().name("affiche"))
                 .andExpect(model().attributeExists("filmList"))
                 .andExpect(model().attribute("filmList",
@@ -42,9 +62,9 @@ public class AfficheControllerTest {
     }
 
     private List<Film> createFilmsList(int count) {
-        List<Film> films = new ArrayList<Film>();
+        List<Film> films = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            films.add(new Film("film" + i, LocalTime.of(i, i + 20), "description" + i));
+            films.add(new Film(i,"film" + i, LocalTime.of(i, i + 20), "description" + i));
         }
         return films;
     }

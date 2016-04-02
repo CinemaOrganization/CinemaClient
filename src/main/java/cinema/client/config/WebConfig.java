@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("cinema.client.web")
+@ComponentScan("cinema.client")
 public class WebConfig
         extends WebMvcConfigurerAdapter {
     @Bean

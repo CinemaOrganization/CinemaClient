@@ -12,7 +12,8 @@ public class Film {
 
     public Film() {}
 
-    public Film(String name, LocalTime length, String studio) {
+    public Film(long id, String name, LocalTime length, String studio) {
+        this.id = id;
         this.name = name;
         this.length = length;
         this.studio = studio;

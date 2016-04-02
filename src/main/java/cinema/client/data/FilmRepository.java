@@ -7,4 +7,5 @@ import java.util.List;
 public interface FilmRepository {
     List<Film> findByNameLike(String name);
     List<Film> findFilms(int number);
+    List<Film> findAll();
 }

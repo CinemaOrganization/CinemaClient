@@ -6,9 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/affiche")
 public class AfficheController {
     private FilmRepository filmRepository;
 
@@ -18,10 +18,17 @@ public class AfficheController {
         this.filmRepository = filmRepository;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/affiches", method = RequestMethod.GET)
     public String affiche(Model model) {
         model.addAttribute(
                 filmRepository.findFilms(20));
+        return "affiche";
+    }
+
+    @RequestMapping(value = "/affiche", method = RequestMethod.GET)
+    public String requaredAffiche(@RequestParam(value = "number", defaultValue="24") int number, Model model) {
+        model.addAttribute(
+                filmRepository.findFilms(number));
         return "affiche";
     }
 }
