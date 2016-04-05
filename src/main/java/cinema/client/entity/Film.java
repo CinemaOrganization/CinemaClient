@@ -1,22 +1,45 @@
 package cinema.client.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.time.LocalTime;
 
+@Entity
+@Table(name = "Film")
 public class Film {
 
+    @Id
+    @Column(name = "id_film")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String studio;
-    private LocalTime length;
+
+    @Type(type="cinema.client.entity.unsupported.LocalTimeUserType")
+    @Column(nullable = false)
+    private LocalTime duration;
+
+    @Column
     private String description;
+
+    @Column(nullable = false)
+    private int year;
 
     public Film() {}
 
-    public Film(long id, String name, LocalTime length, String studio) {
-        this.id = id;
+    public Film(String name, String studio, LocalTime duration, String description, int year) {
         this.name = name;
-        this.length = length;
         this.studio = studio;
+        this.duration = duration;
+        this.description = description;
+        this.year = year;
     }
 
     public long getId() {
@@ -43,15 +66,12 @@ public class Film {
         this.studio = studio;
     }
 
-    public LocalTime getLength() {
-        return length;
+    public LocalTime getDuration() {
+        return duration;
     }
 
-    public void setLength(LocalTime length) {
-        this.length = length;
-    }
-    public void setLength(int hours, int minutes) {
-        this.length = LocalTime.of(hours,minutes);
+    public void setDuration(LocalTime duration) {
+        this.duration = duration;
     }
 
     public String getDescription() {
@@ -62,6 +82,14 @@ public class Film {
         this.description = description;
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,9 +98,10 @@ public class Film {
         Film film = (Film) o;
 
         if (id != film.id) return false;
+        if (year != film.year) return false;
         if (name != null ? !name.equals(film.name) : film.name != null) return false;
         if (studio != null ? !studio.equals(film.studio) : film.studio != null) return false;
-        if (length != null ? !length.equals(film.length) : film.length != null) return false;
+        if (duration != null ? !duration.equals(film.duration) : film.duration != null) return false;
         return description != null ? description.equals(film.description) : film.description == null;
 
     }
@@ -82,8 +111,9 @@ public class Film {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (studio != null ? studio.hashCode() : 0);
-        result = 31 * result + (length != null ? length.hashCode() : 0);
+        result = 31 * result + (duration != null ? duration.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + year;
         return result;
     }
 
@@ -93,8 +123,9 @@ public class Film {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", studio='" + studio + '\'' +
-                ", length=" + length +
+                ", duration=" + duration +
                 ", description='" + description + '\'' +
+                ", year=" + year +
                 '}';
     }
 }

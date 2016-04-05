@@ -1,11 +1,26 @@
 package cinema.client.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Cinema")
 public class Cinema {
+
+    @Id
+    @Column(name = "id_cinema")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
-    private String Name;
+
+    @Column(nullable = false)
+    private String name;
+
+    public Cinema() { }
 
     public Cinema(String name) {
-        Name = name;
+        this.name = name;
     }
 
     public long getId() {
@@ -17,11 +32,11 @@ public class Cinema {
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public void setName(String name) {
-        Name = name;
+        this.name = name;
     }
 
     @Override
@@ -31,14 +46,14 @@ public class Cinema {
 
         Cinema cinema = (Cinema) o;
 
-        return id == cinema.id && (Name != null ? Name.equals(cinema.Name) : cinema.Name == null);
+        return id == cinema.id && (name != null ? name.equals(cinema.name) : cinema.name == null);
 
     }
 
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (Name != null ? Name.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }
 
@@ -46,7 +61,7 @@ public class Cinema {
     public String toString() {
         return "Cinema{" +
                 "id=" + id +
-                ", Name='" + Name + '\'' +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

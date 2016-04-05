@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Home Page our Cinema</title>
+    <title>Кинотеатр!</title>
     <link rel="stylesheet"
           type="text/css"
           href="<c:url value="resources/css/style.css" />" >

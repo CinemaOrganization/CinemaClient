@@ -26,11 +26,4 @@ public class HomeControllerTest {
                 .andExpect(view().name("home"));
     }
 
-    //    @Test
-//    public void testAffichePage() throws Exception {
-//        mockMvc.perform(get("/affiche"))
-//                .andExpect(view().name("affiche"));
-//    }
-
-
 }

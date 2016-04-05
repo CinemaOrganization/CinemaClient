@@ -1,11 +1,15 @@
 package cinema.client.data;
 
+
 import cinema.client.entity.Film;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface FilmRepository {
-    List<Film> findByNameLike(String name);
-    List<Film> findFilms(int number);
+@Repository
+public interface FilmRepository extends CrudRepository<Film,Long> {
+
+    @Override
     List<Film> findAll();
 }

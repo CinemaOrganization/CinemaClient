@@ -1,12 +1,31 @@
 package cinema.client.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "hall")
 public class Hall {
 
+    @Id
+    @Column(name = "id_hall")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_cinema")
     private Cinema cinema;
+
+    @Column(nullable = false)
     private int number;
+
+    @Column(name = "places_number",nullable = false)
     private int placesNumber;
-    private boolean is3d;
+
+    @Column(name = "is_3d",nullable = false)
+    private boolean ThreeD;
 
     public long getId() {
         return id;
@@ -40,12 +59,21 @@ public class Hall {
         this.placesNumber = placesNumber;
     }
 
-    public boolean is3d() {
-        return is3d;
+    public boolean getThreeD() {
+        return ThreeD;
     }
 
-    public void setIs3d(boolean is3d) {
-        this.is3d = is3d;
+    public void setThreeD(boolean threeD) {
+        this.ThreeD = threeD;
+    }
+
+    public Hall() {}
+
+    public Hall(Cinema cinema, int number, int placesNumber, boolean ThreeD) {
+        this.cinema = cinema;
+        this.number = number;
+        this.placesNumber = placesNumber;
+        this.ThreeD = ThreeD;
     }
 
     @Override
@@ -58,7 +86,7 @@ public class Hall {
         if (id != hall.id) return false;
         if (number != hall.number) return false;
         if (placesNumber != hall.placesNumber) return false;
-        if (is3d != hall.is3d) return false;
+        if (ThreeD != hall.ThreeD) return false;
         return cinema != null ? cinema.equals(hall.cinema) : hall.cinema == null;
 
     }
@@ -69,7 +97,7 @@ public class Hall {
         result = 31 * result + (cinema != null ? cinema.hashCode() : 0);
         result = 31 * result + number;
         result = 31 * result + placesNumber;
-        result = 31 * result + (is3d ? 1 : 0);
+        result = 31 * result + (ThreeD ? 1 : 0);
         return result;
     }
 
@@ -80,7 +108,7 @@ public class Hall {
                 ", cinema=" + cinema +
                 ", number=" + number +
                 ", placesNumber=" + placesNumber +
-                ", is3d=" + is3d +
+                ", ThreeD=" + ThreeD +
                 '}';
     }
 }

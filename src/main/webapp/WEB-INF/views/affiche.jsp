@@ -3,7 +3,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-    <title>Affiche our Cinema</title>
+    <title>Афиша!</title>
     <link rel="stylesheet"
           type="text/css"
           href="<c:url value="resources/css/style.css" />">
@@ -16,7 +16,7 @@
         <a class="h1_title" href="<c:url value="/session?film_id=${film.id}"/>">
             <c:out value="${film.name}"/></a>
         <div class="content">
-            <c:out value="Film length: ${film.length}"/>
+            <c:out value="Film duration: ${film.duration}"/>
         </div>
         <br>
     </li>
