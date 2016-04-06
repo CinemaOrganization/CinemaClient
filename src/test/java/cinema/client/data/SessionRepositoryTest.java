@@ -37,13 +37,13 @@ public class SessionRepositoryTest {
 
     @Before
     @Rollback(false)
-    public void setUp() throws Exception {
+    public void setUp() {
 
         repository.save(sessions = SessionSetupData.setupData());
     }
 
     @Test
-    public void findByFilmAndDateOrderByCinemaAndHallAndTime() throws Exception {
+    public void findByFilmAndDateOrderByCinemaAndHallAndTime()  {
 
         Film chosenFilm = sessions.get(0).getFilm();
         LocalDate chosenDate = sessions.get(0).getDate();
@@ -55,6 +55,32 @@ public class SessionRepositoryTest {
                         .thenComparing(Session::getTime)).collect(Collectors.toList());
 
         List<Session> sessions = repository.findByFilmAndDateOrderByCinemaAndHallAndTime(chosenFilm, chosenDate);
+
+        assertNotNull(sessions);
+        assertEquals(expectedSessions,sessions);
+    }
+
+    @Test
+    public void findByFilmAndWhereDateAfterOrEqual() {
+        Film chosenFilm = sessions.get(0).getFilm();
+        LocalDate chosenDate = sessions.get(0).getDate();
+        List<Session> expectedSessions = sessions.stream()
+                .filter(session -> session.getFilm().equals(chosenFilm))
+                .filter(session -> session.getDate().isEqual(chosenDate) || session.getDate().isAfter(chosenDate))
+                .collect(Collectors.toList());
+        List<Session> sessions = repository.findByFilmAndWhereDateAfterOrEqual(chosenFilm, chosenDate);
+
+        assertNotNull(sessions);
+        assertEquals(expectedSessions,sessions);
+    }
+
+    @Test
+    public void findByFilm() {
+        Film chosenFilm = sessions.get(0).getFilm();
+        List<Session> expectedSessions = sessions.stream()
+                .filter(session -> session.getFilm().equals(chosenFilm))
+                .collect(Collectors.toList());
+        List<Session> sessions = repository.findByFilm(chosenFilm);
 
         assertNotNull(sessions);
         assertEquals(expectedSessions,sessions);

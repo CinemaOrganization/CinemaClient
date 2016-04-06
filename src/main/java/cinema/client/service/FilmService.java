@@ -22,4 +22,7 @@ public class FilmService {
     }
 
 
+    public Film findOne(long film_id) {
+        return filmRepository.findOne(film_id);
+    }
 }

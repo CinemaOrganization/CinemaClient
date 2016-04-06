@@ -1,8 +1,12 @@
 package cinema.client.web;
 
 import cinema.client.entity.Cinema;
+import cinema.client.entity.Film;
 import cinema.client.entity.Hall;
 import cinema.client.entity.Session;
+import cinema.client.service.CinemaService;
+import cinema.client.service.FilmService;
+import cinema.client.service.HallService;
 import cinema.client.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,26 +24,39 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping("/session")
 public class SessionController {
 
+    private CinemaService cinemaService;
+    private FilmService filmService;
+    private HallService hallService;
     private SessionService sessionService;
-    private LocalDate date = LocalDate.now();
 
     @Autowired
-    public SessionController(SessionService sessionService) {
+    public SessionController(CinemaService cinemaService, FilmService filmService, HallService hallService, SessionService sessionService) {
+        this.cinemaService = cinemaService;
+        this.filmService = filmService;
+        this.hallService = hallService;
         this.sessionService = sessionService;
     }
+
+    public SessionController() {}
 
     @RequestMapping(method = GET)
     public String requireSessionByFilmAndDateAndOrderedByCinemaAndHallAndTime(
             @RequestParam("film_id") long film_id,
-            @RequestParam(name = "strDate", defaultValue = "today") String date,
+            @RequestParam(name = "strDate", defaultValue = "nearest") String date,
             Model model) {
 
         List<Session> sessions = sessionService.findByFilmAndDateOrderByCinemaAndHallAndTime(film_id, date);
-        Set<Hall> halls = sessionService.getHallsBySessions(sessions);
-        Set<Cinema> cinemas = sessionService.getCinemasBySessions(sessions);
+        Set<Hall> halls = hallService.findBySessions(sessions);
+        Set<Cinema> cinemas = cinemaService.findBySessions(sessions);
+        Film requiredFilm = filmService.findOne(film_id);
+        List<LocalDate> dates = sessionService.getAllSessionsByFilmDatesAsStrings(requiredFilm);
+
+
         model.addAttribute(sessions);
         model.addAttribute(halls);
         model.addAttribute(cinemas);
+        model.addAttribute("dateList",dates);
+        model.addAttribute("film", requiredFilm);
         return "session";
     }
     @RequestMapping(value = "/add",method = GET)
