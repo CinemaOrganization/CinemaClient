@@ -8,11 +8,15 @@ import cinema.client.service.CinemaService;
 import cinema.client.service.FilmService;
 import cinema.client.service.HallService;
 import cinema.client.service.SessionService;
+import cinema.client.web.exeptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -39,6 +43,12 @@ public class SessionController {
 
     public SessionController() {}
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleResourceNotFoundException() {
+        return "notfound";
+    }
+
     @RequestMapping(method = GET)
     public String requireSessionByFilmAndDateAndOrderedByCinemaAndHallAndTime(
             @RequestParam("film_id") long film_id,
@@ -59,6 +69,7 @@ public class SessionController {
         model.addAttribute("film", requiredFilm);
         return "session";
     }
+
     @RequestMapping(value = "/add",method = GET)
     public String addData() {
 

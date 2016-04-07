@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public interface SessionRepository extends CrudRepository<Session, Long> {
 
-
     List<Session> findByFilm(Film film);
 
     @Query("select s from  Session s where s.film = ?1 and s.date = ?2 order by s.cinema,s.hall,s.time")
