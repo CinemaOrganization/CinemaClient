@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Bad request!</title>
+    <link rel="stylesheet" href="resources/css/style.css" type="text/css">
 </head>
 <body>
 <h1>Error 400! Bad request! </h1>

@@ -32,7 +32,6 @@ public class Film {
     @Column(nullable = false)
     private int year;
 
-
     public Film() {}
 
     public Film(String name, String studio, LocalTime duration, String description, int year) {

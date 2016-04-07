@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Resource not found!</title>
+    <link rel="stylesheet" href="resources/css/style.css" type="text/css">
 </head>
 <body>
 <h1>Error 404! Resource not found! </h1>
