@@ -23,4 +23,8 @@ public class HallService {
     public Set<Hall> findBySessions(List<Session> sessions) {
         return sessions.stream().map(Session::getHall).collect(Collectors.toSet());
     }
+
+    public Iterable<Hall> getALL(){
+        return hallRepository.findAll();
+    }
 }

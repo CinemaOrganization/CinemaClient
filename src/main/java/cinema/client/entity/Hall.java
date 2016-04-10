@@ -3,6 +3,9 @@ package cinema.client.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 @Entity
 @Table(name = "hall")
@@ -27,6 +30,21 @@ public class Hall {
     @Column(name = "is_3d",nullable = false)
     private boolean ThreeD;
 
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "hall_place",
+            joinColumns = { @JoinColumn(name = "id_hall") },
+            inverseJoinColumns = { @JoinColumn(name = "id_place") })
+    private Set<Place> placeSet = new TreeSet<Place>();
+
+
+    public Set<Place> getPlaceSet() {
+        return placeSet;
+    }
+
+    public void setPlaceSet(TreeSet<Place> placeSet) {
+        this.placeSet = placeSet;
+    }
     public long getId() {
         return id;
     }
