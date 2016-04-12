@@ -1,29 +1,38 @@
 package cinema.client.web;
 
-import cinema.client.entity.Comment;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value = "/comment")
+//@RequestMapping(value = "/comment")
 public class CommentController {
-
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView registerUserAccount(@ModelAttribute("comment") @Valid Comment comment,
-                                            BindingResult result) {
-        if (!result.hasErrors()) {
-            createComment(comment, result);
-        }
-
-        return new ModelAndView("session?film_id="+comment.getFilm().getId(), "comment", comment);
-    }
-
-    private void createComment(Comment comment, BindingResult result) {
-    }
+//
+//
+//    CommentService service;
+//
+//    @Autowired
+//    public CommentController(CommentService service) {
+//        this.service = service;
+//    }
+//
+//    @RequestMapping(value = "/comment", method = RequestMethod.GET)
+//    public String showRegistrationForm(Model model) {
+//        Comment comment = new Comment();
+//        model.addAttribute(comment);
+//        return "comment";
+//    }
+//
+//    @RequestMapping(value = "/add", method = POST)
+//    public String registerUserAccount(@ModelAttribute("comment") @Valid Comment comment,
+//                                      BindingResult result, Model model) {
+//        if (!result.hasErrors()) {
+//            createComment(comment, result);
+//        }
+//        model.addAttribute(comment);
+//        return "session";
+//    }
+//
+//    private void createComment(Comment comment, BindingResult result) {
+//        service.addNewComment(comment);
+//
+//    }
 }

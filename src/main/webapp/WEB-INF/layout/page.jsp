@@ -16,6 +16,9 @@
         <td colspan="2"><tiles:insertAttribute name="body" /></td>
     </tr>
     <tr>
+        <td colspan="2"><tiles:insertAttribute name="comment" /></td>
+    </tr>
+    <tr>
         <td colspan="2"><tiles:insertAttribute name="footer" /></td>
     </tr>
 </table>

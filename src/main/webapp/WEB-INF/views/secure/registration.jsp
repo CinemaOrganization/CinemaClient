@@ -13,7 +13,7 @@
 <H1>
     Регистрация нового пользователя.
 </H1>
-<form:form modelAttribute="user" method="POST" enctype="utf8">
+<form:form modelAttribute="user" method="POST" acceptCharset="UTF-8" enctype="utf-8">
     <br>
     <table>
         <tr>
