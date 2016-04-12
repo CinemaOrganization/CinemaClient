@@ -1,16 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ux32
-  Date: 10.04.2016
-  Time: 14:48
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Manage Cinema</title>
+    <title>Управление кинотеатрами</title>
 </head>
 <body>
-    Cinema
+    <h1>Кинотеатр</h1>
+    <a href="/manage/cinema/add">Создать</a>
+    <br>
+    <a href="/manage/cinema/chooseup">Изменить</a>
+    <br>
+    <a href="/manage/cinema/choosedel">Удалить</a>
+    <br>
+    <a href="/manage">Назад</a>
+    <br>
 </body>
 </html>

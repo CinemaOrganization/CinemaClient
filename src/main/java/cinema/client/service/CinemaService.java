@@ -22,4 +22,19 @@ public class CinemaService {
     public Set<Cinema> findBySessions(List<Session> sessions) {
         return sessions.stream().map(Session::getCinema).collect(Collectors.toSet());
     }
+    public void saveCinemas(Iterable<Cinema> cinemas){
+        cinemaRepository.save(cinemas);
+    }
+
+    public List<Cinema> findAll(){
+        return cinemaRepository.findAll();
+    }
+
+    public Cinema findOne(long id){
+        return cinemaRepository.findOne(id);
+    }
+
+    public  void delete(long id){
+        cinemaRepository.delete(id);
+    }
 }

@@ -4,7 +4,7 @@
     <title>Управление фильмами</title>
 </head>
 <body>
-    <h1>Film</h1>
+    <h1>Фильм</h1>
     <a href="/manage/film/add">Создать</a>
     <br>
     <a href="/manage/film/chooseup">Изменить</a>

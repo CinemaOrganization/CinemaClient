@@ -9,5 +9,6 @@
 <c:forEach items="${filmList}" var="film">
     <a href="/manage/film/choosedel/delete?film_id=${film.id}">${film.name}</a><br>
 </c:forEach>
+    <a href="/manage/film">Назад</a>
 </body>
 </html>
