@@ -8,7 +8,7 @@ import cinema.client.entity.Film;
 import cinema.client.entity.Session;
 import cinema.client.web.exeptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class SessionService {
 
     SessionRepository sessionRepository;
