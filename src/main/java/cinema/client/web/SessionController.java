@@ -60,13 +60,29 @@ public class SessionController {
     }
 
 
-    @RequestMapping(method = POST)
-    public String registerUserAccount(@ModelAttribute("comment") @Valid Comment comment,
-                                      BindingResult result, Model model) {
+    @RequestMapping(params = "add", method = POST)
+    public String addNewComment(@ModelAttribute("comment") @Valid Comment comment,
+                                BindingResult result, Model model) {
         if (!result.hasErrors()) {
             commentService.addNewComment(comment);
         }
-        fillModel(comment.getFilm().getId(), "nearest", comment, model);
+        if (result.hasErrors()) {
+            fillModel(comment.getFilm().getId(), "nearest", comment, model);
+            return "session";
+        }
+        fillModel(comment.getFilm().getId(), "nearest", new Comment(), model);
+        return "session";
+    }
+
+    @RequestMapping(params = "remove", method = POST)
+    public String removeComment(@ModelAttribute("comment") @Valid Comment comment,
+                                BindingResult result, Model model) {
+        commentService.removeComment(comment.getId());
+        if (result.hasErrors()) {
+            fillModel(comment.getFilm().getId(), "nearest", comment, model);
+            return "session";
+        }
+        fillModel(comment.getFilm().getId(), "nearest", new Comment(), model);
         return "session";
     }
 
@@ -76,13 +92,15 @@ public class SessionController {
         Set<Cinema> cinemas = cinemaService.findBySessions(sessions);
         Film requiredFilm = filmService.findOne(film_id);
         List<LocalDate> dates = sessionService.getAllSessionsByFilmDatesAsStrings(requiredFilm);
+        List<Comment> comments = commentService.findByFilmAndOrderByTime(film_id);
 
         model.addAttribute(sessions);
         model.addAttribute(halls);
         model.addAttribute(cinemas);
         model.addAttribute("dateList",dates);
         model.addAttribute("film", requiredFilm);
-        model.addAttribute("comment", comment);
+        model.addAttribute(comments);
+        model.addAttribute(comment);
     }
 
     @RequestMapping(value = "/add",method = GET)

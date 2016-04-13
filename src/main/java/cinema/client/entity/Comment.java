@@ -19,7 +19,7 @@ public class Comment {
     private long id;
 
     @NotEmpty
-    @Size(min = 30, max = 255)
+    @Size(min = 5, max = 255)
     @Column(nullable = false)
     private String text;
 
