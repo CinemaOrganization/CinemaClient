@@ -28,16 +28,27 @@
                     <my:localDateTime date="${current_comment.time}"/></td>
                 <td width="60%">${current_comment.text}</td>
                 <td width="5%">
+                    <sec:authorize access="hasRole('ROLE_ADMIN')">
+                        <form:form modelAttribute="comment"
+                                   method="POST" enctype="utf8">
+                            <form:hidden path="id" value="${current_comment.id}"/>
+                            <form:hidden path="text" value="${current_comment.text}"/>
+                            <form:hidden path="film.id" value="${film.id}"/>
+                            <input name="remove" type="submit" value="Удалить">
+                        </form:form>
+                    </sec:authorize>
                     <sec:authorize access="!isAnonymous()">
-                        <c:if test="${current_comment.user.username == username}">
-                            <form:form modelAttribute="comment"
-                                       method="POST" enctype="utf8">
-                                <form:hidden path="id" value="${current_comment.id}"/>
-                                <form:hidden path="text" value="${current_comment.text}"/>
-                                <form:hidden path="film.id" value="${film.id}"/>
-                                <input name="remove" type="submit" value="Удалить">
-                            </form:form>
-                        </c:if>
+                        <sec:authorize access="!hasRole('ROLE_ADMIN')">
+                            <c:if test="${current_comment.user.username == username}">
+                                <form:form modelAttribute="comment"
+                                           method="POST" enctype="utf8">
+                                    <form:hidden path="id" value="${current_comment.id}"/>
+                                    <form:hidden path="text" value="${current_comment.text}"/>
+                                    <form:hidden path="film.id" value="${film.id}"/>
+                                    <input name="remove" type="submit" value="Удалить">
+                                </form:form>
+                            </c:if>
+                        </sec:authorize>
                     </sec:authorize>
                 </td>
             </tr>
