@@ -22,7 +22,7 @@ public class SessionSetupData {
         List<Hall> halls = new ArrayList<>();
         for (int i = 0; i < 9; i++) {
             Cinema cinemaLoop = i > 2 ? i > 5 ? cinema : cinema1 : cinema2;
-            halls.add(new Hall(cinemaLoop, i, 100, true));
+            halls.add(new Hall(i,cinemaLoop, 3, 5, true));
         }
 
         List<Film> films = new ArrayList<>();

@@ -37,4 +37,9 @@ public class CinemaService {
     public  void delete(long id){
         cinemaRepository.delete(id);
     }
+
+    public Cinema findByName(String name){
+
+        return  cinemaRepository.findByName(name);
+    }
 }

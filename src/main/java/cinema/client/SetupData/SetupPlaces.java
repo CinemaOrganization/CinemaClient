@@ -38,8 +38,7 @@ public class SetupPlaces {
         placesRepository.save(placeSet);
         List<Hall> hallList = new ArrayList<Hall>();
         Cinema cinema = new Cinema("Победа");
-        Hall hall = new Hall(cinema,9,40,false);
-        hall.setPlaceSet(placeSet);
+        Hall hall = new Hall(9,cinema,10,4,false);
         hallList.add(hall);
         hallRepository.save(hallList);
     }

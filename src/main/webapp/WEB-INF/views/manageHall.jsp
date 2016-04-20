@@ -1,16 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ux32
-  Date: 10.04.2016
-  Time: 14:46
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Manage Hall</title>
+    <title>Управление залами</title>
 </head>
 <body>
-    Hall
+<h1>Зал</h1>
+<a href="/manage/hall/add">Создать</a>
+<br>
+<a href="/manage/hall/chooseup">Изменить</a>
+<br>
+<a href="/manage/hall/choosedel">Удалить</a>
+<br>
+<a href="/manage">Назад</a>
+<br>
 </body>
 </html>

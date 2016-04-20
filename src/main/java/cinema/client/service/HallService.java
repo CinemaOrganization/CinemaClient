@@ -24,7 +24,18 @@ public class HallService {
         return sessions.stream().map(Session::getHall).collect(Collectors.toSet());
     }
 
-    public Iterable<Hall> getALL(){
+    public Hall findOne(long id){
+        return hallRepository.findOne(id);
+    }
+    public List<Hall> findAll(){
         return hallRepository.findAll();
+    }
+
+    public void save(Iterable<Hall> halls){
+        hallRepository.save(halls);
+    }
+
+    public void delete(Long id){
+        hallRepository.delete(id);
     }
 }

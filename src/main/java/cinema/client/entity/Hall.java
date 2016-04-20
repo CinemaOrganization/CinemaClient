@@ -17,21 +17,25 @@ public class Hall {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_cinema")
-    private Cinema cinema;
 
     @Column(nullable = false)
     private int number;
 
-    @Column(name = "places_number",nullable = false)
-    private int placesNumber;
+    @ManyToOne
+    @JoinColumn(name = "id_cinema")
+    private Cinema cinema;
+
+    @Column(nullable = false)
+    private int numberInRows;
+
+    @Column(nullable = false)
+    private int rows;
 
     @Column(name = "is_3d",nullable = false)
     private boolean ThreeD;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+ /*   @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "hall_place",
             joinColumns = { @JoinColumn(name = "id_hall") },
             inverseJoinColumns = { @JoinColumn(name = "id_place") })
@@ -44,7 +48,17 @@ public class Hall {
 
     public void setPlaceSet(TreeSet<Place> placeSet) {
         this.placeSet = placeSet;
+    }*/
+
+    public Hall(){}
+    public Hall(int number, Cinema cinema, int numberInRows, int rows, boolean threeD) {
+        this.number = number;
+        this.cinema = cinema;
+        this.numberInRows = numberInRows;
+        this.rows = rows;
+        ThreeD = threeD;
     }
+
     public long getId() {
         return id;
     }
@@ -61,6 +75,31 @@ public class Hall {
         this.cinema = cinema;
     }
 
+
+    public boolean isThreeD() {
+        return ThreeD;
+    }
+
+    public void setThreeD(boolean threeD) {
+        ThreeD = threeD;
+    }
+
+    public int getNumberInRows() {
+        return numberInRows;
+    }
+
+    public void setNumberInRows(int numberInRows) {
+        this.numberInRows = numberInRows;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
     public int getNumber() {
         return number;
     }
@@ -69,64 +108,4 @@ public class Hall {
         this.number = number;
     }
 
-    public int getPlacesNumber() {
-        return placesNumber;
-    }
-
-    public void setPlacesNumber(int placesNumber) {
-        this.placesNumber = placesNumber;
-    }
-
-    public boolean getThreeD() {
-        return ThreeD;
-    }
-
-    public void setThreeD(boolean threeD) {
-        this.ThreeD = threeD;
-    }
-
-    public Hall() {}
-
-    public Hall(Cinema cinema, int number, int placesNumber, boolean ThreeD) {
-        this.cinema = cinema;
-        this.number = number;
-        this.placesNumber = placesNumber;
-        this.ThreeD = ThreeD;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Hall hall = (Hall) o;
-
-        if (id != hall.id) return false;
-        if (number != hall.number) return false;
-        if (placesNumber != hall.placesNumber) return false;
-        if (ThreeD != hall.ThreeD) return false;
-        return cinema != null ? cinema.equals(hall.cinema) : hall.cinema == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (cinema != null ? cinema.hashCode() : 0);
-        result = 31 * result + number;
-        result = 31 * result + placesNumber;
-        result = 31 * result + (ThreeD ? 1 : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Hall{" +
-                "id=" + id +
-                ", cinema=" + cinema +
-                ", number=" + number +
-                ", placesNumber=" + placesNumber +
-                ", ThreeD=" + ThreeD +
-                '}';
-    }
 }
