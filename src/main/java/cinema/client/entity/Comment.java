@@ -12,6 +12,16 @@ import java.time.LocalDateTime;
 @Table(name = "comment")
 public class Comment {
 
+
+    public Comment() {}
+
+    public Comment(String text, LocalDateTime time, Film film, User user) {
+        this.text = text;
+        this.time = time;
+        this.film = film;
+        this.user = user;
+    }
+
     @Id
     @Column(name = "id_comment")
     @GeneratedValue(generator = "increment")
@@ -27,11 +37,11 @@ public class Comment {
     @Column(nullable = false)
     private LocalDateTime time;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_film")
     private Film film;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_user")
     private User user;
 
