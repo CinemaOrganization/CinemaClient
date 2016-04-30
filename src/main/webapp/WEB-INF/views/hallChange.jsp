@@ -6,6 +6,7 @@
 </head>
 <body>
 <form action="/manage/hall/chooseup/change/update" method="post" >
+    <input type="hidden" name="hall_id" value="${hall.id}">
     Измените номер зала:<br>
     <input type="text" name="hall_number" value="${hall.number}"/><br>
     Измените количесвто рядов:<br>

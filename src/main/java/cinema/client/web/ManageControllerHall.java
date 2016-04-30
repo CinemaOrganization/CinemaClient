@@ -82,4 +82,23 @@ public class ManageControllerHall {
         model.addAttribute("hall",hall);
         return "hallChange";
     }
+
+    @RequestMapping(value = "chooseup/change/update")
+    public String hallUpdate( @RequestParam("hall_id") long hall_id,
+                              @RequestParam("hall_number") int number,
+                              @RequestParam("rows") int rows,
+                              @RequestParam("numberInRow") int numberInRow,
+                              @RequestParam("3d") boolean threeD,
+                              @RequestParam("cinema_id") long cinema_id){
+
+        Cinema cinema = cinemaService.findOne(cinema_id);
+        Hall hall = hallService.findOne(hall_id);
+        hall.setCinema(cinema);
+        hall.setNumber(number);
+        hall.setNumberInRows(numberInRow);
+        hall.setRows(rows);
+        hall.setThreeD(threeD);
+        hallService.save(Arrays.asList(hall));
+        return "manageHall";
+    }
 }

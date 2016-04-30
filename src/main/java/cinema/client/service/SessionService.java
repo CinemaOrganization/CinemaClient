@@ -75,4 +75,7 @@ public class SessionService {
 
     }
 
+    public void save(Iterable<Session> sessions){
+        sessionRepository.save(sessions);
+    }
 }
