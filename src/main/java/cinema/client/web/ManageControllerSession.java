@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
@@ -50,6 +49,7 @@ public class ManageControllerSession {
                          @RequestParam("date")LocalDate date){
         Film film = filmService.findOne(film_id);
         Hall hall = hallService.findOne(hall_id);
+        date = LocalDate.of(1993,9,30);
         Session session = new Session(hall,film,hall.getCinema(),Double.parseDouble(cost),time,date);
         sessionService.save(Arrays.asList(session));
         return "manageSession";

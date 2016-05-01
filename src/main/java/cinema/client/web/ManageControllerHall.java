@@ -1,17 +1,14 @@
 package cinema.client.web;
 
-import cinema.client.data.CinemaRepository;
-import cinema.client.data.HallRepository;
+
 import cinema.client.entity.Cinema;
 import cinema.client.entity.Hall;
 import cinema.client.service.CinemaService;
 import cinema.client.service.HallService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
