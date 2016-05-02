@@ -6,14 +6,17 @@ import cinema.client.data.FilmRepository;
 import cinema.client.data.SessionRepository;
 import cinema.client.entity.Film;
 import cinema.client.entity.Session;
+import cinema.client.web.exeptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 public class SessionService {
 
     SessionRepository sessionRepository;
@@ -33,19 +36,32 @@ public class SessionService {
     public List<Session> findByFilmAndDateOrderByCinemaAndHallAndTime(long id_film, String strDate) {
 
         Film film = filmRepository.findOne(id_film);
+        if (film == null) {
+            throw new ResourceNotFoundException();
+        }
         LocalDate nearestDate;
         if(strDate.equals("nearest")) {
-            nearestDate = sessionRepository.findByFilmAndWhereDateAfterOrEqual(film, LocalDate.now())
+            Iterator<LocalDate> iterator = sessionRepository.findByFilmAndWhereDateAfterOrEqual(film, LocalDate.now())
                     .stream()
                     .map(Session::getDate)
                     .collect(Collectors.toSet())
-                    .iterator()
-                    .next();
+                    .iterator();
+            if (!iterator.hasNext()) {
+                throw new ResourceNotFoundException();
+            }
+            nearestDate = iterator.next();
         } else {
-            nearestDate = LocalDate.parse(strDate);
+            try {
+                nearestDate = LocalDate.parse(strDate);
+            } catch (DateTimeParseException ex) {
+                throw new ResourceNotFoundException();
+            }
         }
 
         List<Session> list = sessionRepository.findByFilmAndDateOrderByCinemaAndHallAndTime(film, nearestDate);
+        if (list.size() == 0) {
+            throw new ResourceNotFoundException();
+        }
         return list;
     }
 

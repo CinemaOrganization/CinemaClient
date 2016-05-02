@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="base"
+                template="/WEB-INF/layout/page.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header"
+                       value="/WEB-INF/layout/header.jsp"/>
+        <put-attribute name="login"
+                       value="/WEB-INF/layout/loginlayout.jsp"/>
+        <put-attribute name="body" value="" />
+        <put-attribute name="comment" value="" />
+        <put-attribute name="footer"
+                       value="/WEB-INF/layout/footer.jsp"/>
+    </definition>
+    <definition name="home" extends="base">
+        <put-attribute name="title" value="Кинотеатр"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/home.jsp"/>
+    </definition>
+    <definition name="secure/login" extends="base">
+        <put-attribute name="title" value="Вход"/>
+        <put-attribute name="login" value=""/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/secure/login.jsp"/>
+    </definition>
+    <definition name="secure/registration" extends="base">
+        <put-attribute name="title" value="Регистрация"/>
+        <put-attribute name="login" value=""/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/secure/registration.jsp"/>
+    </definition>
+    <definition name="secure/successRegister" extends="base">
+        <put-attribute name="title" value="Регистрация прошла успешно"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/secure/successRegister.jsp"/>
+    </definition>
+    <definition name="session" extends="base">
+        <put-attribute name="title" value="Сессии"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/session.jsp"/>
+        <put-attribute name="comment" value="/WEB-INF/views/comment.jsp" />
+    </definition>
+
+    <definition name="registerForm" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/registerForm.jsp"/>
+    </definition>
+    <definition name="profile" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/profile.jsp"/>
+    </definition>
+    <definition name="spittles" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/spittles.jsp"/>
+    </definition>
+    <definition name="spittle" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/spittle.jsp"/>
+    </definition>
+</tiles-definitions>

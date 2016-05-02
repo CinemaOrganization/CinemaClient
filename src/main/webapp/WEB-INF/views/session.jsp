@@ -1,15 +1,33 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" %>
 <html>
 <head>
+    <spring:url value="/resources/css/style.css" var="crunchifyCSS"/>
+    <link href="${crunchifyCSS}" type="text/css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <title>Sessions by film and cinema </title>
-    <link rel="stylesheet" href="resources/css/style.css" type="text/css">
 </head>
 <body>
+<table>
+    <tr>
+        <td><img src="resources/img/films/${film.id}.jpg" width="189" height="255"></td>
+        <td>
+            <h1> ${film.name} </h1>
+            <h4> Студия: ${film.studio}</h4>
+            <h4> Год выхода: ${film.year}</h4>
+            <h4> Продолжительность: ${film.duration}</h4>
+            <h4> Описание: ${film.description}</h4>
+        </td>
+    </tr>
+</table>
+
+
 <h1>Сеансы на фильм <c:out value="${film.name}"/> на <c:out value="${sessionList[0].date}"/></h1>
 <div>
     <form action="/session">
@@ -43,7 +61,7 @@
                                     <c:if test="${session.hall == hall}">
                                         <td><c:out value="Время: ${session.time}"/><br>
                                             <c:out value="${session.cost}р."/>
-                                            <%--<c:set var="film" value="${session.film}"/>--%>
+                                                <%--<c:set var="film" value="${session.film}"/>--%>
                                         </td>
                                         <c:remove var="session"/>
                                     </c:if>
@@ -57,7 +75,8 @@
         </tr>
     </c:forEach>
 </table>
-<a href="<c:url value="/" />">go to the Home Page...</a>
+
+
 </body>
 
 <script type="text/javascript">
@@ -69,15 +88,15 @@
             firstDay: 0,
             dateFormat: "yy-mm-dd",
             minDate: new Date(),
-            beforeShowDay: function(date) {
+            beforeShowDay: function (date) {
                 var stringDateList = "${dateList}";
-                stringDateList = stringDateList.substring(1,stringDateList.length-1);
+                stringDateList = stringDateList.substring(1, stringDateList.length - 1);
                 stringDateList = stringDateList.split(', ');
-                for (var i = 0; i < stringDateList.length; i=i+1) {
+                for (var i = 0; i < stringDateList.length; i = i + 1) {
                     var curDate = new Date(Date.parse(stringDateList[i]));
-                    if(date.getFullYear()==curDate.getFullYear()
-                            && curDate.getMonth()==date.getMonth()
-                            && curDate.getDate()==date.getDate()) {
+                    if (date.getFullYear() == curDate.getFullYear()
+                            && curDate.getMonth() == date.getMonth()
+                            && curDate.getDate() == date.getDate()) {
                         return [true];
                     }
                 }

@@ -43,21 +43,26 @@ public class SessionRepositoryTest {
     }
 
     @Test
-    public void findByFilmAndDateOrderByCinemaAndHallAndTime()  {
+    public void findByFilmAndDateOrderByCinemaAndHallAndTime() {
 
         Film chosenFilm = sessions.get(0).getFilm();
         LocalDate chosenDate = sessions.get(0).getDate();
+        Comparator<Session> cinemaCompare = Comparator.comparing(Session::getCinema,
+                (o1, o2) -> Long.compare(o1.getId(), o2.getId()));
+        Comparator<Session> hallCompare = Comparator.comparing(Session::getHall,
+                (o1, o2) -> Long.compare(o1.getId(), o2.getId()));
+        Comparator<Session> timeCompare = Comparator.comparing(Session::getTime);
+
         List<Session> expectedSessions = sessions.stream()
                 .filter(session -> session.getFilm().equals(chosenFilm))
                 .filter(session -> session.getDate().equals(chosenDate))
-                .sorted(Comparator.comparing(Session::getCinema, (o1, o2) -> new Long(o1.getId() - o2.getId()).intValue())
-                        .thenComparing(Session::getHall, (o1, o2) -> new Long(o1.getId() - o2.getId()).intValue())
-                        .thenComparing(Session::getTime)).collect(Collectors.toList());
+                .sorted(cinemaCompare.thenComparing(hallCompare).thenComparing(timeCompare))
+                .collect(Collectors.toList());
 
         List<Session> sessions = repository.findByFilmAndDateOrderByCinemaAndHallAndTime(chosenFilm, chosenDate);
 
         assertNotNull(sessions);
-        assertEquals(expectedSessions,sessions);
+        assertEquals(expectedSessions, sessions);
     }
 
     @Test
@@ -71,7 +76,7 @@ public class SessionRepositoryTest {
         List<Session> sessions = repository.findByFilmAndWhereDateAfterOrEqual(chosenFilm, chosenDate);
 
         assertNotNull(sessions);
-        assertEquals(expectedSessions,sessions);
+        assertEquals(expectedSessions, sessions);
     }
 
     @Test
@@ -83,7 +88,7 @@ public class SessionRepositoryTest {
         List<Session> sessions = repository.findByFilm(chosenFilm);
 
         assertNotNull(sessions);
-        assertEquals(expectedSessions,sessions);
+        assertEquals(expectedSessions, sessions);
     }
 
     @After
