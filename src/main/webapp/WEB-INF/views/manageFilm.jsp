@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Фильм</h1>
-    <a href="/manage/film/add">Создать</a>
+    <a href="/manage/film/create">Создать</a>
     <br>
     <a href="/manage/film/chooseup">Изменить</a>
     <br>
