@@ -15,7 +15,7 @@
         Выберите зал:<br>
         <select name="hall_id" \>
             <c:forEach items="${halls}" var="hall">
-                <option value="${hall.id}">${hall.number} ${hall.cinema.name}</option>
+                <option value="${hall.id}">${hall.cinema.name} ${hall.number}</option>
             </c:forEach>
         </select><br>
         Введите стоимость:<br>

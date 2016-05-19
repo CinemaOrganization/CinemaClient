@@ -41,7 +41,13 @@
         <put-attribute name="title" value="Сессии"/>
         <put-attribute name="body"
                        value="/WEB-INF/views/session.jsp"/>
-        <put-attribute name="comment" value="/WEB-INF/views/comment.jsp" />
+       <put-attribute name="comment" value="/WEB-INF/views/comment.jsp" />
+    </definition>
+
+    <definition name="notfound" extends="base">
+        <put-attribute name="title" value="Page not found"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/notfound.jsp"/>
     </definition>
 
     <definition name="registerForm" extends="base">
@@ -60,4 +66,98 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/spittle.jsp"/>
     </definition>
+
+    <!-- Manage Panel-->
+
+    <definition name="manage" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/manage.jsp"/>
+        <put-attribute name="title" value="Панель управления"/>
+    </definition>
+    <!-- manage Film -->
+    <definition name="manageFilm" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/manageFilm.jsp"/>
+        <put-attribute name="title" value="film123"/>
+    </definition>
+
+    <definition name="filmadd" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/filmadd.jsp"/>
+    </definition>
+
+    <definition name="filmChange" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/filmChange.jsp"/>
+    </definition>
+
+    <definition name="chooseUpFilm" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/chooseUpFilm.jsp"/>
+    </definition>
+
+    <definition name="chooseDelFilm" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/chooseDelFilm.jsp"/>
+    </definition>
+
+    <!-- manage cinema -->
+    <definition name="manageCinema" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/manageCinema.jsp"/>
+    </definition>
+
+    <definition name="cinemaAdd" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/cinemaAdd.jsp"/>
+    </definition>
+
+    <definition name="chooseUpCinema" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/chooseUpCinema.jsp"/>
+    </definition>
+
+    <definition name="cinemaChange" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/cinemaChange.jsp"/>
+    </definition>
+
+    <definition name="chooseDelCinema" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/chooseDelCinema.jsp"/>
+    </definition>
+
+    <!-- manage Hall-->
+
+    <definition name="manageHall" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/manageHall.jsp"/>
+    </definition>
+
+    <definition name="HallAdd" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/HallAdd.jsp"/>
+    </definition>
+
+    <definition name="chooseUpHall" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/chooseUpHall.jsp"/>
+    </definition>
+
+    <definition name="hallChange" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/hallChange.jsp"/>
+    </definition>
+
+    <definition name="chooseDelHall" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/chooseDelHall.jsp"/>
+    </definition>
+
+    <!-- mange Session -->
+    <definition name="manageSession" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/manageSession.jsp"/>
+    </definition>
+
 </tiles-definitions>

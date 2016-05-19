@@ -16,7 +16,7 @@
         Введите год фильма:<br>
         <input type="text" name="year" value="${film.year}"><br>
         Введите описание фильма:<br>
-        <textarea cols="50" rows="7" wrap="physical" name="description">${film.description}</textarea><br>
+        <textarea cols="50" rows="7" name="description">${film.description}</textarea><br>
         <input type="submit" value="Изменить"><br>
     </form>
     <a href="/manage/film">Назад</a>

@@ -18,6 +18,9 @@
     Измените кинотеатр:<br>
     <select name="cinema_id"\>
         <c:forEach items="${cinemaList}" var="cinema">
+    <%--        <c:if test="${hall.cinema eq cinema}">
+                <option selected value="${cinema.id}">${cinema.name}</option>
+            </c:if> --%>
             <option value="${cinema.id}">${cinema.name}</option>
         </c:forEach>
     </select><br>
