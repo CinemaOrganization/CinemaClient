@@ -17,6 +17,7 @@ public class Film {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
+    @Size(min = 3, message = "Введите минимум 3 символа")
     @Column(nullable = false)
     private String name;
 
