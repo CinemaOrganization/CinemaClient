@@ -24,12 +24,12 @@
         <tr>
             <td>Введите имя:</td>
             <td><form:input path="firstName" value=""/></td>
-            <td> <form:errors path="firstName" element="div"/></td>
+            <td><form:errors path="firstName" element="div"/></td>
         </tr>
         <tr>
             <td>Введите фамилию:</td>
             <td><form:input path="lastName" value=""/></td>
-            <td> <form:errors path="lastName" element="div"/></td>
+            <td><form:errors path="lastName" element="div"/></td>
         </tr>
         <tr>
             <td>Введите свой email адрес:</td>

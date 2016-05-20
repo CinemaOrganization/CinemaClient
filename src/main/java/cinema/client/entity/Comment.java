@@ -37,11 +37,11 @@ public class Comment {
     @Column(nullable = false)
     private LocalDateTime time;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_film")
     private Film film;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_user")
     private User user;
 
