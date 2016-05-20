@@ -40,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                .antMatchers("/manage*").hasRole("ADMIN")
                 .antMatchers("/user/login*").anonymous()
                 .antMatchers("/user/registration*").anonymous()
                 .anyRequest().permitAll()
@@ -52,8 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/user/login")
                 //Impotent thing
-                .and().csrf().disable();
-           //     .rememberMe();
+                .and().csrf().disable()
+                .rememberMe();
     }
 
     @Override
