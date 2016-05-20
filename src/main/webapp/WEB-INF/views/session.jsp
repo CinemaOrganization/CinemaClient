@@ -81,17 +81,19 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var stringDateList = "${dateList}";
+        stringDateList = stringDateList.substring(1, stringDateList.length - 1);
+        stringDateList = stringDateList.split(', ');
+
         $("#datepicker").datepicker({
             monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май",
                 "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
             dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-            firstDay: 0,
+            firstDay: 1,
             dateFormat: "yy-mm-dd",
             minDate: new Date(),
+            defaultDate: new Date(Date.parse(stringDateList[0])),
             beforeShowDay: function (date) {
-                var stringDateList = "${dateList}";
-                stringDateList = stringDateList.substring(1, stringDateList.length - 1);
-                stringDateList = stringDateList.split(', ');
                 for (var i = 0; i < stringDateList.length; i = i + 1) {
                     var curDate = new Date(Date.parse(stringDateList[i]));
                     if (date.getFullYear() == curDate.getFullYear()
