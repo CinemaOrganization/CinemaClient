@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,15 +41,14 @@ public class SessionService {
         }
         LocalDate nearestDate;
         if(strDate.equals("nearest")) {
-            Iterator<LocalDate> iterator = sessionRepository.findByFilmAndWhereDateAfterOrEqual(film, LocalDate.now())
+            Optional<LocalDate> date = sessionRepository.findByFilmAndWhereDateAfterOrEqual(film, LocalDate.now())
                     .stream()
                     .map(Session::getDate)
-                    .collect(Collectors.toSet())
-                    .iterator();
-            if (!iterator.hasNext()) {
+                    .findFirst();
+            if (!date.isPresent()) {
                 throw new ResourceNotFoundException();
             }
-            nearestDate = iterator.next();
+            nearestDate = date.get();
         } else {
             try {
                 nearestDate = LocalDate.parse(strDate);
