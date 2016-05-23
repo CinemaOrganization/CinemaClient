@@ -11,7 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <title>Sessions by film and cinema </title>
 </head>
 <body>
 <table>
@@ -59,7 +58,11 @@
                                 </td>
                                 <c:forEach items="${sessionList}" var="session">
                                     <c:if test="${session.hall == hall}">
-                                        <td><c:out value="Время: ${session.time}"/><br>
+                                        <td>
+                                            <a href="/booking?session_id=${session.id}">
+                                                <c:out value="Время: ${session.time}"/>
+                                            </a>
+                                            <br>
                                             <c:out value="${session.cost}р."/>
                                                 <%--<c:set var="film" value="${session.film}"/>--%>
                                         </td>
@@ -75,7 +78,6 @@
         </tr>
     </c:forEach>
 </table>
-
 
 </body>
 
