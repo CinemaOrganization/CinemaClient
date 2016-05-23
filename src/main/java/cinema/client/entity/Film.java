@@ -1,10 +1,13 @@
 package cinema.client.entity;
 
+import cinema.client.secure.validation.annotation.NotEmptyLocalTime;
+import cinema.client.secure.validation.annotation.ValidName;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+
 import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalTime;
 
 @Entity
@@ -17,20 +20,25 @@ public class Film {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Size(min = 3, message = "Введите минимум 3 символа")
+    @ValidName
     @Column(nullable = false)
     private String name;
 
+    @ValidName
     @Column(nullable = false)
     private String studio;
 
     @Type(type="cinema.client.entity.unsupported.LocalTimeUserType")
+    @NotEmptyLocalTime
     @Column(nullable = false)
     private LocalTime duration;
 
+    @ValidName
     @Column
     private String description;
 
+
+  //  @Min(value = 1,message = "Значение должно быть положительным")
     @Column(nullable = false)
     private int year;
 
