@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 </head>
@@ -11,8 +12,8 @@
             </tr>
             <tr>
                 <td>
-                    <form:input path="name" value=""/>
-                    <form:errors path="name" element="div"/>
+                    <form:input path="name"/>
+                    <form:errors path="name" cssClass="error"/>
                 </td>
             </tr>
             <tr>
@@ -20,17 +21,17 @@
             </tr>
             <tr>
                 <td>
-                    <form:input path="studio" value=""/>
-                    <form:errors path="studio" element="div"/>
+                    <form:input path="studio"/>
+                    <form:errors path="studio" cssClass="error"/>
                 </td>
             </tr>
             <tr>
-                <td>Введите продолжительность фильма:</td>
+                <td>Введите продолжительность фильма (в формате ЧЧ:ММ):</td>
             </tr>
             <tr>
                 <td>
-                    <form:input path="duration" value=""/>
-                    <form:errors path="duration" element="div"/>
+                    <form:input path="duration"  type="time"/>
+                    <form:errors path="duration"  cssClass="error"/>
                 </td>
             </tr>
             <tr>
@@ -38,8 +39,14 @@
             </tr>
             <tr>
                 <td>
-                    <form:input path="year" value=""/>
-                    <form:errors path="year" element="div"/>
+                    <c:set var="yearHasBindError">
+                        <form:errors path="year"/>
+                    </c:set>
+                    <form:input  path="year" type="number" min="1"/>
+                    <c:if test="${not empty yearHasBindError}">
+                        <span class="error">Поле не может быть пустым</span>
+                    </c:if>
+                 <%--   <form:errors path="year" cssClass="error" /> --%>
                 </td>
             </tr>
             <tr>
@@ -48,8 +55,8 @@
             </tr>
             <tr>
                 <td>
-                    <form:textarea path="description" element="div" cols="50" rows="7"/>
-                    <form:errors path="description" element="div"/>
+                    <form:textarea path="description" cols="50" rows="7"/>
+                    <form:errors path="description" cssClass="error"/>
                 </td>
             </tr>
             <tr>
