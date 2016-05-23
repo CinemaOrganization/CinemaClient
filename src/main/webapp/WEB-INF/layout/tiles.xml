@@ -44,6 +44,14 @@
        <put-attribute name="comment" value="/WEB-INF/views/comment.jsp" />
     </definition>
 
+    <definition name="booking" extends="base">
+        <put-attribute name="title" value="Бронирование мест"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/booking.jsp"/>
+    </definition>
+
+    <!--Errors-->
+
     <definition name="notfound" extends="base">
         <put-attribute name="title" value="Page not found"/>
         <put-attribute name="body"

@@ -13,11 +13,14 @@ import java.util.stream.Collectors;
 @Service
 public class HallService {
 
-    HallRepository hallRepository;
+    private HallRepository hallRepository;
+    private SessionService sessionService;
 
     @Autowired
-    public HallService(HallRepository hallRepository) {
+    public HallService(HallRepository hallRepository,
+                       SessionService sessionService) {
         this.hallRepository = hallRepository;
+        this.sessionService = sessionService;
     }
 
     public Set<Hall> findBySessions(List<Session> sessions) {
@@ -37,5 +40,10 @@ public class HallService {
 
     public void delete(Long id){
         hallRepository.delete(id);
+    }
+
+    public Hall getHallBySession(long session_id) {
+        Session session = sessionService.findOne(session_id);
+        return session.getHall();
     }
 }

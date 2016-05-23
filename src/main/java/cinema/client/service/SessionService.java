@@ -93,4 +93,8 @@ public class SessionService {
     public void save(Iterable<Session> sessions){
         sessionRepository.save(sessions);
     }
+
+    public Session findOne(long session_id) {
+        return sessionRepository.findOne(session_id);
+    }
 }
