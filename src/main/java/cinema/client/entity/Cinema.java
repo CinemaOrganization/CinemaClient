@@ -16,7 +16,7 @@ public class Cinema {
     private long id;
 
     @ValidName
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String name;
 
     public Cinema() { }

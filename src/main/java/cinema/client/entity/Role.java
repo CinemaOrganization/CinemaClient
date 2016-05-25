@@ -14,7 +14,7 @@ public class Role {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String authority;
 
     public long getId() {

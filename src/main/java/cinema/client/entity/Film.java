@@ -10,7 +10,8 @@ import javax.persistence.*;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "Film")
+@Table(name = "Film",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"name","year","studio"}))
 public class Film {
 
     @Id
@@ -36,8 +37,6 @@ public class Film {
     @Column
     private String description;
 
-
-  //  @Min(value = 1,message = "Значение должно быть положительным")
     @Column(nullable = false)
     private int year;
 
