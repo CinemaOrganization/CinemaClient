@@ -7,7 +7,7 @@
 <body>
 
     <c:forEach items="${filmList}" var="film">
-        <a href="/manage/film/chooseup/change?film_id=${film.id}">${film.name}</a><br>
+        <a href="/manage/film/chooseup/update?film_id=${film.id}">${film.name}</a><br>
     </c:forEach>
     <a href="/manage/film">Назад</a><br>
 </body>

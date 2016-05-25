@@ -78,9 +78,9 @@
         <put-attribute name="title" value="Создание нового фильма"/>
     </definition>
 
-    <definition name="filmChange" extends="base">
+    <definition name="filmUpdate" extends="base">
         <put-attribute name="body"
-                       value="/WEB-INF/views/filmChange.jsp"/>
+                       value="/WEB-INF/views/filmUpdate.jsp"/>
     </definition>
 
     <definition name="chooseUpFilm" extends="base">

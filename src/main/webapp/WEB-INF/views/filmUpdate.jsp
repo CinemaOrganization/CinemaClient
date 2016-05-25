@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <title>Изменение фильма</title>
 </head>
 <body>
     <form:form modelAttribute="film" method="POST" acceptCharset="UTF-8" enctype="utf-8">
@@ -12,7 +13,7 @@
             </tr>
             <tr>
                 <td>
-                    <form:input path="name"/>
+                    <form:input path="name" value="${film.name}"/>
                     <form:errors path="name" cssClass="error"/>
                 </td>
             </tr>
@@ -21,7 +22,7 @@
             </tr>
             <tr>
                 <td>
-                    <form:input path="studio"/>
+                    <form:input path="studio" value="${film.studio}"/>
                     <form:errors path="studio" cssClass="error"/>
                 </td>
             </tr>
@@ -30,7 +31,7 @@
             </tr>
             <tr>
                 <td>
-                    <form:input path="duration"  type="time"/>
+                    <form:input path="duration"  type="time" value="${film.duration}"/>
                     <form:errors path="duration"  cssClass="error"/>
                 </td>
             </tr>
@@ -42,7 +43,7 @@
                     <c:set var="yearHasBindError">
                         <form:errors path="year"/>
                     </c:set>
-                    <form:input  path="year" type="number" min="1"/>
+                    <form:input  path="year" type="number" min="1" value="${film.year}"/>
                     <c:if test="${not empty yearHasBindError}">
                         <span class="error">Поле не может быть пустым</span>
                     </c:if>
@@ -54,12 +55,12 @@
             </tr>
             <tr>
                 <td>
-                    <form:textarea path="description" cols="50" rows="7"/>
+                    <form:textarea path="description" cols="50" rows="7" value="${film.description}"/>
                     <form:errors path="description" cssClass="error"/>
                 </td>
             </tr>
             <tr>
-                <td><input name="submit" type="submit" value="Создать"/></td>
+                <td><input name="submit" type="submit" value="Изменить"/></td>
             </tr>
             <tr>
                 <td>

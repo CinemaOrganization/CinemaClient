@@ -51,10 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/user/login")
+                .logoutSuccessUrl("/user/login");
                 //Impotent thing
-                .and().csrf().disable()
-                .rememberMe();
+             //   .and().csrf().disable()
+            //    .rememberMe();
     }
 
     @Override
