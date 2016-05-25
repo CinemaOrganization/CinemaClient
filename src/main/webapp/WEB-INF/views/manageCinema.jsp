@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Кинотеатр</h1>
-    <a href="/manage/cinema/add">Создать</a>
+    <a href="/manage/cinema/create">Создать</a>
     <br>
     <a href="/manage/cinema/chooseup">Изменить</a>
     <br>

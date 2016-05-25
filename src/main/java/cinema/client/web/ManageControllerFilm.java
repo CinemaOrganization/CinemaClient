@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +25,11 @@ public class ManageControllerFilm {
     @Autowired
     public ManageControllerFilm(FilmService filmService) {
         this.filmService = filmService;
+    }
+
+    @RequestMapping(method = GET)
+    public String get(){
+        return "manageFilm";
     }
 
     @RequestMapping(value = "create",method = GET)

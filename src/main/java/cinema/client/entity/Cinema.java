@@ -1,5 +1,6 @@
 package cinema.client.entity;
 
+import cinema.client.secure.validation.annotation.ValidName;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class Cinema {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
+    @ValidName
     @Column(nullable = false)
     private String name;
 

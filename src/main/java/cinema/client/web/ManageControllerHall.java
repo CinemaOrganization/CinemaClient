@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
 @Controller
-@RequestMapping(value = "/manage/hall")
+@RequestMapping("/manage/hall")
 public class ManageControllerHall {
 
     HallService hallService;
@@ -26,6 +28,12 @@ public class ManageControllerHall {
         this.cinemaService = cinemaService;
         this.hallService = hallService;
     }
+
+    @RequestMapping(method = GET)
+    public String get(){
+        return "manageHall";
+    }
+
 
     @RequestMapping(value = "add")
     public String hallAdd(Model model){

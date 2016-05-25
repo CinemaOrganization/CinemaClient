@@ -1,20 +1,21 @@
 package cinema.client.web;
 
-import cinema.client.data.CinemaRepository;
 import cinema.client.entity.Cinema;
 import cinema.client.service.CinemaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
-import static org.springframework.web.bind.annotation.RequestMethod.PUT;
+
 
 @Controller
 @RequestMapping("manage/cinema")
@@ -27,17 +28,26 @@ public class ManageControllerCinema {
         this.cinemaService = cinemaService;
     }
 
-    @RequestMapping(value = "add",method = GET)
-    public String cinemaAdd(){
-        return "cinemaAdd";
+    @RequestMapping(method = GET)
+    public String get(){
+        return "manageCinema";
     }
 
-    @RequestMapping(value = "add/create",method = POST)
-    public String cinemaCreate(@RequestParam("name") String name){
+    @RequestMapping(value = "create",method = GET)
+    public String cinemaCreate(Model model){
+        Cinema cinema = new Cinema();
+        model.addAttribute(cinema);
+        return "cinemaCreate";
+    }
 
-        Cinema cinema = new Cinema(name);
+    @RequestMapping(value = "create",method = POST)
+    public String cinemaCreate(@Valid Cinema cinema, BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+            return "cinemaCreate";
+        }
         cinemaService.saveCinemas(Arrays.asList(cinema));
-        return "manageCinema";
+        return "redirect:/manage/cinema";
     }
 
     @RequestMapping(value = "chooseup", method = GET)
