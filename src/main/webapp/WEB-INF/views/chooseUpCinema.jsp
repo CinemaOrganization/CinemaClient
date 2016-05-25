@@ -5,9 +5,19 @@
     <title>Выберите фильм</title>
 </head>
 <body>
-    <c:forEach items="${cinemaList}" var="cinema">
-        <a href="/manage/cinema/chooseup/change?cinema_id=${cinema.id}">${cinema.name}</a><br>
-    </c:forEach>
-    <a href="/manage/cinema">Назад</a><br>
+    <table>
+        <c:forEach items="${cinemaList}" var="cinema">
+            <tr>
+                <td>
+                    <a href="/manage/cinema/chooseup/update?cinema_id=${cinema.id}">${cinema.name}</a>
+                </td>
+            </tr>
+        </c:forEach>
+        <tr>
+            <td>
+                <a href="/manage/cinema">Назад</a><br>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

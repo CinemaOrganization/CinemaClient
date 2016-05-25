@@ -30,7 +30,7 @@
             </tr>
             <tr>
                 <td>
-                    <form:input path="duration"  type="time"/>
+                    <form:input path="duration"  type="time" value="${film.duration}"/>
                     <form:errors path="duration"  cssClass="error"/>
                 </td>
             </tr>

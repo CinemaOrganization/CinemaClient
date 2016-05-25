@@ -57,23 +57,23 @@ public class ManageControllerCinema {
         return "chooseUpCinema";
     }
 
-    @RequestMapping(value = "chooseup/change",method = GET)
-    public String cinemaChangeUp(
+    @RequestMapping(value = "chooseup/update",method = GET)
+    public String cinemaUpdate(
             @RequestParam("cinema_id") long id,
             Model model){
         Cinema cinema = cinemaService.findOne(id);
-        model.addAttribute("cinema",cinema);
-        return "cinemaChange";
+        model.addAttribute(cinema);
+        return "cinemaUpdate";
     }
 
-    @RequestMapping(value = "chooseup/change/update",method = POST)
-    public String cinemaUpdate(
-            @RequestParam("cinema_id") long id,
-            @RequestParam("cinema_name") String name){
-        Cinema cinema = cinemaService.findOne(id);
-        cinema.setName(name);
+    @RequestMapping(value = "chooseup/update",method = POST)
+    public String cinemaUpdate(@Valid Cinema cinema,BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+            return "cinemaUpdate";
+        }
         cinemaService.saveCinemas(Arrays.asList(cinema));
-        return "manageCinema";
+        return "redirect:/manage/cinema";
     }
 
     @RequestMapping(value = "choosedel", method = GET)

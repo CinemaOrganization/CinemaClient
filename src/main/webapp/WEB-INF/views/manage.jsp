@@ -4,13 +4,27 @@
     <title>Панель управления</title>
 </head>
 <body>
-    <a href="/manage/film">Фильм</a>
-    <br>
-    <a href="/manage/cinema">Кинотеатр</a>
-    <br>
-    <a href="/manage/hall">Зал</a>
-    <br>
-    <a href="/manage/session">Сеанс</a>
-    <br>
+    <table>
+        <tr>
+            <td>
+                <a href="/manage/film">Фильм</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/manage/cinema">Кинотеатр</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/manage/hall">Зал</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/manage/session">Сеанс</a>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

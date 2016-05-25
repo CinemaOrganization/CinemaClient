@@ -1,16 +1,29 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Измените кинотеатр</title>
 </head>
 <body>
-    <form action="/manage/cinema/chooseup/change/update" method="post">
-        <input type="hidden" name="cinema_id" value="${cinema.id}">
-        Введите название кинотеатра:<br>
-        <input type="text" name="cinema_name" value="${cinema.name}"/><br>
-        <input type="submit" value="Изменить"><br>
-    </form>
-    <a href="/manage/cinema">Назад</a>
-    <br>
+    <sec:form modelAttribute="cinema" method="POST" acceptCharset="UTF-8" enctype="utf-8">
+        <table>
+            <tr>
+                <td>Введите название кинотеатра:</td>
+            </tr>
+            <tr>
+                <sec:input path="name"/>
+                <sec:errors path="name" cssClass="error"/>
+            </tr>
+            <tr>
+                <sec:input path="id" type="hidden"/>
+                <td><input name="submit" type="submit" value="Изменить"/></td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="/manage/cinema">Назад</a>
+                </td>
+            </tr>
+        </table>
+    </sec:form>
 </body>
 </html>

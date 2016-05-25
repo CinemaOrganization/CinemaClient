@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <td>
-                    <form:input path="name" value="${film.name}"/>
+                    <form:input path="name"/>
                     <form:errors path="name" cssClass="error"/>
                 </td>
             </tr>
@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td>
-                    <form:input path="studio" value="${film.studio}"/>
+                    <form:input path="studio"/>
                     <form:errors path="studio" cssClass="error"/>
                 </td>
             </tr>
@@ -43,7 +43,7 @@
                     <c:set var="yearHasBindError">
                         <form:errors path="year"/>
                     </c:set>
-                    <form:input  path="year" type="number" min="1" value="${film.year}"/>
+                    <form:input  path="year" type="number" min="1"/>
                     <c:if test="${not empty yearHasBindError}">
                         <span class="error">Поле не может быть пустым</span>
                     </c:if>
@@ -55,11 +55,12 @@
             </tr>
             <tr>
                 <td>
-                    <form:textarea path="description" cols="50" rows="7" value="${film.description}"/>
+                    <form:textarea path="description" cols="50" rows="7"/>
                     <form:errors path="description" cssClass="error"/>
                 </td>
             </tr>
             <tr>
+                <form:input path="id" type="hidden"/>
                 <td><input name="submit" type="submit" value="Изменить"/></td>
             </tr>
             <tr>
