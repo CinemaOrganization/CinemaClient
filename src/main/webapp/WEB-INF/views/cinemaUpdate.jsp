@@ -11,8 +11,10 @@
                 <td>Введите название кинотеатра:</td>
             </tr>
             <tr>
-                <sec:input path="name"/>
-                <sec:errors path="name" cssClass="error"/>
+                <td>
+                    <sec:input path="name"/>
+                    <sec:errors path="name" cssClass="error"/>
+                </td>
             </tr>
             <tr>
                 <sec:input path="id" type="hidden"/>
