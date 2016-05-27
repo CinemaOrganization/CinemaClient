@@ -5,13 +5,27 @@
 </head>
 <body>
 <h1>Зал</h1>
-<a href="/manage/hall/add">Создать</a>
-<br>
-<a href="/manage/hall/chooseup">Изменить</a>
-<br>
-<a href="/manage/hall/choosedel">Удалить</a>
-<br>
-<a href="/manage">Назад</a>
-<br>
+    <table>
+        <tr>
+            <td>
+                <a href="/manage/hall/add">Создать</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/manage/hall/chooseup">Изменить</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/manage/hall/choosedel">Удалить</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/manage">Назад</a>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
