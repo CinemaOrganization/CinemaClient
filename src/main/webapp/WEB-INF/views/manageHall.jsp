@@ -8,7 +8,7 @@
     <table>
         <tr>
             <td>
-                <a href="/manage/hall/add">Создать</a>
+                <a href="/manage/hall/create">Создать</a>
             </td>
         </tr>
         <tr>

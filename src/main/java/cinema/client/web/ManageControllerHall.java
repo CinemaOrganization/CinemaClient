@@ -2,19 +2,25 @@ package cinema.client.web;
 
 
 import cinema.client.entity.Cinema;
+import cinema.client.entity.Film;
 import cinema.client.entity.Hall;
 import cinema.client.service.CinemaService;
 import cinema.client.service.HallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 @RequestMapping("/manage/hall")
@@ -35,28 +41,32 @@ public class ManageControllerHall {
     }
 
 
-    @RequestMapping(value = "add")
-    public String hallAdd(Model model){
+    @RequestMapping(value = "create",method = GET)
+    public String hallCreate(Model model){
 
+        Hall hall = new Hall();
         List<Cinema> cinemaList = cinemaService.findAll();
+
+        Map<Long,String> map = new HashMap<Long, String>();
+
+        for (Cinema cinema: cinemaList) {
+            map.put(cinema.getId(),cinema.getName());
+
+        }
+        model.addAttribute(hall);
         model.addAttribute("cinemaList",cinemaList);
-        return "HallAdd";
+        return "createHall";
     }
 
-    @RequestMapping(value = "/add/create")
-    public String hallCreate(
-            @RequestParam("hall_number") int hall_number,
-            @RequestParam("cinema_id") long id,
-            @RequestParam("rows") int rows,
-            @RequestParam("numberInRow") int numInRow,
-            @RequestParam("3d") boolean threeD){
+    @RequestMapping(value = "create",method = POST)
+    public String hallCreate(@Valid Hall hall , BindingResult bindingResult){
 
-        Cinema cinema = cinemaService.findOne(id);
-        Hall hall = new Hall(hall_number,cinema,numInRow,rows,threeD);
+        if (bindingResult.hasErrors()){
+            return "createHall";
+        }
         hallService.save(Arrays.asList(hall));
-        return "manageHall";
+        return "redirect:/manage/hall";
     }
-
 
     @RequestMapping(value = "/choosedel")
     public String chooseDel(Model model){

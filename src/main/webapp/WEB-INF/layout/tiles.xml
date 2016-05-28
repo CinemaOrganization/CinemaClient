@@ -134,9 +134,9 @@
                        value="/WEB-INF/views/manageHall.jsp"/>
     </definition>
 
-    <definition name="HallAdd" extends="base">
+    <definition name="createHall" extends="base">
         <put-attribute name="body"
-                       value="/WEB-INF/views/HallAdd.jsp"/>
+                       value="/WEB-INF/views/createHall.jsp"/>
     </definition>
 
     <definition name="chooseUpHall" extends="base">
