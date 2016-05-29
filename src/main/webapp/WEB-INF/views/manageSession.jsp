@@ -5,13 +5,27 @@
 </head>
 <body>
 <h1>Сессия</h1>
-<a href="/manage/session/add">Создать</a>
-<br>
-<a href="/manage/session/chooseup">Изменить</a>
-<br>
-<a href="/manage/session/choosedel">Удалить</a>
-<br>
-<a href="/manage">Назад</a>
-<br>
+<table>
+    <tr>
+        <td>
+            <a href="/manage/session/create">Создать</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="/manage/session/chooseup">Изменить</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="/manage/session/choosedel">Удалить</a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a href="/manage">Назад</a>
+        </td>
+    </tr>
+</table>
 </body>
 </html>

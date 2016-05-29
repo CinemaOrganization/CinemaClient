@@ -163,6 +163,28 @@
     <definition name="manageSession" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/manageSession.jsp"/>
+        <put-attribute name="title" value="Управление сеансами"/>
+    </definition>
+
+    <definition name="createSession" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/createSession.jsp"/>
+        <put-attribute name="title" value="Создание сеанса"/>
+    </definition>
+    <definition name="chooseUpSession" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/chooseUpSession.jsp"/>
+        <put-attribute name="title" value="Список сеансов"/>
+    </definition>
+    <definition name="chooseDelSession" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/chooseDelSession.jsp"/>
+        <put-attribute name="title" value="Список сеансов"/>
+    </definition>
+    <definition name="updateSession" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/updateSession.jsp"/>
+        <put-attribute name="title" value="Изменение сеанса"/>
     </definition>
 
 </tiles-definitions>
