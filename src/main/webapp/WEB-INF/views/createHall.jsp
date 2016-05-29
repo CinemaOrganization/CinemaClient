@@ -6,7 +6,6 @@
     <title>Создание зала</title>
 </head>
 <body>
-
     <sec:form modelAttribute="hall" method="POST" acceptCharset="UTF-8" enctype="utf-8">
         <table>
             <tr>

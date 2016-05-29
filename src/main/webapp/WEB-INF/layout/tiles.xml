@@ -132,26 +132,31 @@
     <definition name="manageHall" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/manageHall.jsp"/>
+        <put-attribute name="title" value="Управление залами"/>
     </definition>
 
     <definition name="createHall" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/createHall.jsp"/>
+        <put-attribute name="title" value="Создание зала"/>
     </definition>
 
     <definition name="chooseUpHall" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/chooseUpHall.jsp"/>
+        <put-attribute name="title" value="Список залов"/>
     </definition>
 
-    <definition name="hallChange" extends="base">
+    <definition name="updateHall" extends="base">
         <put-attribute name="body"
-                       value="/WEB-INF/views/hallChange.jsp"/>
+                       value="/WEB-INF/views/updateHall.jsp"/>
+        <put-attribute name="title" value="Изменение зала"/>
     </definition>
 
     <definition name="chooseDelHall" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/chooseDelHall.jsp"/>
+        <put-attribute name="title" value="Список залов"/>
     </definition>
 
     <!-- mange Session -->
