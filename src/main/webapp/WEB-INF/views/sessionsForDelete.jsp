@@ -28,7 +28,7 @@
 
 
 <h1>Сеансы на фильм <c:out value="${film.name}"/> на <c:out value="${sessionList[0].date}"/></h1>
-<a href="/manage/session/filmsForUp">Назад</a>
+<a href="/manage/session/filmsForDel">Назад</a>
 <div>
     <form action="">
         <input type="hidden" name="film_id" value="<c:out value="${param.film_id}"/>"><br/>
@@ -60,7 +60,7 @@
                                 <c:forEach items="${sessionList}" var="session">
                                     <c:if test="${session.hall == hall}">
                                         <td>
-                                            <a href="/manage/session/filmsForUp/sessions/update?session_id=${session.id}">
+                                            <a href="/manage/session/filmsForDel/sessions/delete?session_id=${session.id}">
                                                 <c:out value="Время: ${session.time}"/>
                                             </a>
                                             <br>

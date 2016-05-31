@@ -172,15 +172,28 @@
         <put-attribute name="title" value="Создание сеанса"/>
     </definition>
 
-    <definition name="chooseFilm" extends="base">
+    <definition name="filmsForUp" extends="base">
         <put-attribute name="body"
-                       value="/WEB-INF/views/chooseFilm.jsp"/>
+                       value="/WEB-INF/views/filmsForUp.jsp"/>
         <put-attribute name="title" value="Список фильмов"/>
     </definition>
+
+    <definition name="filmsForDel" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/filmsForDel.jsp"/>
+        <put-attribute name="title" value="Список фильмов"/>
+    </definition>
+
 
     <definition name="sessionsForUpdate" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/sessionsForUpdate.jsp"/>
+        <put-attribute name="title" value="Список сеансов"/>
+    </definition>
+
+    <definition name="sessionsForDelete" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/sessionsForDelete.jsp"/>
         <put-attribute name="title" value="Список сеансов"/>
     </definition>
 

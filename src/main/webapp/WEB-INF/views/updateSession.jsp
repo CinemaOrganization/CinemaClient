@@ -73,7 +73,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="/manage/session/films/sessions?film_id=${session.film.id}">Назад</a>
+                    <a href="/manage/session/filmsForUp/sessions?film_id=${session.film.id}">Назад</a>
                 </td>
             </tr>
         </table>

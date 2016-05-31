@@ -13,12 +13,12 @@
     </tr>
     <tr>
         <td>
-            <a href="/manage/session/films">Изменить</a>
+            <a href="/manage/session/filmsForUp">Изменить</a>
         </td>
     </tr>
     <tr>
         <td>
-            <a href="/manage/session/choosedel">Удалить</a>
+            <a href="/manage/session/filmsForDel">Удалить</a>
         </td>
     </tr>
     <tr>

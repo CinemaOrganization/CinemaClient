@@ -78,12 +78,12 @@ public class ManageControllerSession {
         return "redirect:/manage/session";
     }
 
-    @RequestMapping(value = "films",method = GET)
+    @RequestMapping(value = "filmsForUp",method = GET)
     public String chooseFilmForUpSession(Model model){
 
         List<Film> films = filmService.findAll();
         model.addAttribute("films",films);
-        return "chooseFilm";
+        return "filmsForUp";
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
@@ -93,8 +93,8 @@ public class ManageControllerSession {
     }
 
 
-    @RequestMapping(value = "films/sessions",method = GET)
-    public String chooseSession(@RequestParam("film_id") long film_id,
+    @RequestMapping(value = "filmsForUp/sessions",method = GET)
+    public String chooseSessionForUp(@RequestParam("film_id") long film_id,
                                 @RequestParam(name = "strDate", defaultValue = "nearest") String date,
                                 Model model){
 
@@ -103,19 +103,16 @@ public class ManageControllerSession {
         Set<Cinema> cinemas = cinemaService.findBySessions(sessions);
         Film requiredFilm = filmService.findOne(film_id);
         List<LocalDate> dates = sessionService.getAllSessionsByFilmDatesAsStrings(requiredFilm);
-        List<Comment> comments = commentService.findByFilmAndOrderByTime(film_id);
 
         model.addAttribute(sessions);
         model.addAttribute(halls);
         model.addAttribute(cinemas);
         model.addAttribute("dateList",dates);
         model.addAttribute("film", requiredFilm);
-        model.addAttribute(comments);
-     //   model.addAttribute(comment);
         return "sessionsForUpdate";
     }
 
-    @RequestMapping(value = "films/sessions/update",method = GET)
+    @RequestMapping(value = "filmsForUp/sessions/update",method = GET)
     public String updateSession(@RequestParam("session_id") long session_id,Model model){
 
         Session session = sessionService.findOne(session_id);
@@ -128,7 +125,7 @@ public class ManageControllerSession {
         return "updateSession";
     }
 
-    @RequestMapping(value = "films/sessions/update",method = POST)
+    @RequestMapping(value = "filmsForUp/sessions/update",method = POST)
     public String updateSession(@Valid Session session,BindingResult bindingResult,Model model){
 
         if (bindingResult.hasErrors()){
@@ -142,6 +139,42 @@ public class ManageControllerSession {
         Hall hall = hallService.findOne(session.getHall().getId());
         session.setCinema(hall.getCinema());
         sessionService.save(Arrays.asList(session));
+        return "redirect:/manage/session";
+    }
+
+    @RequestMapping(value = "filmsForDel",method = GET)
+    public String chooseFilmForDelSession(Model model){
+
+        List<Film> films = filmService.findAll();
+        model.addAttribute("films",films);
+        return "filmsForDel";
+    }
+
+    @RequestMapping(value = "filmsForDel/sessions",method = GET)
+    public String chooseSessionForDel(@RequestParam("film_id") long film_id,
+                                     @RequestParam(name = "strDate", defaultValue = "nearest") String date,
+                                     Model model){
+
+        List<Session> sessions = sessionService.findByFilmAndDateOrderByCinemaAndHallAndTime(film_id,date);
+        Set<Hall> halls = hallService.findBySessions(sessions);
+        Set<Cinema> cinemas = cinemaService.findBySessions(sessions);
+        Film requiredFilm = filmService.findOne(film_id);
+        List<LocalDate> dates = sessionService.getAllSessionsByFilmDatesAsStrings(requiredFilm);
+
+        model.addAttribute(sessions);
+        model.addAttribute(halls);
+        model.addAttribute(cinemas);
+        model.addAttribute("dateList",dates);
+        model.addAttribute("film", requiredFilm);
+
+        return "sessionsForDelete";
+    }
+
+    @RequestMapping(value = "filmsForDel/sessions/delete",method = GET)
+    public String deleteSession(@RequestParam("session_id") long session_id){
+
+        Session session = sessionService.findOne(session_id);
+        sessionService.delete(Arrays.asList(session));
         return "redirect:/manage/session";
     }
 }
