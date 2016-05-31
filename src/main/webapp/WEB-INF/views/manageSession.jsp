@@ -13,7 +13,7 @@
     </tr>
     <tr>
         <td>
-            <a href="/manage/session/chooseup">Изменить</a>
+            <a href="/manage/session/films">Изменить</a>
         </td>
     </tr>
     <tr>

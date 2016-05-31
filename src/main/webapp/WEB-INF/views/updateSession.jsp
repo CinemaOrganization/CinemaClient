@@ -10,6 +10,7 @@
 </head>
 <body>
     <sec:form modelAttribute="session" method="POST" acceptCharset="UTF-8" enctype="utf-8">
+        <sec:input path="id" type="hidden"/>
         <table>
             <tr>
                 <td>Выберите фильм:</td>
@@ -68,11 +69,11 @@
                 </td>
             </tr>
             <tr>
-                <td><input name="submit" type="submit" value="Создать"/></td>
+                <td><input name="submit" type="submit" value="Изменить"/></td>
             </tr>
             <tr>
                 <td>
-                    <a href="/manage/session">Назад</a>
+                    <a href="/manage/session/films/sessions?film_id=${session.film.id}">Назад</a>
                 </td>
             </tr>
         </table>

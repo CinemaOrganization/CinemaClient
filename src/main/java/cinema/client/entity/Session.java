@@ -12,7 +12,8 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "session",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"id_hall","id_film","id_cinema","date"}))
+        uniqueConstraints =
+        @UniqueConstraint(columnNames = {"id_hall","id_film","id_cinema","date","time"}))
 public class Session {
 
     @Id

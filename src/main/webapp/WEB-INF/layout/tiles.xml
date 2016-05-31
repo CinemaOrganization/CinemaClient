@@ -171,16 +171,20 @@
                        value="/WEB-INF/views/createSession.jsp"/>
         <put-attribute name="title" value="Создание сеанса"/>
     </definition>
-    <definition name="chooseUpSession" extends="base">
+
+    <definition name="chooseFilm" extends="base">
         <put-attribute name="body"
-                       value="/WEB-INF/views/chooseUpSession.jsp"/>
+                       value="/WEB-INF/views/chooseFilm.jsp"/>
+        <put-attribute name="title" value="Список фильмов"/>
+    </definition>
+
+    <definition name="sessionsForUpdate" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/sessionsForUpdate.jsp"/>
         <put-attribute name="title" value="Список сеансов"/>
     </definition>
-    <definition name="chooseDelSession" extends="base">
-        <put-attribute name="body"
-                       value="/WEB-INF/views/chooseDelSession.jsp"/>
-        <put-attribute name="title" value="Список сеансов"/>
-    </definition>
+
+
     <definition name="updateSession" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/updateSession.jsp"/>
