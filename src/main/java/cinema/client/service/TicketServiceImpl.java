@@ -3,6 +3,7 @@ package cinema.client.service;
 import cinema.client.data.TicketRepository;
 import cinema.client.entity.Session;
 import cinema.client.entity.Ticket;
+import cinema.client.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +15,17 @@ public class TicketServiceImpl implements TicketService {
     private TicketRepository ticketRepository;
     private SessionService sessionService;
     private JsonTicketConverter jsonTicketConverter;
+    private UserService userService;
 
     @Autowired
     public TicketServiceImpl(TicketRepository ticketRepository,
                              SessionService sessionService,
-                             JsonTicketConverter jsonTicketConverter) {
+                             JsonTicketConverter jsonTicketConverter,
+                             UserService userService) {
         this.ticketRepository = ticketRepository;
         this.sessionService = sessionService;
         this.jsonTicketConverter = jsonTicketConverter;
+        this.userService = userService;
     }
 
     @Override
@@ -40,13 +44,16 @@ public class TicketServiceImpl implements TicketService {
     }
 
     private List<Ticket> fillTickets(List<Ticket> tickets) {
+        Session session = sessionService.findOne(tickets.get(0).getSession().getId());
+        User user = userService.findByUsername(tickets.get(0).getUser().getUsername());
         tickets.forEach(ticket -> {
-            Session session = sessionService.findOne(ticket.getSession().getId());
             ticket.setSession(session);
             ticket.setFilm(session.getFilm());
             ticket.setCinema(session.getCinema());
             ticket.setHall(session.getHall());
+            ticket.setUser(user);
         });
+
         return tickets;
     }
 }

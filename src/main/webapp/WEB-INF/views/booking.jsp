@@ -152,9 +152,13 @@
         this.row = row;
         this.number = number;
         this.session = new Session('${session.id}');
+        this.user = new User('<sec:authentication property="principal.username"/>');
     }
     function Session(id) {
         this.id = id;
+    }
+    function User(username) {
+        this.username = username;
     }
     function showBaySeat() {
         result = '';

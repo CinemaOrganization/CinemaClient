@@ -25,11 +25,11 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void registerNewUserAccount(User user) {
-        if (usernameExist(user.getUsername())) {
+        if (findByUsername(user.getUsername()) != null) {
             throw new UsernameExistException("Аккаунт с псевдонимом: " + user.getUsername()
                     + " уже существует:");
         }
-        if (emailExist(user.getEmail())) {
+        if (findByEmail(user.getEmail()) != null) {
             throw new EmailExistsException("Аккаунт с email адресом: " + user.getEmail()
                     + " уже существует:");
         }
@@ -39,12 +39,14 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    private boolean emailExist(String email) {
-        User user = userRepository.findByEmail(email);
-        return user != null;
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
-    private boolean usernameExist(String username) {
-        User user = userRepository.findByUsername(username);
-        return user != null;
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
+
 }

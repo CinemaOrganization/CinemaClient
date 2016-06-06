@@ -37,6 +37,25 @@ public class Ticket {
     @Column(name = "row")
     private int row;
 
+    @ManyToOne
+    @JoinColumn(name = "id_user")
+    private User user;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Session getSession() {
         return session;
@@ -86,6 +105,7 @@ public class Ticket {
         this.row = row;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,20 +116,14 @@ public class Ticket {
         if (id != ticket.id) return false;
         if (number != ticket.number) return false;
         if (row != ticket.row) return false;
-        if (!session.equals(ticket.session)) return false;
-        if (!film.equals(ticket.film)) return false;
-        if (!hall.equals(ticket.hall)) return false;
-        return cinema.equals(ticket.cinema);
+        return session != null ? session.equals(ticket.session) : ticket.session == null;
 
     }
 
     @Override
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + session.hashCode();
-        result = 31 * result + film.hashCode();
-        result = 31 * result + hall.hashCode();
-        result = 31 * result + cinema.hashCode();
+        result = 31 * result + (session != null ? session.hashCode() : 0);
         result = 31 * result + number;
         result = 31 * result + row;
         return result;
