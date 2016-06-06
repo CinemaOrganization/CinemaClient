@@ -186,7 +186,7 @@
         }
         return hallMap;
     }
-    
+
     function enableSubmitIfSomeChosen() {
         var countOfChosen = $('.chosen').length;
         if (countOfChosen == 0) {
