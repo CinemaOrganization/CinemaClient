@@ -5,7 +5,8 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Ticket")
+@Table(name = "Ticket",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"id_session","number","row"}))
 public class Ticket {
 
     @Id

@@ -30,6 +30,10 @@
             <td><input type='password' name='password' /></td>
         </tr>
         <tr>
+            <td>Remember me:</td>
+            <td><input type='checkbox' name='remember-me' /></td>
+        </tr>
+        <tr>
             <td></td>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <td><input name="submit" type="submit" value="submit" /></td>

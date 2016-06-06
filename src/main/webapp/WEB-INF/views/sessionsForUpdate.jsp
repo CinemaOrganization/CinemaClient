@@ -28,8 +28,9 @@
 
 
 <h1>Сеансы на фильм <c:out value="${film.name}"/> на <c:out value="${sessionList[0].date}"/></h1>
+<a href="/manage/session/filmsForUp">Назад</a>
 <div>
-    <form action="/session">
+    <form action="">
         <input type="hidden" name="film_id" value="<c:out value="${param.film_id}"/>"><br/>
         Выберите дату сеанса: <input type="text" id="datepicker" name="strDate" readonly/>
         <input type="submit" value="Посмотреть сеансы на выбранную дату">
@@ -59,7 +60,7 @@
                                 <c:forEach items="${sessionList}" var="session">
                                     <c:if test="${session.hall == hall}">
                                         <td>
-                                            <a href="/booking?session_id=${session.id}">
+                                            <a href="/manage/session/filmsForUp/sessions/update?session_id=${session.id}">
                                                 <c:out value="Время: ${session.time}"/>
                                             </a>
                                             <br>
@@ -93,19 +94,7 @@
             dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
             firstDay: 1,
             dateFormat: "yy-mm-dd",
-            minDate: new Date(),
-            defaultDate: new Date(Date.parse(stringDateList[0])),
-            beforeShowDay: function (date) {
-                for (var i = 0; i < stringDateList.length; i = i + 1) {
-                    var curDate = new Date(Date.parse(stringDateList[i]));
-                    if (date.getFullYear() == curDate.getFullYear()
-                            && curDate.getMonth() == date.getMonth()
-                            && curDate.getDate() == date.getDate()) {
-                        return [true];
-                    }
-                }
-                return [false];
-            }
+            minDate: new Date()
         });
 
     });

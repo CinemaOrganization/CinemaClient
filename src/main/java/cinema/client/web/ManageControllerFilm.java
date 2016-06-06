@@ -6,12 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,6 +27,11 @@ public class ManageControllerFilm {
         this.filmService = filmService;
     }
 
+    @RequestMapping(method = GET)
+    public String get(){
+        return "manageFilm";
+    }
+
     @RequestMapping(value = "create",method = GET)
     public String createFilm(Model model)
     {
@@ -37,7 +40,7 @@ public class ManageControllerFilm {
     }
 
     @RequestMapping(value = "create",method = POST)
-    public String checkBeforeCreate(@Valid Film film, BindingResult bindingResult)
+    public String createFilm(@Valid Film film, BindingResult bindingResult)
     {
         if (bindingResult.hasErrors()){
             return "createFilm";
@@ -46,31 +49,23 @@ public class ManageControllerFilm {
         return "redirect:/manage/film";
     }
 
-    @RequestMapping(value = "chooseup/change/update",method = POST)
-    public String filmUpdate(
-            @RequestParam("film_id") long id,
-            @RequestParam("name") String name,
-            @RequestParam("studio") String studio,
-            @RequestParam("duration") LocalTime duration,
-            @RequestParam("year") String year,
-            @RequestParam("description") String description){
-        Film film = filmService.findOne(id);
-        film.setName(name);
-        film.setStudio(studio);
-        film.setDuration(duration);
-        film.setYear(Integer.parseInt(year));
-        film.setDescription(description);
+    @RequestMapping(value = "chooseup/update",method = POST)
+    public String filmUpdate(@Valid Film film, BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+            return "filmUpdate";
+        }
         filmService.saveFilms(Arrays.asList(film));
-        return "manageFilm";
+        return "redirect:/manage/film";
     }
 
-    @RequestMapping(value = "chooseup/change",method = GET)
-    public String filmChange(
+    @RequestMapping(value = "chooseup/update",method = GET)
+    public String filmUpdate(
             @RequestParam("film_id") long id,
             Model model){
         Film film = filmService.findOne(id);
-        model.addAttribute("film",film);
-        return "filmChange";
+        model.addAttribute(film);
+        return "filmUpdate";
     }
 
     @RequestMapping(value = "chooseup",method = GET)
@@ -91,6 +86,6 @@ public class ManageControllerFilm {
     @RequestMapping(value = "choosedel/delete",method = GET)
     public String deleteFilm(@RequestParam("film_id") long id){
         filmService.deleteFilm(id);
-        return "manageFilm";
+        return "redirect:/manage/film";
     }
 }

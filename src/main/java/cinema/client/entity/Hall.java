@@ -3,12 +3,10 @@ package cinema.client.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
 
 @Entity
-@Table(name = "hall")
+@Table(name = "hall",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"number","id_cinema"}))
 public class Hall {
 
     @Id
@@ -32,23 +30,7 @@ public class Hall {
     private int rows;
 
     @Column(name = "is_3d",nullable = false)
-    private boolean ThreeD;
-
-
- /*   @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "hall_place",
-            joinColumns = { @JoinColumn(name = "id_hall") },
-            inverseJoinColumns = { @JoinColumn(name = "id_place") })
-    private Set<Place> placeSet = new TreeSet<Place>();
-
-
-    public Set<Place> getPlaceSet() {
-        return placeSet;
-    }
-
-    public void setPlaceSet(TreeSet<Place> placeSet) {
-        this.placeSet = placeSet;
-    }*/
+    private boolean threeD;
 
     public Hall(){}
     public Hall(int number, Cinema cinema, int numberInRows, int rows, boolean threeD) {
@@ -56,7 +38,7 @@ public class Hall {
         this.cinema = cinema;
         this.numberInRows = numberInRows;
         this.rows = rows;
-        ThreeD = threeD;
+        this.threeD = threeD;
     }
 
     public long getId() {
@@ -76,12 +58,12 @@ public class Hall {
     }
 
 
-    public boolean isThreeD() {
-        return ThreeD;
+    public boolean isthreeD() {
+        return threeD;
     }
 
     public void setThreeD(boolean threeD) {
-        ThreeD = threeD;
+        this.threeD = threeD;
     }
 
     public int getNumberInRows() {

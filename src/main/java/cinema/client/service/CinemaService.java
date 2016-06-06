@@ -39,7 +39,6 @@ public class CinemaService {
     }
 
     public Cinema findByName(String name){
-
         return  cinemaRepository.findByName(name);
     }
 }

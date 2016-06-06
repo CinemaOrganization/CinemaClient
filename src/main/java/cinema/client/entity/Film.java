@@ -1,14 +1,17 @@
 package cinema.client.entity;
 
+import cinema.client.secure.validation.annotation.NotEmptyLocalTime;
+import cinema.client.secure.validation.annotation.ValidName;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
+
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "Film")
+@Table(name = "Film",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"name","year","studio"}))
 public class Film {
 
     @Id
@@ -17,17 +20,20 @@ public class Film {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Size(min = 3, message = "Введите минимум 3 символа")
+    @ValidName
     @Column(nullable = false)
     private String name;
 
+    @ValidName
     @Column(nullable = false)
     private String studio;
 
     @Type(type="cinema.client.entity.unsupported.LocalTimeUserType")
+    @NotEmptyLocalTime
     @Column(nullable = false)
     private LocalTime duration;
 
+    @ValidName
     @Column
     private String description;
 

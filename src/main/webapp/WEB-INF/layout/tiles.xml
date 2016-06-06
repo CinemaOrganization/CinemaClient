@@ -75,7 +75,7 @@
     <definition name="manageFilm" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/manageFilm.jsp"/>
-        <put-attribute name="title" value="film123"/>
+        <put-attribute name="title" value="Управление фильмами"/>
     </definition>
 
     <definition name="createFilm" extends="base">
@@ -84,45 +84,53 @@
         <put-attribute name="title" value="Создание нового фильма"/>
     </definition>
 
-    <definition name="filmChange" extends="base">
+    <definition name="filmUpdate" extends="base">
         <put-attribute name="body"
-                       value="/WEB-INF/views/filmChange.jsp"/>
+                       value="/WEB-INF/views/filmUpdate.jsp"/>
+        <put-attribute name="title" value="Изменение фильма"/>
     </definition>
 
     <definition name="chooseUpFilm" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/chooseUpFilm.jsp"/>
+        <put-attribute name="title" value="Список фильмов"/>
     </definition>
 
     <definition name="chooseDelFilm" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/chooseDelFilm.jsp"/>
+        <put-attribute name="title" value="Список фильмов"/>
     </definition>
 
     <!-- manage cinema -->
     <definition name="manageCinema" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/manageCinema.jsp"/>
+        <put-attribute name="title" value="Управление кинотеатрами"/>
     </definition>
 
-    <definition name="cinemaAdd" extends="base">
+    <definition name="cinemaCreate" extends="base">
         <put-attribute name="body"
-                       value="/WEB-INF/views/cinemaAdd.jsp"/>
+                       value="/WEB-INF/views/cinemaCreate.jsp"/>
+        <put-attribute name="title" value="Создание кинотеатра"/>
     </definition>
 
     <definition name="chooseUpCinema" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/chooseUpCinema.jsp"/>
+        <put-attribute name="title" value="Список кинотеатров"/>
     </definition>
 
-    <definition name="cinemaChange" extends="base">
+    <definition name="cinemaUpdate" extends="base">
         <put-attribute name="body"
-                       value="/WEB-INF/views/cinemaChange.jsp"/>
+                       value="/WEB-INF/views/cinemaUpdate.jsp"/>
+        <put-attribute name="title" value="Изменение кинотеатра"/>
     </definition>
 
     <definition name="chooseDelCinema" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/chooseDelCinema.jsp"/>
+        <put-attribute name="title" value="Список кинотеатров"/>
     </definition>
 
     <!-- manage Hall-->
@@ -130,32 +138,76 @@
     <definition name="manageHall" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/manageHall.jsp"/>
+        <put-attribute name="title" value="Управление залами"/>
     </definition>
 
-    <definition name="HallAdd" extends="base">
+    <definition name="createHall" extends="base">
         <put-attribute name="body"
-                       value="/WEB-INF/views/HallAdd.jsp"/>
+                       value="/WEB-INF/views/createHall.jsp"/>
+        <put-attribute name="title" value="Создание зала"/>
     </definition>
 
     <definition name="chooseUpHall" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/chooseUpHall.jsp"/>
+        <put-attribute name="title" value="Список залов"/>
     </definition>
 
-    <definition name="hallChange" extends="base">
+    <definition name="updateHall" extends="base">
         <put-attribute name="body"
-                       value="/WEB-INF/views/hallChange.jsp"/>
+                       value="/WEB-INF/views/updateHall.jsp"/>
+        <put-attribute name="title" value="Изменение зала"/>
     </definition>
 
     <definition name="chooseDelHall" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/chooseDelHall.jsp"/>
+        <put-attribute name="title" value="Список залов"/>
     </definition>
 
     <!-- mange Session -->
     <definition name="manageSession" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/manageSession.jsp"/>
+        <put-attribute name="title" value="Управление сеансами"/>
+    </definition>
+
+    <definition name="createSession" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/createSession.jsp"/>
+        <put-attribute name="title" value="Создание сеанса"/>
+    </definition>
+
+    <definition name="filmsForUp" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/filmsForUp.jsp"/>
+        <put-attribute name="title" value="Список фильмов"/>
+    </definition>
+
+    <definition name="filmsForDel" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/filmsForDel.jsp"/>
+        <put-attribute name="title" value="Список фильмов"/>
+    </definition>
+
+
+    <definition name="sessionsForUpdate" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/sessionsForUpdate.jsp"/>
+        <put-attribute name="title" value="Список сеансов"/>
+    </definition>
+
+    <definition name="sessionsForDelete" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/sessionsForDelete.jsp"/>
+        <put-attribute name="title" value="Список сеансов"/>
+    </definition>
+
+
+    <definition name="updateSession" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/updateSession.jsp"/>
+        <put-attribute name="title" value="Изменение сеанса"/>
     </definition>
 
 </tiles-definitions>

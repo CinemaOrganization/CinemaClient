@@ -1,15 +1,19 @@
 package cinema.client.entity;
 
+import cinema.client.secure.validation.annotation.NotEmptyLocalTime;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 
 @Entity
-@Table(name = "session")
+@Table(name = "session",
+        uniqueConstraints =
+        @UniqueConstraint(columnNames = {"id_hall","id_film","id_cinema","date","time"}))
 public class Session {
 
     @Id
@@ -18,21 +22,23 @@ public class Session {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     @JoinColumn(name = "id_hall")
     private Hall hall;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     @JoinColumn(name = "id_film")
     private Film film;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne()
     @JoinColumn(name = "id_cinema")
     private Cinema cinema;
 
+    @Min(value = 0)
     @Column(nullable = false)
     private double cost;
 
+    @NotEmptyLocalTime
     @Type(type = "cinema.client.entity.unsupported.LocalTimeUserType")
     @Column(nullable = false)
     private LocalTime time;

@@ -94,6 +94,10 @@ public class SessionService {
         sessionRepository.save(sessions);
     }
 
+    public void delete(Iterable<Session> sessions){
+        sessionRepository.delete(sessions);
+    }
+
     public Session findOne(long session_id) {
         return sessionRepository.findOne(session_id);
     }

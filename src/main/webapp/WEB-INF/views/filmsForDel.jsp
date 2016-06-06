@@ -6,16 +6,16 @@
 </head>
 <body>
     <table>
-        <c:forEach items="${cinemaList}" var="cinema">
+        <c:forEach items="${films}" var="film">
             <tr>
                 <td>
-                    <a href="/manage/cinema/choosedel/delete?cinema_id=${cinema.id}">${cinema.name}</a>
+                    <a href="/manage/session/filmsForDel/sessions?film_id=${film.id}">${film.name}</a>
                 </td>
             </tr>
         </c:forEach>
         <tr>
             <td>
-                <a href="/manage/cinema">Назад</a><br>
+                <a href="/manage/session">Назад</a><br>
             </td>
         </tr>
     </table>

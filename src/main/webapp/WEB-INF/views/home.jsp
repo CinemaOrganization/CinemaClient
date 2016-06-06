@@ -14,6 +14,34 @@
 <h1>Добро пожаловать на сайт нашего Кинотеатра!</h1>
 <h3>Выберите фильм</h3>
 <table>
+    <c:forEach begin="0" end="${filmList.size()/3}" var="rCount">
+        <tr>
+            <c:forEach begin="${rCount*3}" end="${rCount*3+2}" var="CurFilm">
+                <c:if test="${CurFilm < filmList.size()}">
+                    <s:url value="/session?film_id=${filmList[CurFilm].id}" var="sessions"/>
+                    <td>
+                        <td>
+                            <a class="h1_title" href="${sessions}">
+                                <img src="resources/img/films/${filmList[CurFilm].id}.jpg"
+                                     width="189"
+                                     height="255">
+                            </a>
+                        </td>
+                        <td>
+                            <a class="h1_title" href="${sessions}">
+                                <h4> ${filmList[CurFilm].name} </h4>
+                            </a>
+                            <h4> Год выхода: ${filmList[CurFilm].year}</h4>
+                            <h4> Продолжительность: ${filmList[CurFilm].duration}</h4>
+                        </td>
+                    </td>
+                </c:if>
+            </c:forEach>
+        </tr>
+    </c:forEach>
+</table>
+<%--
+<table>
     <c:forEach items="${filmList}" var="film">
         <s:url value="/session?film_id=${film.id}" var="sessions"/>
         <tr>
@@ -33,6 +61,6 @@
             </td>
         </tr>
     </c:forEach>
-</table>
+</table> --%>
 </body>
 </html>

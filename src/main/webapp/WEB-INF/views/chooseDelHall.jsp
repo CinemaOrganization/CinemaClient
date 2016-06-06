@@ -5,9 +5,19 @@
     <title>Выберите зал</title>
 </head>
 <body>
+<table>
     <c:forEach items="${hallList}" var="hall">
-        <a href="/manage/hall/choosedel/delete?hall_id=${hall.id}" >${hall.cinema.name} ${hall.number}</a><br>
+        <tr>
+            <td>
+                <a href="/manage/hall/choosedel/delete?hall_id=${hall.id}" >${hall.cinema.name} ${hall.number}</a>
+            </td>
+        </tr>
     </c:forEach>
-    <a href="/manage/hall">Назад</a><br>
+    <tr>
+        <td>
+            <a href="/manage/hall">Назад</a><br>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
