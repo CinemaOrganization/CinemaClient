@@ -11,10 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class SecurityController {
@@ -26,19 +28,19 @@ public class SecurityController {
         this.service = service;
     }
 
-    @RequestMapping(value = "/user/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/logout", method = GET)
     public String showLogoutForm() {
         return "secure/logout";
     }
 
-    @RequestMapping(value = "/user/registration", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/registration", method = GET)
     public String showRegistrationForm(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "secure/registration";
     }
 
-    @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/registration", method = POST)
     public ModelAndView registerUserAccount(@ModelAttribute("user") @Valid User account,
                                             BindingResult result) {
         if (!result.hasErrors()) {

@@ -12,6 +12,14 @@
             <sec:authorize access="!isAnonymous()">
                 Вы зашли под пользователем:
                 <sec:authentication property="principal.username"/>
+                <td><c:url var="usermyUrl" value="/user/my"/>
+                    <form action="${usermyUrl}" method="post">
+                        <input type="submit" value="Личный Кабинет"/>
+                        <input type="hidden"  name="username"
+                               value="<sec:authentication property="principal.username"/>"/>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                </td>
                 <td><c:url var="logoutUrl" value="/logout"/>
                     <form action="${logoutUrl}" method="post">
                         <input type="submit" value="Выйти"/>

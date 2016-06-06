@@ -21,7 +21,7 @@
         </form:form>
     </sec:authorize>
 
-    <table class="comments" width="50%">
+    <table class="simple-little-table" width="50%">
         <c:forEach items="${commentList}" var="current_comment">
             <tr>
                 <td>${current_comment.user.username}<br>
