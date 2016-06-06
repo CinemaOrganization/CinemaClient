@@ -3,6 +3,7 @@ package cinema.client.service;
 import cinema.client.entity.Ticket;
 
 import java.util.Collection;
+import java.util.List;
 
 interface JsonTicketConverter {
 
@@ -12,5 +13,5 @@ interface JsonTicketConverter {
 
     public String objectsToJson(Collection<Ticket> objects);
 
-    public Collection<Ticket> toObjects(String jsonObject);
+    public List<Ticket> toObjects(String jsonObject);
 }

@@ -22,10 +22,21 @@
             height: 20px;
             width: 20px;
             margin-right: 10px;
-            background-color: #999999;
+            background-color: #6a6f99;
             display: inline-block;
             cursor: pointer;
             border: 1px solid #600000;
+        }
+
+        .infoBord {
+            height: 20px;
+            width: 140px;
+            margin-right: 10px;
+            background-color: #995e46;
+            display: inline-block;
+            cursor: pointer;
+            border: 1px solid #600000;
+            visibility: hidden;
         }
 
         .passageBetween {
@@ -34,7 +45,7 @@
             display: block;
         }
 
-        .bay {
+        .chosen {
             background-color: #92ff51;
         }
 
@@ -43,7 +54,7 @@
         }
 
         .paid {
-            background-color: red;
+            background-color: #beb7b8;
         }
 
         .result {
@@ -58,9 +69,16 @@
 </head>
 <body>
 
+<form method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <input id="ticketsField" type="hidden" name="tickets">
+    <input type="submit" value="Забронировать" disabled="true">
+</form>
+<br>
 <div class='result'>
 </div>
 <div class='cinemaHall'></div>
+<div class='infoBord'></div>
 
 
 <script type="text/javascript">
@@ -94,25 +112,54 @@
         // если первый раз кликнули билет - выбрали,
         // если повторно - вернули билет
         if ($(e.currentTarget).hasClass('paid') == false) {
-            $(e.currentTarget).toggleClass('bay');
+            $(e.currentTarget).toggleClass('chosen');
             //показываем сколько билетов выбрано
-            showBaySeat()
+            showBaySeat();
+            var ticketsJson = generateJson();
+            $('#ticketsField').val(ticketsJson);
         }
+        enableSubmitIfSomeChosen();
     });
 
     $('.seat').mouseover(function (e) {
         //меняем при наведении
         $(e.currentTarget).addClass('mouse');
+        var coordinates = $(e.currentTarget).offset();
+        coordinates.top += 20;
+        coordinates.left += 20;
+        $('.infoBord').offset(coordinates);
+        $('.infoBord').html('Ряд: ' +
+                $(e.currentTarget).data().row +
+                ', Место:' +
+                $(e.currentTarget).data().seat);
+        $('.infoBord').css('visibility', 'visible');
     });
     $('.seat').mouseout(function (e) {
         // меняем обратно при отведении
         $(e.currentTarget).removeClass('mouse');
+        $('.infoBord').css('visibility', 'hidden');
     });
 
+    function generateJson() {
+        var ticketArray = [];
+        $('.seat.chosen').each(function (key, item) {
+            var ticket = new Ticket($(item).data().row, $(item).data().seat);
+            ticketArray.push(ticket);
+        });
+        return JSON.stringify(ticketArray);
+    }
+    function Ticket(row, number) {
+        this.row = row;
+        this.number = number;
+        this.session = new Session('${session.id}');
+    }
+    function Session(id) {
+        this.id = id;
+    }
     function showBaySeat() {
         result = '';
         //ищем все места купленные и показываем список выбранных мест
-        $.each($('.seat.bay'), function (key, item) {
+        $.each($('.seat.chosen'), function (key, item) {
             result += '<div class="ticket">Ряд: ' +
                     $(item).data().row + ' Место:' +
                     $(item).data().seat + '</div>';
@@ -121,9 +168,9 @@
         $('.result').html(result);
     }
     function matrixArray(rows, columns, defineNumber) {
-        var arr = new Array();
+        var arr = [];
         for (var i = 0; i < rows; i++) {
-            arr[i] = new Array();
+            arr[i] = [];
             for (var j = 0; j < columns; j++) {
                 arr[i][j] = defineNumber;
             }
@@ -138,6 +185,15 @@
             hallMap[row - 1][number - 1] = 1;
         }
         return hallMap;
+    }
+    
+    function enableSubmitIfSomeChosen() {
+        var countOfChosen = $('.chosen').length;
+        if (countOfChosen == 0) {
+            $('input[type="submit"]').prop('disabled', true);
+        } else {
+            $('input[type="submit"]').prop('disabled', false);
+        }
     }
 </script>
 </body>

@@ -6,7 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class JsonTicketConverterImpl implements JsonTicketConverter {
@@ -44,13 +46,13 @@ public class JsonTicketConverterImpl implements JsonTicketConverter {
         return result;
     }
 
-    public Collection<Ticket> toObjects(String jsonObject) {
+    public List<Ticket> toObjects(String jsonObject) {
         ObjectMapper mapper = new ObjectMapper();
-        Collection objects = null;
+        List<Ticket> objects = null;
         try {
-            objects = mapper.readValue(jsonObject, Collection.class);
+            objects = Arrays.asList(mapper.readValue(jsonObject, Ticket[].class));
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace();//неверный формат или пустая строка брони
         }
         return objects;
     }

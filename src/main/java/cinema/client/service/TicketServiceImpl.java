@@ -16,7 +16,9 @@ public class TicketServiceImpl implements TicketService {
     private JsonTicketConverter jsonTicketConverter;
 
     @Autowired
-    public TicketServiceImpl(TicketRepository ticketRepository, SessionService sessionService, JsonTicketConverter jsonTicketConverter) {
+    public TicketServiceImpl(TicketRepository ticketRepository,
+                             SessionService sessionService,
+                             JsonTicketConverter jsonTicketConverter) {
         this.ticketRepository = ticketRepository;
         this.sessionService = sessionService;
         this.jsonTicketConverter = jsonTicketConverter;
@@ -28,5 +30,23 @@ public class TicketServiceImpl implements TicketService {
         List<Ticket> tickets = ticketRepository.findBySession(session);
         String ticketsInJson = jsonTicketConverter.objectsToJson(tickets);
         return ticketsInJson;
+    }
+
+    @Override
+    public void bookTickets(String ticketsJson) {
+        List<Ticket> tickets = jsonTicketConverter.toObjects(ticketsJson);
+        tickets = fillTickets(tickets);
+        ticketRepository.save(tickets);
+    }
+
+    private List<Ticket> fillTickets(List<Ticket> tickets) {
+        tickets.forEach(ticket -> {
+            Session session = sessionService.findOne(ticket.getSession().getId());
+            ticket.setSession(session);
+            ticket.setFilm(session.getFilm());
+            ticket.setCinema(session.getCinema());
+            ticket.setHall(session.getHall());
+        });
+        return tickets;
     }
 }

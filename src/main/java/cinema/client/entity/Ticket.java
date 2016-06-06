@@ -1,8 +1,6 @@
 package cinema.client.entity;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 
@@ -14,7 +12,7 @@ public class Ticket {
     @Column(name = "id_ticket")
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private  long id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "id_session")
@@ -34,8 +32,10 @@ public class Ticket {
 
     @Column(name = "number")
     private int number;
+
     @Column(name = "row")
     private int row;
+
 
     public Session getSession() {
         return session;

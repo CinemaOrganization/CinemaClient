@@ -50,6 +50,12 @@
                        value="/WEB-INF/views/booking.jsp"/>
     </definition>
 
+    <definition name="successesBooking" extends="base">
+        <put-attribute name="title" value="Места забронированы"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/successesBooking.jsp"/>
+    </definition>
+
     <!--Errors-->
 
     <definition name="notfound" extends="base">
