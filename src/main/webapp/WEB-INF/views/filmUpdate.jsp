@@ -61,7 +61,12 @@
             </tr>
             <tr>
                 <form:input path="id" type="hidden"/>
-                <td><input name="submit" type="submit" value="Изменить"/></td>
+                <td>
+                    <input name="submit" type="submit" value="Изменить"/>
+                    <c:if test="${not empty filmExistError}">
+                        <span class="error">Данный фильм уже существует</span>
+                    </c:if>
+                </td>
             </tr>
             <tr>
                 <td>

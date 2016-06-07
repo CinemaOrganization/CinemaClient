@@ -46,4 +46,23 @@ public class HallService {
         Session session = sessionService.findOne(session_id);
         return session.getHall();
     }
+
+    public boolean isExistedHall(Hall hall){
+        Hall existedHall =hallRepository.findByNumberAndCinema(hall.getNumber(),hall.getCinema());
+        if (existedHall != null){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean isAnotherExistedHall(Hall hall){
+        Hall foundHall = hallRepository.findByNumberAndCinema(hall.getNumber(),hall.getCinema());
+        if (foundHall != null && foundHall.getId() != hall.getId()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 }

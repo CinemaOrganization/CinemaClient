@@ -101,4 +101,24 @@ public class SessionService {
     public Session findOne(long session_id) {
         return sessionRepository.findOne(session_id);
     }
+
+    public boolean isExistedSession(Session session){
+        Session existedSession = sessionRepository.findByHallAndFilmAndCinemaAndDateAndTime(
+                session.getHall(),session.getFilm(),session.getCinema(),session.getDate(),session.getTime());
+        if (existedSession != null){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean isAnotherExistedSession(Session session){
+        Session foundSession = sessionRepository.findByHallAndFilmAndCinemaAndDateAndTime(
+                session.getHall(),session.getFilm(),session.getCinema(),session.getDate(),session.getTime());
+        if (foundSession != null && foundSession.getId() != session.getId()){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

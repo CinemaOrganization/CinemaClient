@@ -2,11 +2,8 @@ package cinema.client.service;
 
 import cinema.client.data.FilmRepository;
 import cinema.client.entity.Film;
-import org.mockito.internal.util.collections.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -28,6 +25,23 @@ public class FilmService {
         return filmRepository.findOne(film_id);
     }
 
+    public boolean isExistedFilm(Film film){
+        Film existFilm =filmRepository.findByNameAndYearAndStudio(film.getName(),film.getYear(),film.getStudio());
+        if (existFilm != null){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean isAnotherExistedFilm(Film film){
+        Film foundFilm = filmRepository.findByNameAndYearAndStudio(film.getName(),film.getYear(),film.getStudio());
+        if (foundFilm != null && foundFilm.getId() != film.getId()){
+            return true;
+        }else {
+            return false;
+        }
+    }
     public void saveFilms(Iterable<Film> films)
     {
         filmRepository.save(films);

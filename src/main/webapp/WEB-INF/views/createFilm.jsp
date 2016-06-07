@@ -59,7 +59,12 @@
                 </td>
             </tr>
             <tr>
-                <td><input name="submit" type="submit" value="Создать"/></td>
+                <td>
+                    <input name="submit" type="submit" value="Создать"/>
+                    <c:if test="${not empty filmExistError}">
+                        <span class="error">Данный фильм уже существует</span>
+                    </c:if>
+                </td>
             </tr>
             <tr>
                 <td>

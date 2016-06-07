@@ -41,4 +41,22 @@ public class CinemaService {
     public Cinema findByName(String name){
         return  cinemaRepository.findByName(name);
     }
+
+    public boolean isExistedCinema(Cinema cinema){
+        Cinema existedCinema =cinemaRepository.findByName(cinema.getName());
+        if (existedCinema != null){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean isAnotherExistedCinema(Cinema cinema){
+        Cinema foundCinema = cinemaRepository.findByName(cinema.getName());
+        if (foundCinema != null && foundCinema.getId() != cinema.getId()){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

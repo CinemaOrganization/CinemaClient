@@ -19,7 +19,7 @@
                 <td>
                     <sec:select path="film.id">
                         <c:forEach items="${films}" var="film">
-                            <sec:option value="${film.id}">${film.name}</sec:option>
+                            <sec:option value="${film.id}">${film.name} ${film.year} ${film.studio}</sec:option>
                         </c:forEach>
                     </sec:select>
                 </td>
@@ -69,7 +69,12 @@
                 </td>
             </tr>
             <tr>
-                <td><input name="submit" type="submit" value="Изменить"/></td>
+                <td>
+                    <input name="submit" type="submit" value="Изменить"/>
+                    <c:if test="${not empty ExistedSessionError}">
+                        <span class="error">Данный сеанс уже существует</span>
+                    </c:if>
+                </td>
             </tr>
             <tr>
                 <td>

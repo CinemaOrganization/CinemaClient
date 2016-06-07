@@ -33,6 +33,7 @@
                             </a>
                             <h4> Год выхода: ${filmList[CurFilm].year}</h4>
                             <h4> Продолжительность: ${filmList[CurFilm].duration}</h4>
+                            <h4> Студия: ${filmList[CurFilm].studio}</h4>
                         </td>
                     </td>
                 </c:if>
