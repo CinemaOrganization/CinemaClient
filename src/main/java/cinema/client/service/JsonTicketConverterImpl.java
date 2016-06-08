@@ -3,6 +3,7 @@ package cinema.client.service;
 import cinema.client.entity.Ticket;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -14,13 +15,15 @@ import java.util.stream.Collectors;
 @Service
 public class JsonTicketConverterImpl implements JsonTicketConverter {
 
+    static Logger logger = Logger.getLogger(JsonTicketConverterImpl.class);
+
     public String objectToJson(Ticket object) {
         ObjectMapper mapper = new ObjectMapper();
         String result = null;
         try {
             result = mapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при преобразование объекта в JSON формат",e);
         }
         return result;
     }
@@ -31,7 +34,7 @@ public class JsonTicketConverterImpl implements JsonTicketConverter {
         try {
             object = mapper.readValue(jsonObject, Ticket.class);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при преобразование JSON в объект",e);
         }
         return object;
     }
@@ -43,7 +46,7 @@ public class JsonTicketConverterImpl implements JsonTicketConverter {
         try {
             result = mapper.writeValueAsString(places);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при преобразование JSON в объект",e);
         }
         return result;
     }
@@ -54,7 +57,7 @@ public class JsonTicketConverterImpl implements JsonTicketConverter {
         try {
             objects = Arrays.asList(mapper.readValue(jsonObject, Ticket[].class));
         } catch (IOException e) {
-            e.printStackTrace();//неверный формат или пустая строка брони
+            logger.error("Неверный формат или пустая строка брони",e);
         }
         return objects;
     }
