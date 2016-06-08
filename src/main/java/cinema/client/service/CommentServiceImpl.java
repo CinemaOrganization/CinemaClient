@@ -40,8 +40,9 @@ public class CommentServiceImpl implements CommentService {
         comment.setFilm(film);
         comment.setUser(user);
         comment.setTime(LocalDateTime.now());
-        return commentRepository.save(comment);
+        comment = commentRepository.save(comment);
         logger.info("Добавлен новый комментарий " + comment);
+        return comment;
     }
 
     @Override
