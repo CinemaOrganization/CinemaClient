@@ -4,6 +4,7 @@ import cinema.client.data.TicketRepository;
 import cinema.client.entity.Session;
 import cinema.client.entity.Ticket;
 import cinema.client.entity.User;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ public class TicketServiceImpl implements TicketService {
     private SessionService sessionService;
     private JsonTicketConverter jsonTicketConverter;
     private UserService userService;
+    static Logger logger = Logger.getLogger(TicketServiceImpl.class);
 
     @Autowired
     public TicketServiceImpl(TicketRepository ticketRepository,
@@ -41,6 +43,9 @@ public class TicketServiceImpl implements TicketService {
         List<Ticket> tickets = jsonTicketConverter.toObjects(ticketsJson);
         tickets = fillTickets(tickets);
         ticketRepository.save(tickets);
+        for (Ticket ticket : tickets){
+            logger.info("Забронирован билет " + ticket);
+        }
     }
 
     @Override

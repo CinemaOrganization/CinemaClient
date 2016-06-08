@@ -6,6 +6,7 @@ import cinema.client.data.UserRepository;
 import cinema.client.entity.Comment;
 import cinema.client.entity.Film;
 import cinema.client.entity.User;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +21,7 @@ public class CommentServiceImpl implements CommentService {
     CommentRepository commentRepository;
     FilmRepository filmRepository;
     UserRepository userRepository;
+    static Logger logger = Logger.getLogger(CommentServiceImpl.class);
 
     @Autowired
     public CommentServiceImpl(CommentRepository commentRepository
@@ -39,6 +41,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setUser(user);
         comment.setTime(LocalDateTime.now());
         commentRepository.save(comment);
+        logger.info("Добавлен новый комментарий " + comment);
     }
 
     @Override
@@ -58,5 +61,6 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void removeComment(long comment_id) {
         commentRepository.delete(comment_id);
+        logger.info("Удалён комментарий с ИД = " + comment_id);
     }
 }
