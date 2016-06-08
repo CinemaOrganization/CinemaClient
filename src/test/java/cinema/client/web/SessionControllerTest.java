@@ -1,6 +1,6 @@
 package cinema.client.web;
 
-import cinema.client.SetupData.SessionSetupData;
+import cinema.client.SetupData.SetupData;
 import cinema.client.config.RootConfig;
 import cinema.client.entity.*;
 import cinema.client.service.*;
@@ -33,14 +33,16 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 public class SessionControllerTest {
 
     List<Session> expectedSessions;
+    SetupData setupData = new SetupData();
+
 
     @Before
     public void setUp() throws Exception {
-        expectedSessions = SessionSetupData.setupData();
+        expectedSessions = setupData.getSessions();
     }
 
     @Test
-    public void requireSessionByFilmAndDateAndOrderedByCinemaAndHallAndTime() throws Exception {
+    public void sessionController_requireSessionByFilmAndDateAndOrderedByCinemaAndHallAndTime() throws Exception {
 
         Set<Hall> expectedHalls = expectedSessions.stream().map(Session::getHall).collect(Collectors.toSet());
         Set<Cinema> expectedCinemas = expectedSessions.stream().map(Session::getCinema).collect(Collectors.toSet());

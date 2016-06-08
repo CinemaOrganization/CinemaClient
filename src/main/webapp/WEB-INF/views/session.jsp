@@ -58,13 +58,17 @@
                                 </td>
                                 <c:forEach items="${sessionList}" var="session">
                                     <c:if test="${session.hall == hall}">
-                                        <td>
+                                        <sec:authorize access="isAnonymous()">
+                                            <c:out value="Время: ${session.time}"/>
+                                        </sec:authorize>
+                                        <sec:authorize access="!isAnonymous()">
                                             <a href="/booking?session_id=${session.id}">
                                                 <c:out value="Время: ${session.time}"/>
                                             </a>
-                                            <br>
-                                            <c:out value="${session.cost}р."/>
-                                                <%--<c:set var="film" value="${session.film}"/>--%>
+                                        </sec:authorize>
+                                        <br>
+                                        <c:out value="${session.cost}р."/>
+                                        <%--<c:set var="film" value="${session.film}"/>--%>
                                         </td>
                                         <c:remove var="session"/>
                                     </c:if>

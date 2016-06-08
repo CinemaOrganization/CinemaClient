@@ -16,15 +16,19 @@ import java.util.HashSet;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
+
     private UserRepository userRepository;
+    private RoleRepository roleRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+    }
 
     @Transactional
     @Override
-    public void registerNewUserAccount(User user) {
+    public User registerNewUserAccount(User user) {
         if (findByUsername(user.getUsername()) != null) {
             throw new UsernameExistException("Аккаунт с псевдонимом: " + user.getUsername()
                     + " уже существует:");
@@ -36,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
         Role role = roleRepository.findByAuthority("ROLE_USER");
         user.setAuthorities(new HashSet<>(Arrays.asList(role)));
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     @Override

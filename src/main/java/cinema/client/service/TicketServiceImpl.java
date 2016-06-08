@@ -1,5 +1,6 @@
 package cinema.client.service;
 
+import cinema.client.component.JsonTicketConverter;
 import cinema.client.data.TicketRepository;
 import cinema.client.entity.Session;
 import cinema.client.entity.Ticket;

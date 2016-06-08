@@ -1,9 +1,9 @@
-package cinema.client.service;
+package cinema.client.component;
 
 import cinema.client.entity.Ticket;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -11,30 +11,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Component
 public class JsonTicketConverterImpl implements JsonTicketConverter {
-
-    public String objectToJson(Ticket object) {
-        ObjectMapper mapper = new ObjectMapper();
-        String result = null;
-        try {
-            result = mapper.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-    public Ticket toObject(String jsonObject) {
-        ObjectMapper mapper = new ObjectMapper();
-        Ticket object = null;
-        try {
-            object = mapper.readValue(jsonObject, Ticket.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return object;
-    }
 
     public String objectsToJson(Collection<Ticket> tickets) {
         List<Place> places = removeExtraInfo(tickets);

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface CommentService {
 
-    void addNewComment(Comment comment);
+    Comment addNewComment(Comment comment);
 
     List<Comment> findByFilmAndOrderByTime(long film);
 

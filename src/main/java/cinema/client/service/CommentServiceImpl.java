@@ -32,13 +32,13 @@ public class CommentServiceImpl implements CommentService {
 
     @Transactional
     @Override
-    public void addNewComment(Comment comment) {
+    public Comment addNewComment(Comment comment) {
         Film film = filmRepository.findOne(comment.getFilm().getId());
         User user = userRepository.findByUsername(comment.getUser().getUsername());
         comment.setFilm(film);
         comment.setUser(user);
         comment.setTime(LocalDateTime.now());
-        commentRepository.save(comment);
+        return commentRepository.save(comment);
     }
 
     @Override

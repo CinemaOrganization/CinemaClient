@@ -1,6 +1,6 @@
 package cinema.client.web;
 
-import cinema.client.SetupData.SessionSetupData;
+import cinema.client.SetupData.SetupData;
 import cinema.client.entity.Film;
 import cinema.client.entity.Session;
 import cinema.client.service.FilmService;
@@ -22,9 +22,11 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 public class HomeControllerTest {
 
+    SetupData setupData = new SetupData();
+
     @Test
-    public void shouldShowRecentFilms() throws Exception {
-        List<Film> expectedFilms = SessionSetupData.setupData()
+    public void homeController_shouldShowRecentFilms() throws Exception {
+        List<Film> expectedFilms = setupData.getSessions()
                 .stream()
                 .map(Session::getFilm)
                 .collect(Collectors.toList());

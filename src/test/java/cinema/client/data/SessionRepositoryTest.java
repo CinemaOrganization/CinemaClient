@@ -1,6 +1,6 @@
 package cinema.client.data;
 
-import cinema.client.SetupData.SessionSetupData;
+import cinema.client.SetupData.SetupData;
 import cinema.client.config.RootConfig;
 import cinema.client.entity.Film;
 import cinema.client.entity.Session;
@@ -33,17 +33,18 @@ public class SessionRepositoryTest {
     @Autowired
     private SessionRepository repository;
 
+    SetupData setupData = new SetupData();
     private List<Session> sessions;
 
     @Before
     @Rollback(false)
     public void setUp() {
 
-        repository.save(sessions = SessionSetupData.setupData());
+        repository.save(sessions = setupData.getSessions());
     }
 
     @Test
-    public void findByFilmAndDateOrderByCinemaAndHallAndTime() {
+    public void sessionRepository_ShouldFindByFilmAndDateOrderByCinemaAndHallAndTime() {
 
         Film chosenFilm = sessions.get(0).getFilm();
         LocalDate chosenDate = sessions.get(0).getDate();
@@ -66,7 +67,7 @@ public class SessionRepositoryTest {
     }
 
     @Test
-    public void findByFilmAndWhereDateAfterOrEqual() {
+    public void sessionRepository_ShouldFindByFilmAndWhereDateAfterOrEqual() {
         Film chosenFilm = sessions.get(0).getFilm();
         LocalDate chosenDate = sessions.get(0).getDate();
         List<Session> expectedSessions = sessions.stream()
@@ -80,7 +81,7 @@ public class SessionRepositoryTest {
     }
 
     @Test
-    public void findByFilm() {
+    public void sessionRepository_ShouldFindByFilm() {
         Film chosenFilm = sessions.get(0).getFilm();
         List<Session> expectedSessions = sessions.stream()
                 .filter(session -> session.getFilm().equals(chosenFilm))

@@ -8,13 +8,19 @@ import javax.persistence.*;
 @Table(name = "role")
 public class Role {
 
+    public Role() { }
+
+    public Role(String authority) {
+        this.authority = authority;
+    }
+
     @Id
     @Column(name = "id_authority")
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String authority;
 
     public long getId() {
