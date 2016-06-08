@@ -12,9 +12,10 @@
     </sec:authorize>
     <sec:authorize access="!isAnonymous()">
         <form:form modelAttribute="comment" method="POST" enctype="utf8">
-            <form:textarea path="text" value=""/>
-            <form:errors path="text" element="div"/>
+            <form:textarea required="true" path="text" value="" wrap="hard" cols="60" rows="7" maxlength="255"/><br>
             <form:hidden path="film.id" value="${film.id}"/>
+            <form:errors path="text" class="error"/>
+            <br>
             <sec:authentication property="principal.username" var="username"/>
             <form:hidden path="user.username" value="${username}"/>
             <input name="add" type="submit" value="Отправить"/>

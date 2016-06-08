@@ -20,4 +20,6 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
 
     @Query("select s from  Session s where s.film = ?1 and s.date >= ?2 order by s.date")
     List<Session> findByFilmAndWhereDateAfterOrEqual(Film film, LocalDate date);
+
+    List<Session> findByDateGreaterThanEqual(LocalDate date);
 }

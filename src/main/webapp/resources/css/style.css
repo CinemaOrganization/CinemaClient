@@ -55,6 +55,11 @@ hr{
     background: #CDC8B1;
     color: #000000;
 }
+
+textarea {
+    resize: none;
+}
+
 .error {
     color: red;
 }

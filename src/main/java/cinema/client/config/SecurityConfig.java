@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -32,8 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "select username, authority from users, role, users_roles " +
                                 "where users.id_user = users_roles.id_user " +
                                 "and role.id_authority = users_roles.id_authority" +
-                                " and users.username=?");
-        //.passwordEncoder(new StandardPasswordEncoder("27еЬ3t"));
+                                " and users.username=?")
+                .passwordEncoder(new StandardPasswordEncoder("27еЬ3t"));
     }
 
     @Override
@@ -41,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/manage/**").hasRole("ADMIN")
+                .antMatchers("/booking*").hasAnyRole()
                 .antMatchers("/user/login*").anonymous()
                 .antMatchers("/user/registration*").anonymous()
                 .anyRequest().permitAll()

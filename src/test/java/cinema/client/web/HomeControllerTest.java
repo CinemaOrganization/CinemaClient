@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.servlet.view.InternalResourceView;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,7 @@ public class HomeControllerTest {
                 .collect(Collectors.toList());
         FilmService mockService =
                 mock(FilmService.class);
-        when(mockService.findAll())
+        when(mockService.findByStartDateAfter(LocalDate.now()))
                 .thenReturn(expectedFilms);
         HomeController controller =
                 new HomeController(mockService);
