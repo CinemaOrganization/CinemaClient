@@ -9,7 +9,7 @@
         <c:forEach items="${films}" var="film">
             <tr>
                 <td>
-                    <a href="/manage/session/filmsForDel/sessions?film_id=${film.id}">${film.name}</a>
+                    <a href="/manage/session/filmsForDel/sessions?film_id=${film.id}">${film.name} ${film.year} ${film.studio}</a>
                 </td>
             </tr>
         </c:forEach>

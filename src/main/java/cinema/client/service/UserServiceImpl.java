@@ -6,6 +6,7 @@ import cinema.client.entity.Role;
 import cinema.client.entity.User;
 import cinema.client.secure.exception.EmailExistsException;
 import cinema.client.secure.exception.UsernameExistException;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;
+    static Logger logger = Logger.getLogger(UserServiceImpl.class);
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
@@ -40,7 +42,9 @@ public class UserServiceImpl implements UserService {
 
         Role role = roleRepository.findByAuthority("ROLE_USER");
         user.setAuthorities(new HashSet<>(Arrays.asList(role)));
-        return userRepository.save(user);
+        User user =  userRepository.save(user);
+        logger.info("Создан новый пользователь " + user.getUsername());
+        return user;
     }
 
     @Override

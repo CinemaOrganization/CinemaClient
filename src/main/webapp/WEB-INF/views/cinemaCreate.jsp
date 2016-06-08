@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Создание нового кинотеатра</title>
@@ -17,7 +18,12 @@
                 </td>
             </tr>
             <tr>
-                <td><input name="submit" type="submit" value="Создать"/></td>
+                <td>
+                    <input name="submit" type="submit" value="Создать"/>
+                    <c:if test="${not empty existedCinemaError}">
+                        <span class="error">Данный кинотеатр уже существует</span>
+                    </c:if>
+                </td>
             </tr>
             <tr>
                 <td>

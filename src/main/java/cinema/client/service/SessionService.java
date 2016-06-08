@@ -7,6 +7,7 @@ import cinema.client.data.SessionRepository;
 import cinema.client.entity.Film;
 import cinema.client.entity.Session;
 import cinema.client.web.exeptions.ResourceNotFoundException;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ public class SessionService {
     SessionRepository sessionRepository;
     CinemaRepository cinemaRepository;
     FilmRepository filmRepository;
+    static Logger logger = Logger.getLogger(SessionService.class);
 
 
     @Autowired
@@ -92,13 +94,40 @@ public class SessionService {
 
     public void save(Iterable<Session> sessions){
         sessionRepository.save(sessions);
+        for (Session session : sessions){
+            logger.info("Добавлен/изменён сеанс " + session);
+        }
     }
 
     public void delete(Iterable<Session> sessions){
         sessionRepository.delete(sessions);
+        for (Session session : sessions){
+            logger.info("Удалён сеанс " + session);
+        }
+
     }
 
     public Session findOne(long session_id) {
         return sessionRepository.findOne(session_id);
+    }
+
+    public boolean isExistedSession(Session session){
+        Session existedSession = sessionRepository.findByHallAndFilmAndCinemaAndDateAndTime(
+                session.getHall(),session.getFilm(),session.getCinema(),session.getDate(),session.getTime());
+        if (existedSession != null){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean isAnotherExistedSession(Session session){
+        Session foundSession = sessionRepository.findByHallAndFilmAndCinemaAndDateAndTime(
+                session.getHall(),session.getFilm(),session.getCinema(),session.getDate(),session.getTime());
+        if (foundSession != null && foundSession.getId() != session.getId()){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

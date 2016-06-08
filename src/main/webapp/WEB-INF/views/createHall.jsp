@@ -13,7 +13,7 @@
             </tr>
             <tr>
                 <td>
-                    <sec:input path="number" type="number" min="0"/>
+                    <sec:input path="number" type="number" min="0" required = "true"/>
                     <sec:errors path="number" cssClass="error"/>
                 </td>
             </tr>
@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td>
-                    <sec:input path="rows" type="number" min="1"/>
+                    <sec:input path="rows" type="number" min="1" required = "true"/>
                     <sec:errors path="rows" cssClass="error"/>
                 </td>
             </tr>
@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td>
-                    <sec:input path="numberInRows" type="number" min="1"/>
+                    <sec:input path="numberInRows" type="number" min="1" required = "true"/>
                     <sec:errors path="numberInRows" cssClass="error"/>
                 </td>
             </tr>
@@ -59,6 +59,9 @@
             <tr>
                 <td>
                     <input type="submit" value="Создать">
+                    <c:if test="${not empty ExistedHallError}">
+                        <span class="error">Данный зал уже существует</span>
+                    </c:if>
                 </td>
             </tr>
             <tr>

@@ -4,6 +4,8 @@ import cinema.client.entity.Ticket;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -14,6 +16,8 @@ import java.util.stream.Collectors;
 @Component
 public class JsonTicketConverterImpl implements JsonTicketConverter {
 
+    static Logger logger = Logger.getLogger(JsonTicketConverterImpl.class);
+
     public String objectsToJson(Collection<Ticket> tickets) {
         List<Place> places = removeExtraInfo(tickets);
         ObjectMapper mapper = new ObjectMapper();
@@ -21,7 +25,7 @@ public class JsonTicketConverterImpl implements JsonTicketConverter {
         try {
             result = mapper.writeValueAsString(places);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при преобразование JSON в объект",e);
         }
         return result;
     }
@@ -32,7 +36,7 @@ public class JsonTicketConverterImpl implements JsonTicketConverter {
         try {
             objects = Arrays.asList(mapper.readValue(jsonObject, Ticket[].class));
         } catch (IOException e) {
-            e.printStackTrace();//неверный формат или пустая строка брони
+            logger.error("Неверный формат или пустая строка брони",e);
         }
         return objects;
     }

@@ -1,4 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,7 +19,12 @@
             </tr>
             <tr>
                 <sec:input path="id" type="hidden"/>
-                <td><input name="submit" type="submit" value="Изменить"/></td>
+                <td>
+                    <input name="submit" type="submit" value="Изменить"/>
+                    <c:if test="${not empty existedCinemaError}">
+                        <span class="error">Данный кинотеатр уже существует</span>
+                    </c:if>
+                </td>
             </tr>
             <tr>
                 <td>

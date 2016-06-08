@@ -9,7 +9,7 @@
         <c:forEach items="${filmList}" var="film">
             <tr>
                 <td>
-                    <a href="/manage/film/chooseup/update?film_id=${film.id}">${film.name}</a>
+                    <a href="/manage/film/chooseup/update?film_id=${film.id}">${film.name} ${film.year} ${film.studio}</a>
                 </td>
             </tr>
         </c:forEach>

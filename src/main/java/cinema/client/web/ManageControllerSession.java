@@ -65,15 +65,19 @@ public class ManageControllerSession {
     public String create(@Valid Session session, BindingResult bindingResult,
                          Model model){
 
-        if (bindingResult.hasErrors()){
+        Hall hall = hallService.findOne(session.getHall().getId());
+        session.setCinema(hall.getCinema());
+        boolean isExistedSession = sessionService.isExistedSession(session);
+        if (bindingResult.hasErrors() || isExistedSession){
+            if (isExistedSession){
+                model.addAttribute("ExistedSessionError","ExistedSessionError");
+            }
             List<Film> films = filmService.findAll();
             List<Hall> halls = hallService.findAll();
             model.addAttribute("films",films);
             model.addAttribute("halls",halls);
             return "createSession";
         }
-        Hall hall = hallService.findOne(session.getHall().getId());
-        session.setCinema(hall.getCinema());
         sessionService.save(Arrays.asList(session));
         return "redirect:/manage/session";
     }
@@ -128,16 +132,20 @@ public class ManageControllerSession {
     @RequestMapping(value = "filmsForUp/sessions/update",method = POST)
     public String updateSession(@Valid Session session,BindingResult bindingResult,Model model){
 
-        if (bindingResult.hasErrors()){
-
+        Hall hall = hallService.findOne(session.getHall().getId());
+        session.setCinema(hall.getCinema());
+        boolean isAnotherExistedSession = sessionService.isAnotherExistedSession(session);
+        if (bindingResult.hasErrors() || isAnotherExistedSession){
+            if (isAnotherExistedSession){
+                model.addAttribute("ExistedSessionError","ExistedSessionError");
+            }
             List<Film> films = filmService.findAll();
             List<Hall> halls = hallService.findAll();
             model.addAttribute("films",films);
             model.addAttribute("halls",halls);
             return "updateSession";
         }
-        Hall hall = hallService.findOne(session.getHall().getId());
-        session.setCinema(hall.getCinema());
+
         sessionService.save(Arrays.asList(session));
         return "redirect:/manage/session";
     }

@@ -41,9 +41,13 @@ public class ManageControllerCinema {
     }
 
     @RequestMapping(value = "create",method = POST)
-    public String cinemaCreate(@Valid Cinema cinema, BindingResult bindingResult){
+    public String cinemaCreate(@Valid Cinema cinema, BindingResult bindingResult,Model model){
 
-        if (bindingResult.hasErrors()){
+        boolean isExistedCinema = cinemaService.isExistedCinema(cinema);
+        if (bindingResult.hasErrors() || isExistedCinema){
+            if (isExistedCinema){
+                model.addAttribute("existedCinemaError","existedCinemaError");
+            }
             return "cinemaCreate";
         }
         cinemaService.saveCinemas(Arrays.asList(cinema));
@@ -67,9 +71,13 @@ public class ManageControllerCinema {
     }
 
     @RequestMapping(value = "chooseup/update",method = POST)
-    public String cinemaUpdate(@Valid Cinema cinema,BindingResult bindingResult){
+    public String cinemaUpdate(@Valid Cinema cinema,BindingResult bindingResult,Model model){
 
-        if (bindingResult.hasErrors()){
+        boolean isAnotherExistedCinema = cinemaService.isAnotherExistedCinema(cinema);
+        if (bindingResult.hasErrors() || isAnotherExistedCinema){
+            if (isAnotherExistedCinema){
+                model.addAttribute("existedCinemaError","existedCinemaError");
+            }
             return "cinemaUpdate";
         }
         cinemaService.saveCinemas(Arrays.asList(cinema));

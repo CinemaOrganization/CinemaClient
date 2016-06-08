@@ -9,6 +9,6 @@
     <title>Resource not found!</title>
 </head>
 <body>
-<h1>Error 404! Resource not found! </h1>
+<h1>Сеансов на данный фильм нет </h1>
 </body>
 </html>

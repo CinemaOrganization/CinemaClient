@@ -50,9 +50,15 @@ public class ManageControllerHall {
     }
 
     @RequestMapping(value = "create",method = POST)
-    public String hallCreate(@Valid Hall hall , BindingResult bindingResult){
+    public String hallCreate(@Valid Hall hall , BindingResult bindingResult,Model model){
 
-        if (bindingResult.hasErrors()){
+        boolean isExistedHall = hallService.isExistedHall(hall);
+        if (bindingResult.hasErrors() || isExistedHall){
+            if (isExistedHall){
+                model.addAttribute("ExistedHallError","ExistedHallError");
+            }
+            List<Cinema> cinemaList = cinemaService.findAll();
+            model.addAttribute("cinemaList",cinemaList);
             return "createHall";
         }
         hallService.save(Arrays.asList(hall));
@@ -90,9 +96,16 @@ public class ManageControllerHall {
     }
 
     @RequestMapping(value = "chooseup/update",method = POST)
-    public String updateHall(@Valid Hall hall, BindingResult bindingResult){
+    public String updateHall(@Valid Hall hall, BindingResult bindingResult,Model model){
 
-        if (bindingResult.hasErrors()){
+        boolean isAnotherExistedHall = hallService.isAnotherExistedHall(hall);
+        if (bindingResult.hasErrors() || isAnotherExistedHall){
+            if (isAnotherExistedHall){
+
+                model.addAttribute("ExistedHallError","ExistedHallError");
+            }
+            List<Cinema> cinemaList = cinemaService.findAll();
+            model.addAttribute("cinemaList",cinemaList);
             return "updateHall";
         }
         hallService.save(Arrays.asList(hall));

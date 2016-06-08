@@ -3,6 +3,7 @@ package cinema.client.service;
 import cinema.client.data.CinemaRepository;
 import cinema.client.entity.Cinema;
 import cinema.client.entity.Session;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 public class CinemaService {
 
     CinemaRepository cinemaRepository;
+    static Logger logger = Logger.getLogger(CinemaService.class);
 
     @Autowired
     public CinemaService(CinemaRepository cinemaRepository) {
@@ -24,6 +26,9 @@ public class CinemaService {
     }
     public void saveCinemas(Iterable<Cinema> cinemas){
         cinemaRepository.save(cinemas);
+        for (Cinema cinema : cinemas){
+            logger.info("Создан/изменён кинотеатр " + cinema);
+        }
     }
 
     public List<Cinema> findAll(){
@@ -36,9 +41,28 @@ public class CinemaService {
 
     public  void delete(long id){
         cinemaRepository.delete(id);
+        logger.info("Удалён кинотеатр с Ид = " + id);
     }
 
     public Cinema findByName(String name){
         return  cinemaRepository.findByName(name);
+    }
+
+    public boolean isExistedCinema(Cinema cinema){
+        Cinema existedCinema =cinemaRepository.findByName(cinema.getName());
+        if (existedCinema != null){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean isAnotherExistedCinema(Cinema cinema){
+        Cinema foundCinema = cinemaRepository.findByName(cinema.getName());
+        if (foundCinema != null && foundCinema.getId() != cinema.getId()){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

@@ -12,4 +12,6 @@ public interface FilmRepository extends CrudRepository<Film,Long> {
 
     @Override
     List<Film> findAll();
+
+    Film findByNameAndYearAndStudio(String name,int year,String studio);
 }

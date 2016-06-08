@@ -40,9 +40,13 @@ public class ManageControllerFilm {
     }
 
     @RequestMapping(value = "create",method = POST)
-    public String createFilm(@Valid Film film, BindingResult bindingResult)
+    public String createFilm(@Valid Film film, BindingResult bindingResult, Model model)
     {
-        if (bindingResult.hasErrors()){
+        boolean isExistedFilm = filmService.isExistedFilm(film);
+        if (bindingResult.hasErrors() || isExistedFilm){
+            if (isExistedFilm){
+                model.addAttribute("filmExistError","filmExistError");
+            }
             return "createFilm";
         }
         filmService.saveFilms(Arrays.asList(film));
@@ -50,9 +54,13 @@ public class ManageControllerFilm {
     }
 
     @RequestMapping(value = "chooseup/update",method = POST)
-    public String filmUpdate(@Valid Film film, BindingResult bindingResult){
+    public String filmUpdate(@Valid Film film, BindingResult bindingResult,Model model){
 
-        if (bindingResult.hasErrors()){
+        boolean isAnotherExistedFilm = filmService.isAnotherExistedFilm(film);
+        if (bindingResult.hasErrors() || isAnotherExistedFilm){
+            if (isAnotherExistedFilm){
+                model.addAttribute("filmExistError","filmExistError");
+            }
             return "filmUpdate";
         }
         filmService.saveFilms(Arrays.asList(film));
