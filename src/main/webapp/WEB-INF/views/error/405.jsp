@@ -9,7 +9,7 @@
     <title>Bad request!</title>
 </head>
 <body>
-<h1>Error 400! Bad request! </h1>
+<h1>Ошибка 405! Доступ запрещен!</h1>
 </body>
 </html>
 

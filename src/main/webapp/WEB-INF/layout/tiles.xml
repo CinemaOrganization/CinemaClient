@@ -70,7 +70,12 @@
     <definition name="notfound" extends="base">
         <put-attribute name="title" value="Page not found"/>
         <put-attribute name="body"
-                       value="/WEB-INF/views/notfound.jsp"/>
+                       value="/WEB-INF/views/error/notfound.jsp"/>
+    </definition>
+    <definition name="badrequest" extends="base">
+        <put-attribute name="title" value="Error!"/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/error/404.jsp"/>
     </definition>
 
     <!-- Manage Panel-->

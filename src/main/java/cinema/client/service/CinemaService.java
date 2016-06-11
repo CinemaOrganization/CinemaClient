@@ -49,7 +49,7 @@ public class CinemaService {
     }
 
     public boolean isExistedCinema(Cinema cinema){
-        Cinema existedCinema =cinemaRepository.findByName(cinema.getName());
+        Cinema existedCinema = cinemaRepository.findByName(cinema.getName());
         if (existedCinema != null){
             return true;
         }else {

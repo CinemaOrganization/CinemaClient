@@ -16,15 +16,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @ComponentScan("cinema.client")
 public class WebConfig
         extends WebMvcConfigurerAdapter {
-    //    @Bean
-//    public ViewResolver viewResolver() {
-//        InternalResourceViewResolver resolver =
-//                new InternalResourceViewResolver();
-//        resolver.setPrefix("/WEB-INF/views/");
-//        resolver.setSuffix(".jsp");
-//        resolver.setExposeContextBeansAsAttributes(true);
-//        return resolver;
-//    }
+
     @Bean
     public TilesConfigurer tilesConfigurer() {
         TilesConfigurer tiles = new TilesConfigurer();

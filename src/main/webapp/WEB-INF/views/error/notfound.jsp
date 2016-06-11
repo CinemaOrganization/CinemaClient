@@ -6,7 +6,7 @@
 <head>
     <spring:url value="/resources/css/style.css" var="crunchifyCSS" />
     <link href="${crunchifyCSS}" type="text/css" rel="stylesheet" />
-    <title>Resource not found!</title>
+    <title>Session not found!</title>
 </head>
 <body>
 <h1>Сеансов на данный фильм нет </h1>
