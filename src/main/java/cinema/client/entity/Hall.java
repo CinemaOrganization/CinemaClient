@@ -104,4 +104,16 @@ public class Hall {
         this.number = number;
     }
 
+    @Override
+    public String toString() {
+        return "Hall{" +
+                "id=" + id +
+                ", number=" + number +
+                ", cinema=" + cinema +
+                ", numberInRows=" + numberInRows +
+                ", rows=" + rows +
+                ", threeD=" + threeD +
+                ", sessions=" + sessions +
+                '}';
+    }
 }

@@ -100,4 +100,15 @@ public class Comment {
     public int hashCode() {
         return (int) (id ^ (id >>> 32));
     }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", time=" + time +
+                ", film=" + film +
+                ", user=" + user +
+                '}';
+    }
 }

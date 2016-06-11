@@ -128,4 +128,18 @@ public class Ticket {
         result = 31 * result + row;
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", session=" + session +
+                ", film=" + film +
+                ", hall=" + hall +
+                ", cinema=" + cinema +
+                ", number=" + number +
+                ", row=" + row +
+                ", user=" + user +
+                '}';
+    }
 }
