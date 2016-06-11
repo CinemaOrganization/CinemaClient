@@ -212,7 +212,11 @@
         <put-attribute name="title" value="Список сеансов"/>
     </definition>
 
-
+    <definition name="deleteError" extends="base">
+        <put-attribute name="body"
+                       value="/WEB-INF/views/deleteError.jsp"/>
+        <put-attribute name="title" value="Ошибка"/>
+    </definition>
     <definition name="updateSession" extends="base">
         <put-attribute name="body"
                        value="/WEB-INF/views/updateSession.jsp"/>

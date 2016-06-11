@@ -22,6 +22,7 @@
                             <sec:option value="${film.id}">${film.name} ${film.year} ${film.studio}</sec:option>
                         </c:forEach>
                     </sec:select>
+                    <sec:errors path="film" cssClass="error"/>
                 </td>
             </tr>
             <tr>
@@ -34,6 +35,7 @@
                             <sec:option value="${hall.id}">${hall.cinema.name} ${hall.number}</sec:option>
                         </c:forEach>
                     </sec:select>
+                    <sec:errors path="hall" cssClass="error"/>
                 </td>
             </tr>
             <tr>

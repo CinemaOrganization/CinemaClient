@@ -72,9 +72,13 @@ public class ManageControllerHall {
         return "chooseDelHall";
     }
 
-    @RequestMapping(value = "/choosedel/delete",method = POST)
+    @RequestMapping(value = "/choosedel/delete",method = GET)
     public String delete(@RequestParam("hall_id")long id){
-        hallService.delete(id);
+        try{
+            hallService.delete(id);
+        }catch (Exception e){
+            return "redirect:/manage/session/delete/error";
+        }
         return "manageHall";
     }
 

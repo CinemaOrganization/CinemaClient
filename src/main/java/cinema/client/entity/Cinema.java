@@ -4,6 +4,7 @@ import cinema.client.secure.validation.annotation.ValidName;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Cinema")
@@ -18,6 +19,28 @@ public class Cinema {
     @ValidName
     @Column(nullable = false,unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "cinema", cascade = CascadeType.REMOVE)
+    private List<Hall> halls;
+
+    @OneToMany(mappedBy = "cinema",cascade = CascadeType.REMOVE)
+    private List<Session> sessions;
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
+    }
+
+    public List<Hall> getHalls() {
+        return halls;
+    }
+
+    public void setHalls(List<Hall> halls) {
+        this.halls = halls;
+    }
 
     public Cinema() { }
 

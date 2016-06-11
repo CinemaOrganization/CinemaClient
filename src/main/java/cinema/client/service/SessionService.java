@@ -92,6 +92,9 @@ public class SessionService {
 
     }
 
+    public List<Session> findByFilm(Film film){
+        return sessionRepository.findByFilm(film);
+    }
     public void save(Iterable<Session> sessions){
         sessionRepository.save(sessions);
         for (Session session : sessions){

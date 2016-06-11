@@ -62,6 +62,7 @@
                         </c:choose>
                     </c:forEach>
                 </sec:select>
+                <sec:errors path="cinema" cssClass="error"/>
             </td>
         </tr>
         <tr>

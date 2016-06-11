@@ -93,7 +93,11 @@ public class ManageControllerCinema {
 
     @RequestMapping(value = "choosedel/delete", method = GET)
     public String cinemaDelete(@RequestParam("cinema_id") long id){
-        cinemaService.delete(id);
+        try{
+            cinemaService.delete(id);
+        }catch (Exception e){
+            return "redirect:/manage/session/delete/error";
+        }
         return "manageCinema";
     }
 }

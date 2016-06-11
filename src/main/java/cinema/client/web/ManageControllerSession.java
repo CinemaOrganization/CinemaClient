@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -47,6 +48,11 @@ public class ManageControllerSession {
         return "manageSession";
     }
 
+    @RequestMapping(value = "/delete/error",method = GET)
+    public String deleteError(){
+        return "deleteError";
+    }
+
     @RequestMapping(value = "create",method = GET)
     public String create(Model model){
 
@@ -65,8 +71,10 @@ public class ManageControllerSession {
     public String create(@Valid Session session, BindingResult bindingResult,
                          Model model){
 
-        Hall hall = hallService.findOne(session.getHall().getId());
-        session.setCinema(hall.getCinema());
+        if (session.getHall() != null){
+            Hall hall = hallService.findOne(session.getHall().getId());
+            session.setCinema(hall.getCinema());
+        }
         boolean isExistedSession = sessionService.isExistedSession(session);
         if (bindingResult.hasErrors() || isExistedSession){
             if (isExistedSession){
@@ -86,7 +94,14 @@ public class ManageControllerSession {
     public String chooseFilmForUpSession(Model model){
 
         List<Film> films = filmService.findAll();
-        model.addAttribute("films",films);
+        List<Film> filmWithSession = new ArrayList<Film>();
+        for (Film film : films){
+            List<Session> sessions = sessionService.findByFilm(film);
+            if (sessions.size() != 0){
+                filmWithSession.add(film);
+            }
+        }
+        model.addAttribute("films",filmWithSession);
         return "filmsForUp";
     }
 
@@ -132,8 +147,11 @@ public class ManageControllerSession {
     @RequestMapping(value = "filmsForUp/sessions/update",method = POST)
     public String updateSession(@Valid Session session,BindingResult bindingResult,Model model){
 
-        Hall hall = hallService.findOne(session.getHall().getId());
-        session.setCinema(hall.getCinema());
+
+        if (session.getHall() != null){
+            Hall hall = hallService.findOne(session.getHall().getId());
+            session.setCinema(hall.getCinema());
+        }
         boolean isAnotherExistedSession = sessionService.isAnotherExistedSession(session);
         if (bindingResult.hasErrors() || isAnotherExistedSession){
             if (isAnotherExistedSession){
@@ -154,7 +172,14 @@ public class ManageControllerSession {
     public String chooseFilmForDelSession(Model model){
 
         List<Film> films = filmService.findAll();
-        model.addAttribute("films",films);
+        List<Film> filmWithSession = new ArrayList<Film>();
+        for (Film film : films){
+            List<Session> sessions = sessionService.findByFilm(film);
+            if (sessions.size() != 0){
+                filmWithSession.add(film);
+            }
+        }
+        model.addAttribute("films",filmWithSession);
         return "filmsForDel";
     }
 
@@ -182,7 +207,11 @@ public class ManageControllerSession {
     public String deleteSession(@RequestParam("session_id") long session_id){
 
         Session session = sessionService.findOne(session_id);
-        sessionService.delete(Arrays.asList(session));
+        try {
+            sessionService.delete(Arrays.asList(session));
+        }catch (Exception e){
+            return "redirect:/manage/session/delete/error";
+        }
         return "redirect:/manage/session";
     }
 }

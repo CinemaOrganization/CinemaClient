@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -22,15 +23,17 @@ public class Session {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @NotNull(message = "Поле не может быть пустым")
+    @ManyToOne
     @JoinColumn(name = "id_hall")
     private Hall hall;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @NotNull(message = "Поле не может быть пустым")
+    @ManyToOne
     @JoinColumn(name = "id_film")
     private Film film;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "id_cinema")
     private Cinema cinema;
 

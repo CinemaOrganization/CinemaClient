@@ -8,6 +8,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Film",
@@ -39,6 +40,28 @@ public class Film {
 
     @Column(nullable = false)
     private int year;
+
+    @OneToMany(mappedBy = "film",cascade = CascadeType.REMOVE)
+    private List<Session> sessions;
+
+    @OneToMany(mappedBy = "film",cascade = CascadeType.REMOVE)
+    private List<Comment> comments;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
+    }
 
     public Film() {}
 

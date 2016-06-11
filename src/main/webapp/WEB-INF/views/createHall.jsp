@@ -54,6 +54,7 @@
                            <sec:option value="${cinema.id}">${cinema.name}</sec:option>
                         </c:forEach>
                   </sec:select>
+                  <sec:errors path="cinema" cssClass="error"/>
                 </td>
             </tr>
             <tr>

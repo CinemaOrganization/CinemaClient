@@ -3,6 +3,8 @@ package cinema.client.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "hall",
@@ -19,6 +21,7 @@ public class Hall {
     @Column(nullable = false)
     private int number;
 
+    @NotNull(message = "Поле не может быть пустым")
     @ManyToOne
     @JoinColumn(name = "id_cinema")
     private Cinema cinema;
@@ -31,6 +34,17 @@ public class Hall {
 
     @Column(name = "is_3d",nullable = false)
     private boolean threeD;
+
+    @OneToMany(mappedBy = "hall",cascade = CascadeType.REMOVE)
+    private List<Session> sessions;
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
+    }
 
     public Hall(){}
     public Hall(int number, Cinema cinema, int numberInRows, int rows, boolean threeD) {

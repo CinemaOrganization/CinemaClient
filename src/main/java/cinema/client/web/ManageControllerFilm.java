@@ -93,7 +93,12 @@ public class ManageControllerFilm {
 
     @RequestMapping(value = "choosedel/delete",method = GET)
     public String deleteFilm(@RequestParam("film_id") long id){
-        filmService.deleteFilm(id);
+
+        try {
+            filmService.deleteFilm(id);
+        }catch (Exception e){
+            return "redirect:/manage/session/delete/error";
+        }
         return "redirect:/manage/film";
     }
 }

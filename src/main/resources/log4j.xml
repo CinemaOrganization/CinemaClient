@@ -4,7 +4,7 @@
 <log4j:configuration debug="false" xmlns:log4j="http://jakarta.apache.org/log4j/">
 
     <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
-        <param name="File" value="D:\\Logs\\application.log"/>
+        <param name="File" value="C:\\Users\\ux32\\Desktop\\EpamProject\\application.log"/>
         <param name="MaxFileSize" value="100MB"/>
         <param name="MaxBackupIndex" value="10"/>
         <param name="Encoding" value="UTF-8"/>
