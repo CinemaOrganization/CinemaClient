@@ -31,7 +31,13 @@ import static org.junit.Assert.assertNotNull;
 public class SessionRepositoryTest {
 
     @Autowired
-    private SessionRepository repository;
+    private HallRepository hallRepository;
+    @Autowired
+    private CinemaRepository cinemaRepository;
+    @Autowired
+    private FilmRepository filmRepository;
+    @Autowired
+    private SessionRepository sessionRepository;
 
     SetupData setupData = new SetupData();
     private List<Session> sessions;
@@ -40,7 +46,11 @@ public class SessionRepositoryTest {
     @Rollback(false)
     public void setUp() {
 
-        repository.save(sessions = setupData.getSessions());
+        sessions = setupData.getSessions();
+        cinemaRepository.save(sessions.stream().map(Session::getCinema).collect(Collectors.toList()));
+        hallRepository.save(sessions.stream().map(Session::getHall).collect(Collectors.toList()));
+        filmRepository.save(sessions.stream().map(Session::getFilm).collect(Collectors.toList()));
+        sessionRepository.save(sessions);
     }
 
     @Test
@@ -60,7 +70,7 @@ public class SessionRepositoryTest {
                 .sorted(cinemaCompare.thenComparing(hallCompare).thenComparing(timeCompare))
                 .collect(Collectors.toList());
 
-        List<Session> sessions = repository.findByFilmAndDateOrderByCinemaAndHallAndTime(chosenFilm, chosenDate);
+        List<Session> sessions = sessionRepository.findByFilmAndDateOrderByCinemaAndHallAndTime(chosenFilm, chosenDate);
 
         assertNotNull(sessions);
         assertEquals(expectedSessions, sessions);
@@ -74,7 +84,7 @@ public class SessionRepositoryTest {
                 .filter(session -> session.getFilm().equals(chosenFilm))
                 .filter(session -> session.getDate().isEqual(chosenDate) || session.getDate().isAfter(chosenDate))
                 .collect(Collectors.toList());
-        List<Session> sessions = repository.findByFilmAndWhereDateAfterOrEqual(chosenFilm, chosenDate);
+        List<Session> sessions = sessionRepository.findByFilmAndWhereDateAfterOrEqual(chosenFilm, chosenDate);
 
         assertNotNull(sessions);
         assertEquals(expectedSessions, sessions);
@@ -86,7 +96,7 @@ public class SessionRepositoryTest {
         List<Session> expectedSessions = sessions.stream()
                 .filter(session -> session.getFilm().equals(chosenFilm))
                 .collect(Collectors.toList());
-        List<Session> sessions = repository.findByFilm(chosenFilm);
+        List<Session> sessions = sessionRepository.findByFilm(chosenFilm);
 
         assertNotNull(sessions);
         assertEquals(expectedSessions, sessions);
@@ -94,6 +104,6 @@ public class SessionRepositoryTest {
 
     @After
     public void tearDown() {
-        repository.deleteAll();
+        sessionRepository.deleteAll();
     }
 }
