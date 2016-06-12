@@ -6,7 +6,7 @@ import cinema.client.data.FilmRepository;
 import cinema.client.data.SessionRepository;
 import cinema.client.entity.Film;
 import cinema.client.entity.Session;
-import cinema.client.web.exeptions.SessionByFilmNotFoundException;
+import cinema.client.web.exeptions.SessionByFilmAndDateNotFoundException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +39,7 @@ public class SessionService {
 
         Film film = filmRepository.findOne(id_film);
         if (film == null) {
-            throw new SessionByFilmNotFoundException();
+            throw new SessionByFilmAndDateNotFoundException();
         }
         LocalDate nearestDate;
         if(strDate.equals("nearest")) {
@@ -48,20 +48,20 @@ public class SessionService {
                     .map(Session::getDate)
                     .findFirst();
             if (!date.isPresent()) {
-                throw new SessionByFilmNotFoundException();
+                throw new SessionByFilmAndDateNotFoundException();
             }
             nearestDate = date.get();
         } else {
             try {
                 nearestDate = LocalDate.parse(strDate);
             } catch (DateTimeParseException ex) {
-                throw new SessionByFilmNotFoundException();
+                throw new SessionByFilmAndDateNotFoundException();
             }
         }
 
         List<Session> list = sessionRepository.findByFilmAndDateOrderByCinemaAndHallAndTime(film, nearestDate);
         if (list.size() == 0) {
-            throw new SessionByFilmNotFoundException();
+            throw new SessionByFilmAndDateNotFoundException();
         }
         return list;
     }

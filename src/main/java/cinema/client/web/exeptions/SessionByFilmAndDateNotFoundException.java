@@ -6,17 +6,17 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value= HttpStatus.NOT_FOUND,
         reason="Spittle Not Found")
-public class SessionByFilmNotFoundException extends HttpMessageNotReadableException {
+public class SessionByFilmAndDateNotFoundException extends HttpMessageNotReadableException {
 
-    public SessionByFilmNotFoundException() {
+    public SessionByFilmAndDateNotFoundException() {
         super("exception");
     }
 
-    public SessionByFilmNotFoundException(String msg) {
+    public SessionByFilmAndDateNotFoundException(String msg) {
         super(msg);
     }
 
-    public SessionByFilmNotFoundException(String msg, Throwable cause) {
+    public SessionByFilmAndDateNotFoundException(String msg, Throwable cause) {
         super(msg, cause);
     }
 }

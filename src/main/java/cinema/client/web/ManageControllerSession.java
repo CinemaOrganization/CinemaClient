@@ -2,7 +2,7 @@ package cinema.client.web;
 
 import cinema.client.entity.*;
 import cinema.client.service.*;
-import cinema.client.web.exeptions.SessionByFilmNotFoundException;
+import cinema.client.web.exeptions.SessionByFilmAndDateNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -105,7 +105,7 @@ public class ManageControllerSession {
         return "filmsForUp";
     }
 
-    @ExceptionHandler(SessionByFilmNotFoundException.class)
+    @ExceptionHandler(SessionByFilmAndDateNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleResourceNotFoundException() {
         return "notfound";

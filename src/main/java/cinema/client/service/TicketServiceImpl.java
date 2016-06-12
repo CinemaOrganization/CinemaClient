@@ -8,6 +8,7 @@ import cinema.client.entity.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class TicketServiceImpl implements TicketService {
         return ticketsInJson;
     }
 
+    @Transactional
     @Override
     public void bookTickets(String ticketsJson) {
         List<Ticket> tickets = jsonTicketConverter.toObjects(ticketsJson);
