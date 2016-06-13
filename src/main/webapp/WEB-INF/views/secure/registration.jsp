@@ -11,7 +11,7 @@
 </head>
 <body>
 <H1>
-    Регистрация нового пользователя.
+    Регистрация нового пользователя
 </H1>
 <form:form modelAttribute="user" method="POST" acceptCharset="UTF-8" enctype="utf-8">
     <br>

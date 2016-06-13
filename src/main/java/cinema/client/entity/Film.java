@@ -5,8 +5,8 @@ import cinema.client.secure.validation.annotation.ValidName;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
-
 import javax.persistence.*;
+import java.io.File;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -47,6 +47,39 @@ public class Film {
     @OneToMany(mappedBy = "film",cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
+    @Column
+    private String imageId;
+
+    @Transient
+    private File image;
+
+
+    public Film() {}
+
+    public Film(String name, String studio, LocalTime duration, String description, int year) {
+        this.name = name;
+        this.studio = studio;
+        this.duration = duration;
+        this.description = description;
+        this.year = year;
+    }
+
+    public String getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
+    }
+
+    public File getImage() {
+        return image;
+    }
+
+    public void setImage(File image) {
+        this.image = image;
+    }
+
     public List<Comment> getComments() {
         return comments;
     }
@@ -61,16 +94,6 @@ public class Film {
 
     public void setSessions(List<Session> sessions) {
         this.sessions = sessions;
-    }
-
-    public Film() {}
-
-    public Film(String name, String studio, LocalTime duration, String description, int year) {
-        this.name = name;
-        this.studio = studio;
-        this.duration = duration;
-        this.description = description;
-        this.year = year;
     }
 
     public long getId() {

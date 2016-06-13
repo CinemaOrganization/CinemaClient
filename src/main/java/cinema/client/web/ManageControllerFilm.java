@@ -49,6 +49,7 @@ public class ManageControllerFilm {
             }
             return "createFilm";
         }
+
         filmService.saveFilms(Arrays.asList(film));
         return "redirect:/manage/film";
     }

@@ -15,7 +15,7 @@
 <body>
 <table>
     <tr>
-        <td><img src="resources/img/films/${film.id}.jpg" width="189" height="255"></td>
+        <td><img src="resources/img/films/${film.imageId}.jpg" width="189" height="255"></td>
         <td>
             <h1> ${film.name} </h1>
             <h4> Студия: ${film.studio}</h4>

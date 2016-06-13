@@ -5,9 +5,9 @@ import cinema.client.data.SessionRepository;
 import cinema.client.entity.Film;
 import cinema.client.entity.Session;
 import org.apache.log4j.Logger;
-import org.mockito.internal.util.collections.Iterables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,12 +20,14 @@ public class FilmService {
 
     FilmRepository filmRepository;
     SessionRepository sessionRepository;
+    ImageService imageService;
     static Logger logger = Logger.getLogger(FilmService.class);
 
     @Autowired
-    public FilmService(FilmRepository filmRepository, SessionRepository sessionRepository) {
+    public FilmService(FilmRepository filmRepository, SessionRepository sessionRepository, ImageService imageService) {
         this.filmRepository = filmRepository;
         this.sessionRepository = sessionRepository;
+        this.imageService = imageService;
     }
 
     public List<Film> findAll() {
@@ -54,15 +56,26 @@ public class FilmService {
             return false;
         }
     }
+
+    @Transactional
     public void saveFilms(Iterable<Film> films) {
+        saveImagesForFilms(films);
         filmRepository.save(films);
         for (Film film : films){
             logger.info("Добавлен/изменён фильм " + film);
         }
     }
+
+    private void saveImagesForFilms(Iterable<Film> films) {
+        for (Film currentFilm: films) {
+            String imageId = imageService.saveImage(currentFilm.getImage());
+            currentFilm.setImageId(imageId);
+        }
+    }
+
     public void deleteFilm(long id){
         filmRepository.delete(id);
-        logger.info("Удалён филь с ИД = " + id);
+        logger.info("Удалён фильм с ИД = " + id);
     }
 
     public List<Film> findByStartDateAfter(LocalDate date) {

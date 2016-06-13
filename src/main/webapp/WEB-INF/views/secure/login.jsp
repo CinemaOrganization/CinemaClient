@@ -10,7 +10,7 @@
     <title>Sessions by film and cinema </title>
 </head>
 <body>
-<h1>Login test</h1>
+<h1>Вход</h1>
 <%-------------------------------------Исправить сообщение об ошибке--------------------------------------%>
 <c:if test="${not empty param.error}">
     <div class="error">
