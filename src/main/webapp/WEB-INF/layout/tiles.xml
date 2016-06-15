@@ -26,6 +26,12 @@
         <put-attribute name="body"
                        value="/WEB-INF/views/secure/login.jsp"/>
     </definition>
+    <definition name="secure/logout" extends="base">
+        <put-attribute name="title" value="Вы вышли"/>
+        <put-attribute name="login" value=""/>
+        <put-attribute name="body"
+                       value="/WEB-INF/views/secure/logout.jsp"/>
+    </definition>
     <definition name="secure/registration" extends="base">
         <put-attribute name="title" value="Регистрация"/>
         <put-attribute name="login" value=""/>

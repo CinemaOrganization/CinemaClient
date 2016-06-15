@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()
-                .logoutSuccessUrl("/user/login")
+                .logoutSuccessUrl("/user/logout")
                 .and()
                 .rememberMe();
     }

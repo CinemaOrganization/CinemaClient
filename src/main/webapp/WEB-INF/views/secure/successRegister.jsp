@@ -10,10 +10,9 @@
 </head>
 <body>
 <h1>
-    Регистрация завершена!
+    <spring:message code="successReg.text"/>
 </h1>
-<h3>Теперь вы можете осуществить вход!</h3>
 
-<a href="<c:url value="/" />">go to the Home Page...</a>
+<a href="<c:url value="/" />"><spring:message code="successReg.goHomePage"/></a>
 </body>
 </html>

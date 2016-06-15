@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="sp" uri="http://www.springframework.org/tags" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -8,10 +9,9 @@
 </head>
 <body>
 <h1>
-    Вы вышли с аккаунта!
+    <sp:message code="logout.exitText"/>
 </h1>
-<h3>Возвращайтесь!</h3>
 
-<a href="<c:url value="/" />">go to the Home Page...</a>
+<a href="<c:url value="/" />"><sp:message code="logout.goHomePage"/></a>
 </body>
 </html>
