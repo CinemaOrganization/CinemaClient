@@ -25,5 +25,7 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
 
     List<Session> findByDateGreaterThanEqual(LocalDate date);
 
+    List<Session> findByDateBetween(LocalDate startDate, LocalDate finishDate);
+
     Session findByHallAndFilmAndCinemaAndDateAndTime(Hall hall, Film film, Cinema cinema, LocalDate date, LocalTime time);
 }

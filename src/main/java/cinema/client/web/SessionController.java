@@ -98,19 +98,4 @@ public class SessionController {
         model.addAttribute(comment);
     }
 
-    @RequestMapping(value = "/add",method = GET)
-    public String addData() {
-
-        sessionService.add();
-
-        return "session";
-    }
-    @RequestMapping(value = "/delete",method = GET)
-    public String deleteData() {
-
-        sessionService.deteteData();
-        return "session";
-    }
-
-
 }

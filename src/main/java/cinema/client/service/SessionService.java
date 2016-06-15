@@ -1,6 +1,5 @@
 package cinema.client.service;
 
-import cinema.client.SetupData.Datas;
 import cinema.client.data.CinemaRepository;
 import cinema.client.data.FilmRepository;
 import cinema.client.data.SessionRepository;
@@ -72,29 +71,10 @@ public class SessionService {
                 .collect(Collectors.toList());
     }
 
-    //Временно, для добавления временных данных в базу
-    public void add() {
-        try {
-            Datas datas = new Datas(sessionRepository);
-            datas.setUp();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    //Временно, для удаления временных данных из базы
-    public void deteteData() {
-        try {
-            Datas datas = new Datas(sessionRepository);
-            datas.tearDown();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public List<Session> findByFilm(Film film){
         return sessionRepository.findByFilm(film);
     }
+
     public void save(Iterable<Session> sessions){
         sessionRepository.save(sessions);
         for (Session session : sessions){

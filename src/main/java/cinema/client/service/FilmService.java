@@ -39,20 +39,20 @@ public class FilmService {
         return filmRepository.findOne(film_id);
     }
 
-    public boolean isExistedFilm(Film film){
-        Film existFilm =filmRepository.findByNameAndYearAndStudio(film.getName(),film.getYear(),film.getStudio());
-        if (existFilm != null){
+    public boolean isExistedFilm(Film film) {
+        Film existFilm = filmRepository.findByNameAndYearAndStudio(film.getName(), film.getYear(), film.getStudio());
+        if (existFilm != null) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
-    public boolean isAnotherExistedFilm(Film film){
-        Film foundFilm = filmRepository.findByNameAndYearAndStudio(film.getName(),film.getYear(),film.getStudio());
-        if (foundFilm != null && foundFilm.getId() != film.getId()){
+    public boolean isAnotherExistedFilm(Film film) {
+        Film foundFilm = filmRepository.findByNameAndYearAndStudio(film.getName(), film.getYear(), film.getStudio());
+        if (foundFilm != null && foundFilm.getId() != film.getId()) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -61,19 +61,19 @@ public class FilmService {
     public void saveFilms(Iterable<Film> films) {
         saveImagesForFilms(films);
         filmRepository.save(films);
-        for (Film film : films){
+        for (Film film : films) {
             logger.info("Добавлен/изменён фильм " + film);
         }
     }
 
     private void saveImagesForFilms(Iterable<Film> films) {
-        for (Film currentFilm: films) {
+        for (Film currentFilm : films) {
             String imageId = imageService.saveImage(currentFilm.getImage());
             currentFilm.setImageId(imageId);
         }
     }
 
-    public void deleteFilm(long id){
+    public void deleteFilm(long id) {
         filmRepository.delete(id);
         logger.info("Удалён фильм с ИД = " + id);
     }
@@ -82,5 +82,32 @@ public class FilmService {
         List<Session> sessions = sessionRepository.findByDateGreaterThanEqual(date);
         Set<Film> films = sessions.stream().map(Session::getFilm).collect(Collectors.toSet());
         return new ArrayList<>(films);
+    }
+
+    private List<Film> findByStartDateBetween(String date1, String date2) {
+        LocalDate startDate = LocalDate.parse(date1);
+        LocalDate finishDate = LocalDate.parse(date2);
+        if (startDate.isAfter(finishDate)) {
+            LocalDate temp = finishDate;
+            finishDate = startDate;
+            startDate = temp;
+        }
+        List<Session> sessions = sessionRepository.findByDateBetween(startDate, finishDate);
+        Set<Film> films = sessions.stream().map(Session::getFilm).collect(Collectors.toSet());
+        return new ArrayList<>(films);
+    }
+
+    public List<Film> findByDates(String date1, String date2) {
+        List<Film> films = new ArrayList<>();
+        if (date1.equals("now")) {
+            films = findByStartDateAfter(LocalDate.now());
+        } else {
+            if (date2.equals("empty")) {
+                films = findByStartDateBetween(date1, date1);
+            } else {
+                films = findByStartDateBetween(date1, date2);
+            }
+        }
+        return films;
     }
 }
