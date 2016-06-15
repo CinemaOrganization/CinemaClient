@@ -41,27 +41,12 @@
         </tr>
     </c:forEach>
 </table>
-<%--
-<table>
-    <c:forEach items="${filmList}" var="film">
-        <s:url value="/session?film_id=${film.id}" var="sessions"/>
-        <tr>
-            <td>
-                <a class="h1_title" href="${sessions}">
-                    <img src="resources/img/films/${film.id}.jpg"
-                         width="189"
-                         height="255">
-                </a>
-            </td>
-            <td>
-                <a class="h1_title" href="${sessions}">
-                    <h4> ${film.name} </h4>
-                </a>
-                <h4> Год выхода: ${film.year}</h4>
-                <h4> Продолжительность: ${film.duration}</h4>
-            </td>
-        </tr>
-    </c:forEach>
-</table> --%>
+
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    |
+    <a href="?lang=ru">ru</a>
+</span>
+
 </body>
 </html>
