@@ -1,15 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sp" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Изменение фильма</title>
+
 </head>
 <body>
     <form:form modelAttribute="film" method="POST" acceptCharset="UTF-8" enctype="utf-8">
         <table>
             <tr>
-                <td>Введите название фильма:</td>
+                <td><sp:message code="manage.film.update.name"/></td>
             </tr>
             <tr>
                 <td>
@@ -18,7 +19,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Введите название студии:</td>
+                <td><sp:message code="manage.film.update.studio"/></td>
             </tr>
             <tr>
                 <td>
@@ -27,16 +28,16 @@
                 </td>
             </tr>
             <tr>
-                <td>Введите продолжительность фильма (в формате ЧЧ:ММ):</td>
+                <td><sp:message code="manage.film.update.time"/></td>
             </tr>
             <tr>
                 <td>
-                    <form:input path="duration"  type="time" value="${film.duration}"/>
+                    <form:input path="duration"  value="${film.duration}"/>
                     <form:errors path="duration"  cssClass="error"/>
                 </td>
             </tr>
             <tr>
-                <td>Введите год выпуска фильма:</td>
+                <td><sp:message code="manage.film.update.year"/></td>
             </tr>
             <tr>
                 <td>
@@ -45,12 +46,12 @@
                     </c:set>
                     <form:input  path="year" type="number" min="1"/>
                     <c:if test="${not empty yearHasBindError}">
-                        <span class="error">Поле не может быть пустым</span>
+                        <span class="error"><sp:message code="manage.film.update.year.err"/></span>
                     </c:if>
                 </td>
             </tr>
             <tr>
-                <td>Введите описание фильма:</td>
+                <td><sp:message code="manage.film.update.description"/></td>
 
             </tr>
             <tr>
@@ -62,15 +63,15 @@
             <tr>
                 <form:input path="id" type="hidden"/>
                 <td>
-                    <input name="submit" type="submit" value="Изменить"/>
+                    <input name="submit" type="submit" value="<sp:message code="manage.film.update.button.submit"/>"/>
                     <c:if test="${not empty filmExistError}">
-                        <span class="error">Данный фильм уже существует</span>
+                        <span class="error"><sp:message code="manage.film.update.submit.err"/></span>
                     </c:if>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="/manage/film">Назад</a>
+                    <a href="/manage/film"><sp:message code="manage.GoBack"/></a>
                 </td>
             </tr>
         </table>

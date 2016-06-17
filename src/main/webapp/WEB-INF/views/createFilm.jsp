@@ -1,14 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sp" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 </head>
 <body>
-<form:form modelAttribute="film" method="POST" acceptCharset="UTF-8" >
+<form:form modelAttribute="film" method="POST" acceptCharset="UTF-8">
     <table>
         <tr>
-            <td>Введите название фильма:</td>
+            <td><sp:message code="manage.film.create.name"/></td>
         </tr>
         <tr>
             <td>
@@ -17,7 +18,7 @@
             </td>
         </tr>
         <tr>
-            <td>Введите название студии:</td>
+            <td><sp:message code="manage.film.create.studio"/></td>
         </tr>
         <tr>
             <td>
@@ -26,16 +27,16 @@
             </td>
         </tr>
         <tr>
-            <td>Введите продолжительность фильма (в формате ЧЧ:ММ):</td>
+            <td><sp:message code="manage.film.create.time"/></td>
         </tr>
         <tr>
             <td>
-                <form:input path="duration" type="time" value="${film.duration}"/>
+                <form:input path="duration" value="${film.duration}"/>
                 <form:errors path="duration" cssClass="error"/>
             </td>
         </tr>
         <tr>
-            <td>Введите год выпуска фильма:</td>
+            <td><sp:message code="manage.film.create.year"/></td>
         </tr>
         <tr>
             <td>
@@ -44,12 +45,12 @@
                 </c:set>
                 <form:input path="year" type="number" min="1"/>
                 <c:if test="${not empty yearHasBindError}">
-                    <span class="error">Поле не может быть пустым</span>
+                    <span class="error"><sp:message code="manage.film.create.year.err"/></span>
                 </c:if>
             </td>
         </tr>
         <tr>
-            <td>Введите описание фильма:</td>
+            <td><sp:message code="manage.film.create.description"/></td>
 
         </tr>
         <tr>
@@ -58,23 +59,23 @@
                 <form:errors path="description" cssClass="error"/>
             </td>
         </tr>
+        <%--<tr>--%>
+            <%--<td>--%>
+                <%--<form:input disabled="true" path="image" type="file" name="img"--%>
+                            <%--accept="image/jpeg,image/png,image/gif" lang="" />--%>
+            <%--</td>--%>
+        <%--</tr>--%>
         <tr>
             <td>
-                <form:input disabled="true" path="image" type="file" name="img"
-                            accept="image/jpeg,image/png,image/gif"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input name="submit" type="submit" value="Создать"/>
+                <input name="submit" type="submit" value="<sp:message code="manage.film.create.button.submit"/>"/>
                 <c:if test="${not empty filmExistError}">
-                    <span class="error">Данный фильм уже существует</span>
+                    <span class="error"><sp:message code="manage.film.create.submit.err"/></span>
                 </c:if>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/manage/film">Назад</a>
+                <a href="/manage/film"><sp:message code="manage.GoBack"/></a>
             </td>
         </tr>
     </table>

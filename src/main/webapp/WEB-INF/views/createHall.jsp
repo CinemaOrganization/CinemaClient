@@ -1,15 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="sp" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>Создание зала</title>
+
 </head>
 <body>
     <sec:form modelAttribute="hall" method="POST" acceptCharset="UTF-8" enctype="utf-8">
         <table>
             <tr>
-                <td>Введите номер зала:</td>
+                <td><sp:message code="manage.hall.create.name"/></td>
             </tr>
             <tr>
                 <td>
@@ -18,7 +19,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Введите количесвто рядов:</td>
+                <td><sp:message code="manage.hall.create.rows"/></td>
             </tr>
             <tr>
                 <td>
@@ -27,7 +28,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Введите количеств мест в ряду:</td>
+                <td><sp:message code="manage.hall.create.places"/></td>
             </tr>
             <tr>
                 <td>
@@ -36,7 +37,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Введите тип зала 3d:</td>
+                <td><sp:message code="manage.hall.create.type"/></td>
             </tr>
             <tr>
                 <td>
@@ -45,7 +46,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Выберите кинотеатр:</td>
+                <td><sp:message code="manage.hall.create.cinema"/></td>
             </tr>
             <tr>
                 <td>
@@ -59,15 +60,15 @@
             </tr>
             <tr>
                 <td>
-                    <input type="submit" value="Создать">
+                    <input type="submit" value="<sp:message code="manage.hall.create.button.submit"/>">
                     <c:if test="${not empty ExistedHallError}">
-                        <span class="error">Данный зал уже существует</span>
+                        <span class="error"><sp:message code="manage.hall.create.submit.err"/></span>
                     </c:if>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="/manage/hall">Назад</a>
+                    <a href="/manage/hall"><sp:message code="manage.GoBack"/></a>
                 </td>
             </tr>
         </table>

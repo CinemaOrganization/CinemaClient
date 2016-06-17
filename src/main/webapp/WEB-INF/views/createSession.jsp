@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sp" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Создание нового сеанса</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -12,7 +12,7 @@
     <sec:form modelAttribute="session" method="POST" acceptCharset="UTF-8" enctype="utf-8">
         <table>
             <tr>
-                <td>Выберите фильм:</td>
+                <td><sp:message code="manage.session.create.film"/></td>
             </tr>
             <tr>
                 <td>
@@ -25,7 +25,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Выберите зал:</td>
+                <td><sp:message code="manage.session.create.hall"/></td>
             </tr>
             <tr>
                 <td>
@@ -38,7 +38,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Введите стоимость:</td>
+                <td><sp:message code="manage.session.create.cost"/></td>
             </tr>
             <tr>
                 <td>
@@ -47,39 +47,39 @@
                     </c:set>
                     <sec:input  path="cost"/>
                     <c:if test="${not empty costHasBindError}">
-                        <span class="error">Введите число >=0</span>
+                        <span class="error"><sp:message code="manage.session.create.cost.err"/></span>
                     </c:if>
                 </td>
             </tr>
             <tr>
-                <td>Введите время начала:</td>
+                <td><sp:message code="manage.session.create.time"/></td>
             </tr>
             <tr>
                 <td>
-                    <sec:input path="time" type="time" value="${session.time}"/>
+                    <sec:input path="time" value="${session.time}"/>
                     <sec:errors path="time" cssClass="error"/>
                 </td>
             </tr>
             <tr>
-                <td>Введите дату:</td>
+                <td><sp:message code="manage.session.create.date"/></td>
             </tr>
             <tr>
                 <td>
-                    <sec:input path="date" id="datepicker" readonly="true"/>
+                    <sec:input path="date" id="datepicker" readonly="true" lang="ru"/>
                     <sec:errors path="date"/>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input name="submit" type="submit" value="Создать"/>
+                    <input name="submit" type="submit" value="<sp:message code="manage.session.create.button.submit"/>"/>
                     <c:if test="${not empty ExistedSessionError}">
-                        <span class="error">Данный сеанс уже существует</span>
+                        <span class="error"><sp:message code="manage.session.create.submit.err"/></span>
                     </c:if>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="/manage/session">Назад</a>
+                    <a href="/manage/session"><sp:message code="manage.GoBack"/></a>
                 </td>
             </tr>
         </table>
@@ -88,14 +88,19 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
         $("#datepicker").datepicker({
-            monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май",
-                "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-            dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-            firstDay: 1,
-            dateFormat: "dd.mm.y",
+            <c:if test="${pageContext.response.locale eq 'ru'}">
+                monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май",
+                    "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+                dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+                firstDay: 1,
+                dateFormat: "dd.mm.y",
             minDate: new Date()
+            </c:if>
+            <c:if test="${pageContext.response.locale eq 'en'}">
+                dateFormat: "mm/dd/y",
+                minDate: new Date()
+            </c:if>
         });
     });
 </script>

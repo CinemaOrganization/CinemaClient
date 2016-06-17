@@ -8,11 +8,16 @@
 <head>
     <spring:url value="/resources/css/style.css" var="crunchifyCSS"/>
     <link href="${crunchifyCSS}" type="text/css" rel="stylesheet"/>
-    <title>Кинотеатр!</title>
+
 </head>
 <body>
-<h1>Добро пожаловать на сайт нашего Кинотеатра!</h1>
-<h3>Выберите фильм</h3>
+<h1><s:message code="home.welcome"/></h1>
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    |
+    <a href="?lang=ru">ru</a>
+</span>
+<h3><s:message code="home.chooseFilm"/></h3>
 <table>
     <c:forEach begin="0" end="${filmList.size()/3}" var="rCount">
         <tr>
@@ -31,9 +36,9 @@
                             <a class="h1_title" href="${sessions}">
                                 <h4> ${filmList[CurFilm].name} </h4>
                             </a>
-                            <h4> Год выхода: ${filmList[CurFilm].year}</h4>
-                            <h4> Продолжительность: ${filmList[CurFilm].duration}</h4>
-                            <h4> Студия: ${filmList[CurFilm].studio}</h4>
+                            <h4> <s:message code="home.year"/> ${filmList[CurFilm].year}</h4>
+                            <h4> <s:message code="home.duration"/> ${filmList[CurFilm].duration}</h4>
+                            <h4> <s:message code="home.studio"/> ${filmList[CurFilm].studio}</h4>
                         </td>
                     </td>
                 </c:if>
@@ -41,12 +46,6 @@
         </tr>
     </c:forEach>
 </table>
-
-<span style="float: right">
-    <a href="?lang=en">en</a>
-    |
-    <a href="?lang=ru">ru</a>
-</span>
 
 </body>
 </html>

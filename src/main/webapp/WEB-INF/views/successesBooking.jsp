@@ -5,5 +5,5 @@
     <link href="${crunchifyCSS}" type="text/css" rel="stylesheet"/>
 </head>
 <body>
- <h1> Бронирование прошло успешно!</h1>
+ <h1> <spring:message code="booking.success"/></h1>
 </body>

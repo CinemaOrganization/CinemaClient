@@ -93,15 +93,8 @@ public class ManageControllerSession {
     @RequestMapping(value = "filmsForUp",method = GET)
     public String chooseFilmForUpSession(Model model){
 
-        List<Film> films = filmService.findAll();
-        List<Film> filmWithSession = new ArrayList<Film>();
-        for (Film film : films){
-            List<Session> sessions = sessionService.findByFilm(film);
-            if (sessions.size() != 0){
-                filmWithSession.add(film);
-            }
-        }
-        model.addAttribute("films",filmWithSession);
+        List<Film> list = filmService.findByStartDateAfter(LocalDate.now());
+        model.addAttribute("films",list);
         return "filmsForUp";
     }
 

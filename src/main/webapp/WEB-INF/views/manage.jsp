@@ -1,28 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sp" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Панель управления</title>
+
 </head>
 <body>
     <table>
         <tr>
             <td>
-                <a href="/manage/film">Фильм</a>
+                <a href="/manage/film"><sp:message code="manage.film"/></a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/manage/cinema">Кинотеатр</a>
+                <a href="/manage/cinema"><sp:message code="manage.cinema"/></a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/manage/hall">Зал</a>
+                <a href="/manage/hall"><sp:message code="manage.hall"/></a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/manage/session">Сеанс</a>
+                <a href="/manage/session"><sp:message code="manage.session"/></a>
             </td>
         </tr>
     </table>

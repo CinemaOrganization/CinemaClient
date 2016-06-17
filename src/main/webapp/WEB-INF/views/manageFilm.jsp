@@ -1,32 +1,32 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sp" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Управление фильмами</title>
+
 </head>
 <body>
-    <h1>Фильм</h1>
+    <h1><sp:message code="manage.film"/></h1>
     <table>
         <tr>
             <td>
-                <a href="/manage/film/create">Создать</a>
+                <a href="/manage/film/create"><sp:message code="manage.create"/></a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/manage/film/chooseup">Изменить</a>
+                <a href="/manage/film/chooseup"><sp:message code="manage.update"/></a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/manage/film/choosedel">Удалить</a>
+                <a href="/manage/film/choosedel"><sp:message code="manage.delete"/></a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/manage">Назад</a>
+                <a href="/manage"><sp:message code="manage.GoBack"/></a>
             </td>
         </tr>
-
     </table>
 </body>
 </html>

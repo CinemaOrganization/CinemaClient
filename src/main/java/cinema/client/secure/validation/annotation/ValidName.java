@@ -16,7 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Constraint(validatedBy = FieldNameStringValidator.class)
 public @interface ValidName {
-    String message() default "Поле не может быть пустым";
+    String message() default "{validation.annotation.ValidName}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

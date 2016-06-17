@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
@@ -28,7 +29,7 @@ public class Comment {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @NotEmpty
+    @NotNull
     @Size(min = 5, max = 255)
     @Column(nullable = false)
     private String text;

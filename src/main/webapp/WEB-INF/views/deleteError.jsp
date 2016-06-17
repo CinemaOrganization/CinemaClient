@@ -6,10 +6,9 @@
 <head>
     <spring:url value="/resources/css/style.css" var="crunchifyCSS" />
     <link href="${crunchifyCSS}" type="text/css" rel="stylesheet" />
-    <title>Resource not found!</title>
 </head>
 <body>
-<h1>Нельзя удалить сеанс, на него забронированы билеты</h1>
-<a href="/manage/session"/>
+<h1><spring:message code="delete.session.err"/></h1>
+<a href="/manage/session"><spring:message code="manage.GoBack"/></a>
 </body>
 </html>

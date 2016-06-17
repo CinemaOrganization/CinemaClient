@@ -21,7 +21,7 @@ public class Hall {
     @Column(nullable = false)
     private int number;
 
-    @NotNull(message = "Поле не может быть пустым")
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_cinema")
     private Cinema cinema;

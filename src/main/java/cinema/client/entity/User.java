@@ -2,8 +2,8 @@ package cinema.client.entity;
 
 import cinema.client.secure.validation.annotation.PasswordMatches;
 import cinema.client.secure.validation.annotation.ValidEmail;
+import cinema.client.secure.validation.annotation.ValidName;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,27 +31,26 @@ public class User {
     private long id;
 
     @NotNull
-    @NotEmpty
+    @ValidName
     @Column(nullable = false)
     private String firstName;
 
-    @NotEmpty
+    @ValidName
     @Column(nullable = false)
     private String lastName;
 
     @ValidEmail
     @NotNull
-    @NotEmpty
     @Column(nullable = false)
     private String email;
 
     @NotNull
-    @NotEmpty
+    @ValidName
     @Column(nullable = false,unique = true)
     private String username;
 
     @NotNull
-    @NotEmpty
+    @ValidName
     @Column(nullable = false)
     private String password;
 

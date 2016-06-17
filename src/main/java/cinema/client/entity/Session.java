@@ -23,12 +23,12 @@ public class Session {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    @NotNull(message = "Поле не может быть пустым")
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_hall")
     private Hall hall;
 
-    @NotNull(message = "Поле не может быть пустым")
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_film")
     private Film film;
