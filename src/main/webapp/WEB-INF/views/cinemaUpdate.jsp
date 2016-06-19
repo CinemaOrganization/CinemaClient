@@ -1,15 +1,16 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="sp" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Измените кинотеатр</title>
+
 </head>
 <body>
     <sec:form modelAttribute="cinema" method="POST" acceptCharset="UTF-8" enctype="utf-8">
         <table>
             <tr>
-                <td>Введите название кинотеатра:</td>
+                <td><sp:message code="manage.cinema.create.name"/></td>
             </tr>
             <tr>
                 <td>
@@ -22,13 +23,13 @@
                 <td>
                     <input name="submit" type="submit" value="Изменить"/>
                     <c:if test="${not empty existedCinemaError}">
-                        <span class="error">Данный кинотеатр уже существует</span>
+                        <span class="error"><sp:message code="manage.cinema.create.err"/></span>
                     </c:if>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a href="/manage/cinema">Назад</a>
+                    <a href="/manage/cinema"><sp:message code="manage.GoBack"/></a>
                 </td>
             </tr>
         </table>

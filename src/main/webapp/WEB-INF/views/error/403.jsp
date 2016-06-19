@@ -9,7 +9,7 @@
     <title>Bad request!</title>
 </head>
 <body>
-<h1>Ошибка 403! Доступ запрещен!</h1>
+<h1><spring:message code="error.403"/></h1>
 </body>
 </html>
 

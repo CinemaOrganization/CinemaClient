@@ -1,8 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sp" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>Выберите фильм</title>
+
 </head>
 <body>
     <table>
@@ -15,7 +16,7 @@
         </c:forEach>
         <tr>
             <td>
-                <a href="/manage/session">Назад</a><br>
+                <a href="/manage/session"><sp:message code="manage.GoBack"/></a><br>
             </td>
         </tr>
     </table>

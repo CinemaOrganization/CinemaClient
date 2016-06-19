@@ -17,7 +17,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Constraint(validatedBy = LocalTimeValidator.class)
 public @interface NotEmptyLocalTime {
-    String message() default "Поле не может быть пустым";
+    String message() default "{validation.annotation.NotEmptyLocalTime}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

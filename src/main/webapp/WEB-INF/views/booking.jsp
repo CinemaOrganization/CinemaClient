@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -10,7 +11,7 @@
     <link href="${crunchifyCSS}" type="text/css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <style>
         .cinemaHall {
             text-align: center;
@@ -72,7 +73,7 @@
 <form method="post">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <input id="ticketsField" type="hidden" name="tickets">
-    <input type="submit" name="booking" value="Забронировать" disabled="true">
+    <input type="submit" name="bookingButton" value="<spring:message code="booking.butten.Book"/>" disabled="true">
 </form>
 <br>
 <div class='result'>
@@ -88,7 +89,7 @@
     hallMap = paidTiсkets(hallMap);
     cinemaHallMap = '<table>';
     for (i = 1; i <= hallMap.length; i++) {
-        cinemaHallRow = '<tr><td>Ряд ' + i + ': </td><td>';
+        cinemaHallRow = '<tr><td><spring:message code="booking.Row"/> ' + i + ': </td><td>';
         for (j = 1; j <= hallMap[i - 1].length; j++) {
             classesForSeats = "seat";
             if (hallMap[i - 1][j - 1] == 1) {
@@ -128,9 +129,9 @@
         coordinates.top += 20;
         coordinates.left += 20;
         $('.infoBord').offset(coordinates);
-        $('.infoBord').html('Ряд: ' +
+        $('.infoBord').html('<spring:message code="booking.Row"/>: ' +
                 $(e.currentTarget).data().row +
-                ', Место:' +
+                ', <spring:message code="booking.Place"/>:' +
                 $(e.currentTarget).data().seat);
         $('.infoBord').css('visibility', 'visible');
     });
@@ -164,8 +165,8 @@
         result = '';
         //ищем все места купленные и показываем список выбранных мест
         $.each($('.seat.chosen'), function (key, item) {
-            result += '<div class="ticket">Ряд: ' +
-                    $(item).data().row + ' Место:' +
+            result += '<div class="ticket"><spring:message code="booking.Row"/>: ' +
+                    $(item).data().row + ' <spring:message code="booking.Place"/>:' +
                     $(item).data().seat + '</div>';
         });
 
@@ -194,9 +195,9 @@
     function enableSubmitIfSomeChosen() {
         var countOfChosen = $('.chosen').length;
         if (countOfChosen == 0) {
-            $('input[name="booking"]').prop('disabled', true);
+            $('input[name="bookingButton"]').prop('disabled', true);
         } else {
-            $('input[name="booking"]').prop('disabled', false);
+            $('input[name="bookingButton"]').prop('disabled', false);
         }
     }
 </script>

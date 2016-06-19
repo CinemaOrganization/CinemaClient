@@ -1,14 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="sp" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="my" tagdir="/WEB-INF/tags" %>
 
 <div>
-    <h3>Комментарии к фильму:</h3>
+    <h3><sp:message code="comment.describe"/></h3>
     <sec:authorize access="isAnonymous()">
-        Для того, чтобы оставить комментарий осуществите <a href="<c:url value="/user/login"/>">вход</a>.
+        <sp:message code="comment.anonymousText"/> <a href="<c:url value="/user/login"/>"><sp:message code="comment.ref.enter"/></a>.
     </sec:authorize>
     <sec:authorize access="!isAnonymous()">
         <form:form modelAttribute="comment" method="POST" enctype="utf8">
@@ -18,7 +19,7 @@
             <br>
             <sec:authentication property="principal.username" var="username"/>
             <form:hidden path="user.username" value="${username}"/>
-            <input name="add" type="submit" value="Отправить"/>
+            <input name="add" type="submit" value="<sp:message code="comment.button.submit"/>"/>
         </form:form>
     </sec:authorize>
 
@@ -35,7 +36,7 @@
                             <form:hidden path="id" value="${current_comment.id}"/>
                             <form:hidden path="text" value="${current_comment.text}"/>
                             <form:hidden path="film.id" value="${film.id}"/>
-                            <input name="remove" type="submit" value="Удалить">
+                            <input name="remove" type="submit" value="<sp:message code="comment.button.delete"/>">
                         </form:form>
                     </sec:authorize>
                     <sec:authorize access="!isAnonymous()">
@@ -46,7 +47,7 @@
                                     <form:hidden path="id" value="${current_comment.id}"/>
                                     <form:hidden path="text" value="${current_comment.text}"/>
                                     <form:hidden path="film.id" value="${film.id}"/>
-                                    <input name="remove" type="submit" value="Удалить">
+                                    <input name="remove" type="submit" value="<sp:message code="comment.button.delete"/>">
                                 </form:form>
                             </c:if>
                         </sec:authorize>

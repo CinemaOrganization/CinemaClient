@@ -18,27 +18,27 @@
         <td><img src="resources/img/films/${film.imageId}.jpg" width="189" height="255"></td>
         <td>
             <h1> ${film.name} </h1>
-            <h4> Студия: ${film.studio}</h4>
-            <h4> Год выхода: ${film.year}</h4>
-            <h4> Продолжительность: ${film.duration}</h4>
-            <h4> Описание: ${film.description}</h4>
+            <h4> <spring:message code="session.studio"/> ${film.studio}</h4>
+            <h4> <spring:message code="session.year"/> ${film.year}</h4>
+            <h4> <spring:message code="session.duration"/> ${film.duration}</h4>
+            <h4> <spring:message code="session.description"/> ${film.description}</h4>
         </td>
     </tr>
 </table>
 
 
-<h1>Сеансы на фильм <c:out value="${film.name}"/> на <c:out value="${sessionList[0].date}"/></h1>
+<h1><spring:message code="session.text"/> <c:out value="${film.name}"/> на <c:out value="${sessionList[0].date}"/></h1>
 <div>
     <form action="/session">
         <input type="hidden" name="film_id" value="<c:out value="${param.film_id}"/>"><br/>
-        Выберите дату сеанса: <input type="text" id="datepicker" name="strDate" readonly/>
-        <input type="submit" value="Посмотреть сеансы на выбранную дату">
+        <spring:message code="session.chooseDate"/> <input type="text" id="datepicker" name="strDate" readonly/>
+        <input type="submit" value="<spring:message code="session.button.watchDate"/>">
     </form>
 </div>
 <table>
     <tr>
-        <th>Кинотеатр</th>
-        <th>Сеансы</th>
+        <th><spring:message code="session.cinema"/></th>
+        <th><spring:message code="session.sessions"/></th>
     </tr>
     <c:forEach items="${cinemaList}" var="cinema">
         <tr>
@@ -46,25 +46,25 @@
             <td>
                 <table>
                     <tr>
-                        <th>Зал</th>
+                        <th><spring:message code="session.hall"/></th>
                     </tr>
                     <c:forEach items="${hallList}" var="hall">
                         <c:if test="${hall.cinema == cinema}">
                             <tr>
                                 <td><c:out value="${hall.number}"/>
                                     <c:if test="${hall.threeD}">
-                                        <br>3d
+                                        <br><spring:message code="session.3d"/>
                                     </c:if>
                                 </td>
                                 <c:forEach items="${sessionList}" var="session">
                                     <c:if test="${session.hall == hall}">
                                         <td>
                                             <sec:authorize access="isAnonymous()">
-                                                <c:out value="Время: ${session.time}"/>
+                                                <spring:message code="session.time"/> ${session.time}
                                             </sec:authorize>
                                             <sec:authorize access="!isAnonymous()">
                                                 <a href="/booking?session_id=${session.id}">
-                                                    <c:out value="Время: ${session.time}"/>
+                                                    <spring:message code="session.time"/> ${session.time}
                                                 </a>
                                             </sec:authorize>
                                             <br>
@@ -93,10 +93,13 @@
         stringDateList = stringDateList.split(', ');
 
         $("#datepicker").datepicker({
-            monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май",
-                "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-            dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
-            firstDay: 1,
+
+            <c:if test="${pageContext.response.locale eq 'ru'}">
+                monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май",
+                    "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+                dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+                firstDay: 1,
+            </c:if>
             dateFormat: "yy-mm-dd",
             minDate: new Date(),
             defaultDate: new Date(Date.parse(stringDateList[0])),

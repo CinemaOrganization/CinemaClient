@@ -10,11 +10,11 @@
     <title>Sessions by film and cinema </title>
 </head>
 <body>
-<h1>Вход</h1>
+<h1><s:message code="login.Login"/></h1>
 <%-------------------------------------Исправить сообщение об ошибке--------------------------------------%>
 <c:if test="${not empty param.error}">
     <div class="error">
-        Ошибка входа! Попробуйте еще раз. <br/><br/>
+        <s:message code="login.err.login"/> <br/><br/>
     </div>
 </c:if>
 <%-------------------------------------Исправить сообщение об ошибке--------------------------------------%>
@@ -22,15 +22,15 @@
 <form name='f' action="login" method='POST'>
     <table>
         <tr>
-            <td>User:</td>
+            <td><s:message code="login.User"/></td>
             <td><input type='text' name='username' value=''></td>
         </tr>
         <tr>
-            <td>Password:</td>
+            <td><s:message code="login.Password"/></td>
             <td><input type='password' name='password' /></td>
         </tr>
         <tr>
-            <td>Remember me:</td>
+            <td><s:message code="login.RemeberMe"/></td>
             <td><input type='checkbox' name='remember-me' /></td>
         </tr>
         <tr>

@@ -36,10 +36,14 @@
         }
     </style>
 
-    <title>Кинотеатр!</title>
 </head>
 <body>
-<h1>Добро пожаловать на сайт нашего Кинотеатра!</h1>
+<h1><s:message code="home.welcome"/></h1>
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    |
+    <a href="?lang=ru">ru</a>
+</span>
 <form>
     Когда бы Вы хотели посетить наш кинотеатр:
     <input type="hidden" id="date1" name="date1">
@@ -47,7 +51,7 @@
     <div class="datepicker"></div>
     <input type="submit" value="Выбрать">
 </form>
-<h3>Выберите фильм</h3>
+<h3><s:message code="home.chooseFilm"/></h3>
 <table>
     <c:forEach begin="0" end="${filmList.size()/3}" var="rCount">
         <tr>
@@ -55,21 +59,21 @@
                 <c:if test="${CurFilm < filmList.size()}">
                     <s:url value="/session?film_id=${filmList[CurFilm].id}" var="sessions"/>
                     <td>
-                    <td>
-                        <a class="h1_title" href="${sessions}">
-                            <img src="resources/img/films/${filmList[CurFilm].imageId}.jpg"
-                                 width="189"
-                                 height="255">
-                        </a>
-                    </td>
-                    <td>
-                        <a class="h1_title" href="${sessions}">
-                            <h4> ${filmList[CurFilm].name} </h4>
-                        </a>
-                        <h4> Год выхода: ${filmList[CurFilm].year}</h4>
-                        <h4> Продолжительность: ${filmList[CurFilm].duration}</h4>
-                        <h4> Студия: ${filmList[CurFilm].studio}</h4>
-                    </td>
+                        <td>
+                            <a class="h1_title" href="${sessions}">
+                                <img src="resources/img/films/${filmList[CurFilm].imageId}.jpg"
+                                     width="189"
+                                     height="255">
+                            </a>
+                        </td>
+                        <td>
+                            <a class="h1_title" href="${sessions}">
+                                <h4> ${filmList[CurFilm].name} </h4>
+                            </a>
+                            <h4> <s:message code="home.year"/> ${filmList[CurFilm].year}</h4>
+                            <h4> <s:message code="home.duration"/> ${filmList[CurFilm].duration}</h4>
+                            <h4> <s:message code="home.studio"/> ${filmList[CurFilm].studio}</h4>
+                        </td>
                     </td>
                 </c:if>
             </c:forEach>

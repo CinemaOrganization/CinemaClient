@@ -8,24 +8,25 @@
     <link href="/resources/css/tables.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-<h1> Личный кабинет </h1>
-<h4> Это Ваш личный кабинет. Здесь Вы можете просматривать<br>забронированные Вами билеты в наш кинотеатр!</h4>
+<h1> <spring:message code="userArea.PersonalArea"/> </h1>
+<h4> <spring:message code="userArea.text1"/><br>
+     <spring:message code="userArea.text2"/></h4>
 <sec:authorize access="hasRole('ROLE_ADMIN')">
     <a href="/manage">
-        <h3>Перейти в панель управления</h3>
+        <h3><spring:message code="userArea.Panel"/></h3>
     </a>
 </sec:authorize>
 <table class="simple-little-table">
     <tr>
-        <th>Фильм</th>
-        <th>Кинотеатр</th>
-        <th>Зал</th>
-        <th>Дата сеанса</th>
-        <th>Время сеанса</th>
-        <th>Ряд</th>
-        <th>Место</th>
-        <th>Цена</th>
-        <th>Снять бронь</th>
+        <th><spring:message code="userArea.film"/></th>
+        <th><spring:message code="userArea.cinema"/></th>
+        <th><spring:message code="userArea.hall"/></th>
+        <th><spring:message code="userArea.date"/></th>
+        <th><spring:message code="userArea.time"/></th>
+        <th><spring:message code="userArea.row"/></th>
+        <th><spring:message code="userArea.place"/></th>
+        <th><spring:message code="userArea.cost"/></th>
+        <th><spring:message code="userArea.removeBooking"/></th>
     </tr>
     <s:forEach items="${ticketList}" var="ticket1">
         <tr>
