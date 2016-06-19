@@ -54,7 +54,7 @@ public class SessionRepositoryTest {
     }
 
     @Test
-    public void sessionRepository_ShouldFindByFilmAndDateOrderByCinemaAndHallAndTime() {
+    public void shouldFindByFilmAndDateOrderByCinemaAndHallAndTime() {
 
         Film chosenFilm = sessions.get(0).getFilm();
         LocalDate chosenDate = sessions.get(0).getDate();
@@ -77,7 +77,7 @@ public class SessionRepositoryTest {
     }
 
     @Test
-    public void sessionRepository_ShouldFindByFilmAndWhereDateAfterOrEqual() {
+    public void shouldFindByFilmAndWhereDateAfterOrEqual() {
         Film chosenFilm = sessions.get(0).getFilm();
         LocalDate chosenDate = sessions.get(0).getDate();
         List<Session> expectedSessions = sessions.stream()
@@ -91,7 +91,7 @@ public class SessionRepositoryTest {
     }
 
     @Test
-    public void sessionRepository_ShouldFindByFilm() {
+    public void shouldFindByFilm() {
         Film chosenFilm = sessions.get(0).getFilm();
         List<Session> expectedSessions = sessions.stream()
                 .filter(session -> session.getFilm().equals(chosenFilm))

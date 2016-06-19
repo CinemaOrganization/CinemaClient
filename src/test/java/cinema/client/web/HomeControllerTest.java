@@ -25,7 +25,7 @@ public class HomeControllerTest {
     SetupData setupData = new SetupData();
 
     @Test
-    public void homeController_shouldShowRecentFilms() throws Exception {
+    public void shouldShowRecentFilms() throws Exception {
         List<Film> expectedFilms = setupData.getSessions()
                 .stream()
                 .map(Session::getFilm)

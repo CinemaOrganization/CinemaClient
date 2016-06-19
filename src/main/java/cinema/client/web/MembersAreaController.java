@@ -3,6 +3,8 @@ package cinema.client.web;
 import cinema.client.entity.Ticket;
 import cinema.client.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +26,20 @@ public class MembersAreaController {
     }
 
     @RequestMapping(method = POST)
-    String enteringInMemberArea(@RequestParam(name = "username") String username, Model model) {
-        List<Ticket> tickets = ticketService.findByUsername(username);
+    String enteringInMemberArea(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        List<Ticket> tickets = ticketService.findByUsername(name);
+        model.addAttribute("ticketList",tickets);
+        return "userArea";
+    }
+
+    @RequestMapping(params = "remove", method = POST)
+    public String removeComment(@RequestParam("id") long id, Model model) {
+        ticketService.removeTicket(id);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        List<Ticket> tickets = ticketService.findByUsername(name);
         model.addAttribute("ticketList",tickets);
         return "userArea";
     }

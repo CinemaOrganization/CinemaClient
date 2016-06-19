@@ -56,7 +56,7 @@ public class CommentRepositoryTest {
 
 
     @Test
-    public void commentRepository_ShouldFindByFilmAndOrderByTime() {
+    public void shouldFindByFilmAndOrderByTime() {
         Film chosenFilm = comments.get(0).getFilm();
         Comparator<Comment> timeComparator = Comparator.comparing(Comment::getTime, LocalDateTime::compareTo);
         List<Comment> expectedComments = comments.stream()

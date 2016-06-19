@@ -11,4 +11,6 @@ public interface TicketService {
     void bookTickets(String tickets);
 
     List<Ticket> findByUsername(String username);
+
+    void removeTicket(long id);
 }

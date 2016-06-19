@@ -72,7 +72,7 @@
 <form method="post">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     <input id="ticketsField" type="hidden" name="tickets">
-    <input type="submit" value="Забронировать" disabled="true">
+    <input type="submit" name="booking" value="Забронировать" disabled="true">
 </form>
 <br>
 <div class='result'>
@@ -194,9 +194,9 @@
     function enableSubmitIfSomeChosen() {
         var countOfChosen = $('.chosen').length;
         if (countOfChosen == 0) {
-            $('input[type="submit"]').prop('disabled', true);
+            $('input[name="booking"]').prop('disabled', true);
         } else {
-            $('input[type="submit"]').prop('disabled', false);
+            $('input[name="booking"]').prop('disabled', false);
         }
     }
 </script>

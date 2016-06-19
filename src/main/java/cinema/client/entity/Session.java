@@ -49,7 +49,6 @@ public class Session {
     @Type(type = "cinema.client.entity.unsupported.LocalDateUserType")
     @Column(nullable = false)
     private LocalDate date;
-    //еще что-то??
 
 
     public Session() {}

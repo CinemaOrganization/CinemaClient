@@ -57,6 +57,11 @@ public class TicketServiceImpl implements TicketService {
         return ticketRepository.findByUser(user);
     }
 
+    @Override
+    public void removeTicket(long id) {
+        ticketRepository.delete(id);
+    }
+
     private List<Ticket> fillTickets(List<Ticket> tickets) {
         Session session = sessionService.findOne(tickets.get(0).getSession().getId());
         User user = userService.findByUsername(tickets.get(0).getUser().getUsername());

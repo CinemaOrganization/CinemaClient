@@ -42,7 +42,7 @@ public class SessionControllerTest {
     }
 
     @Test
-    public void sessionController_requireSessionByFilmAndDateAndOrderedByCinemaAndHallAndTime() throws Exception {
+    public void requireSessionByFilmAndDateAndOrderedByCinemaAndHallAndTime() throws Exception {
 
         Set<Hall> expectedHalls = expectedSessions.stream().map(Session::getHall).collect(Collectors.toSet());
         Set<Cinema> expectedCinemas = expectedSessions.stream().map(Session::getCinema).collect(Collectors.toSet());

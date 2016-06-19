@@ -37,7 +37,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void commentService_ShouldAddNewComment() {
+    public void shouldAddNewComment() {
         Comment expectedComment = setupData.getComments().get(0);
         Film expectedFilm = setupData.getFilms().get(0);
         User expectedUser = setupData.getUsers().get(0);
@@ -59,7 +59,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void commentService_ShouldFindByFilmAndOrderByTime() {
+    public void shouldFindByFilmAndOrderByTime() {
         Film film = setupData.getFilms().get(0);
         List<Comment> expectedComments = setupData.getComments()
                 .stream()

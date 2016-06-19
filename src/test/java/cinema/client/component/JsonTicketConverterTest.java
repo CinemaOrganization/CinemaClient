@@ -30,7 +30,7 @@ public class JsonTicketConverterTest {
     }
 
     @Test
-    public void jsonTicketConverter_ShouldConvertJsonToTickets() {
+    public void shouldConvertJsonToTickets() {
 
         JsonTicketConverter jsonTicketConverter = new JsonTicketConverterImpl();
         List<Ticket> tickets = jsonTicketConverter.toObjects(expectedJsonString);
@@ -39,7 +39,7 @@ public class JsonTicketConverterTest {
     }
 
     @Test
-    public void jsonTicketConverter_ShouldConvertTicketsToJson() {
+    public void shouldConvertTicketsToJson() {
 
         JsonTicketConverter jsonTicketConverter = new JsonTicketConverterImpl();
         String json = jsonTicketConverter.objectsToJson(expectedTickets);

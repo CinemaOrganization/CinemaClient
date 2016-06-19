@@ -33,7 +33,7 @@ public class SessionServiceTest {
     }
 
     @Test(expected = SessionByFilmAndDateNotFoundException.class)
-    public void sessionService_shouldSearchFilmAndThrowException() {
+    public void shouldSearchFilmAndThrowException() {
         long film_id = 0;
         String strDate = "nearest";
         when(filmRepository.findOne(film_id)).thenReturn(null);
@@ -42,7 +42,7 @@ public class SessionServiceTest {
     }
 
     @Test
-    public void sessionService_shouldSearchSessionByFilmAndNearestDate() {
+    public void shouldSearchSessionByFilmAndNearestDate() {
         Film expectedFilm = setupData.getFilms().get(0);
         String strDate = "nearest";
         Session expectedSession = setupData.getSessions().get(0);

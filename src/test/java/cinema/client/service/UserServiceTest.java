@@ -1,7 +1,6 @@
 package cinema.client.service;
 
 import cinema.client.SetupData.SetupData;
-import cinema.client.config.SecurityConfig;
 import cinema.client.data.RoleRepository;
 import cinema.client.data.UserRepository;
 import cinema.client.entity.Role;
@@ -21,7 +20,7 @@ import static org.mockito.Mockito.when;
 
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {SecurityConfig.class})
+@ContextConfiguration(classes = {SecurityTestConfig.class})
 public class UserServiceTest {
 
     private UserRepository userRepository;

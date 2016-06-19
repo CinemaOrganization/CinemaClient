@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <head>
     <link href="/resources/css/style.css" type="text/css" rel="stylesheet"/>
@@ -19,20 +20,28 @@
         <th>Фильм</th>
         <th>Кинотеатр</th>
         <th>Зал</th>
+        <th>Дата сеанса</th>
         <th>Время сеанса</th>
         <th>Ряд</th>
         <th>Место</th>
         <th>Цена</th>
+        <th>Снять бронь</th>
     </tr>
-    <s:forEach items="${ticketList}" var="ticket">
+    <s:forEach items="${ticketList}" var="ticket1">
         <tr>
-            <td>${ticket.film.name}</td>
-            <td>${ticket.cinema.name}</td>
-            <td>${ticket.hall.number}</td>
-            <td>${ticket.session.time}</td>
-            <td>${ticket.row}</td>
-            <td>${ticket.number}</td>
-            <td>${ticket.session.cost}</td>
+            <form method="POST" enctype="utf8">
+                <td>${ticket1.film.name}</td>
+                <td>${ticket1.cinema.name}</td>
+                <td>${ticket1.hall.number}</td>
+                <td>${ticket1.session.date}</td>
+                <td>${ticket1.session.time}</td>
+                <td>${ticket1.row}</td>
+                <td>${ticket1.number}</td>
+                <td>${ticket1.session.cost}</td>
+                <input type="hidden" name="id" value="${ticket1.id}"/>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <td><input name="remove" type="submit" value="Удалить"></td>
+            </form>
         </tr>
     </s:forEach>
 </table>

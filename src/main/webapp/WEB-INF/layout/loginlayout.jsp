@@ -15,8 +15,6 @@
                 <td><c:url var="usermyUrl" value="/user/my"/>
                     <form action="${usermyUrl}" method="post">
                         <input type="submit" value="Личный Кабинет"/>
-                        <input type="hidden"  name="username"
-                               value="<sec:authentication property="principal.username"/>"/>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </td>
