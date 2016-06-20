@@ -59,12 +59,6 @@
                 <form:errors path="description" cssClass="error"/>
             </td>
         </tr>
-        <%--<tr>--%>
-            <%--<td>--%>
-                <%--<form:input disabled="true" path="image" type="file" name="img"--%>
-                            <%--accept="image/jpeg,image/png,image/gif" lang="" />--%>
-            <%--</td>--%>
-        <%--</tr>--%>
         <tr>
             <td>
                 <input name="submit" type="submit" value="<sp:message code="manage.film.create.button.submit"/>"/>

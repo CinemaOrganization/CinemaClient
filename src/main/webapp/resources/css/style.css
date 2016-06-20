@@ -23,24 +23,7 @@ h1 {font-size:32px; color: #0099FF}
 h2 {ont-size:20px}
 p {color: #600000; font-size:14px}
 p.bigger{color: #600000; font-size:large; font-family: serif }
-/*input[type=text] {*/
-    /*width: 30%;*/
-    /*padding: 8px 4px;*/
-    /*margin: 8px 0;*/
-    /*box-sizing: border-box;*/
-/*}*/
-/*input[type=password] {*/
-    /*width: 30%;*/
-    /*padding: 8px 4px;*/
-    /*margin: 8px 0;*/
-    /*box-sizing: border-box;*/
-/*}*/
-/*input[type=submit] {*/
-    /*width: 30%;*/
-    /*padding: 8px 4px;*/
-    /*margin: 8px 4px;*/
-    /*box-sizing: border-box;*/
-/*}*/
+
 hr{
     width: 100%;
 }

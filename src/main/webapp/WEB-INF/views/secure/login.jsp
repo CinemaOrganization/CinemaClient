@@ -11,14 +11,11 @@
 </head>
 <body>
 <h1><s:message code="login.Login"/></h1>
-<%-------------------------------------Исправить сообщение об ошибке--------------------------------------%>
 <c:if test="${not empty param.error}">
     <div class="error">
         <s:message code="login.err.login"/> <br/><br/>
     </div>
 </c:if>
-<%-------------------------------------Исправить сообщение об ошибке--------------------------------------%>
-
 <form name='f' action="login" method='POST'>
     <table>
         <tr>

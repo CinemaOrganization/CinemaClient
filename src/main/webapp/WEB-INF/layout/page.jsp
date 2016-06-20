@@ -14,7 +14,6 @@
         <td width="20%"><tiles:insertAttribute name="login"/></td>
     </tr>
     <tr>
-        <%--<td width="20%" nowrap="nowrap"><tiles:insertAttribute name="menu" /></td>--%>
         <td colspan="2"><tiles:insertAttribute name="body"/></td>
     </tr>
     <tr>
