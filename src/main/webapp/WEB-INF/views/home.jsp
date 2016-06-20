@@ -7,34 +7,10 @@
 <html>
 <head>
     <link href="/resources/css/style.css" type="text/css" rel="stylesheet"/>
-    <link href="/resources/css/datepicker.css" type="text/css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <style>
-        .dp-highlight .ui-state-default {
-            background: #0099ff;
-            color: #FFF;
-        }
-
-        .ui-datepicker.ui-datepicker-multi {
-            width: 100% !important;
-        }
-
-        .ui-datepicker-multi .ui-datepicker-group {
-            float: none;
-        }
-
-        #datepicker {
-            height: 250px;
-            overflow-x: scroll;
-        }
-
-        .ui-widget {
-            font-size: 70%
-        }
-    </style>
-
+    <link href="/resources/css/home.css" type="text/css" rel="stylesheet"/>">
 </head>
 <body>
 <h1><s:message code="home.welcome"/></h1>

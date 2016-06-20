@@ -11,62 +11,8 @@
     <link href="${crunchifyCSS}" type="text/css" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <style>
-        .cinemaHall {
-            text-align: center;
-            display: inline-block;
-            vertical-align: top;
-        }
-
-        .seat {
-            height: 20px;
-            width: 20px;
-            margin-right: 10px;
-            background-color: #6a6f99;
-            display: inline-block;
-            cursor: pointer;
-            border: 1px solid #600000;
-        }
-
-        .infoBord {
-            height: 20px;
-            width: 140px;
-            margin-right: 10px;
-            background-color: #995e46;
-            display: inline-block;
-            cursor: pointer;
-            border: 1px solid #600000;
-            visibility: hidden;
-        }
-
-        .passageBetween {
-            height: 10px;
-            width: 100%;
-            display: block;
-        }
-
-        .chosen {
-            background-color: #92ff51;
-        }
-
-        .mouse {
-            border: 1px solid #FFFFFF;
-        }
-
-        .paid {
-            background-color: #beb7b8;
-        }
-
-        .result {
-            font-size: 14px;
-            display: inline-block;
-            width: 90px;
-            max-height: 200px;
-            overflow-y: auto;
-            margin-right: 5px;
-        }
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <link href="/resources/css/booking.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 
@@ -80,7 +26,6 @@
 </div>
 <div class='cinemaHall'></div>
 <div class='infoBord'></div>
-
 
 <script type="text/javascript">
     //создаем карту мест
