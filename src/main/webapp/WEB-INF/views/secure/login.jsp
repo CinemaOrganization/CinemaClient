@@ -36,7 +36,7 @@
         <tr>
             <td></td>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <td><input name="submit" type="submit" value="submit" /></td>
+            <td><input name="submit" type="submit" value="<s:message code="login.button.submit"/>" /></td>
         </tr>
     </table>
 </form>

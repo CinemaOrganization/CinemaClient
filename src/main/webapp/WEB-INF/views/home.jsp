@@ -11,7 +11,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-    <%--<script src="/resources/js/datemultipicker.js"></script>--%>
     <style>
         .dp-highlight .ui-state-default {
             background: #0099ff;
@@ -49,7 +48,7 @@
     <input type="hidden" id="date1" name="date1">
     <input type="hidden" id="date2" name="date2">
     <div class="datepicker"></div>
-    <input type="submit" value="Выбрать">
+    <input type="submit" value="<s:message code="home.button.choose"/>">
 </form>
 <h3><s:message code="home.chooseFilm"/></h3>
 <table>

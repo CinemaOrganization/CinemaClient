@@ -59,7 +59,9 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public void removeTicket(long id) {
+
         ticketRepository.delete(id);
+        logger.info("Удалён билет с ИД = " + id);
     }
 
     private List<Ticket> fillTickets(List<Ticket> tickets) {
