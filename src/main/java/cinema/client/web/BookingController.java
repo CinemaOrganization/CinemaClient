@@ -46,6 +46,11 @@ public class BookingController {
     @RequestMapping(method = POST)
     public String bookingTickets(@RequestParam("tickets") String tickets) {
         ticketService.bookTickets(tickets);
+        sendEmail(tickets);
         return "successesBooking";
+    }
+
+    public void sendEmail(String tickets){
+
     }
 }
