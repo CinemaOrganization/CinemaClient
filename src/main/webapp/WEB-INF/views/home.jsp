@@ -45,7 +45,7 @@
     <a href="?lang=ru">ru</a>
 </span>
 <form>
-    Когда бы Вы хотели посетить наш кинотеатр:
+    <s:message code="home.chooseDates"/>
     <input type="hidden" id="date1" name="date1">
     <input type="hidden" id="date2" name="date2">
     <div class="datepicker"></div>
@@ -83,10 +83,12 @@
 </body>
 <script type="text/javascript">
     $(".datepicker").datepicker({
+        <c:if test="${pageContext.response.locale eq 'ru'}">
         monthNames: ["Январь", "Февраль", "Март", "Апрель", "Май",
             "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
         dayNamesMin: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
         firstDay: 1,
+        </c:if>
         dateFormat: "yy-mm-dd",
         minDate: new Date(),
         beforeShowDay: function (date) {
