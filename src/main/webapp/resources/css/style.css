@@ -1,5 +1,5 @@
 @charset "utf-8";
-body {background-color: rgba(208, 201, 202, 1);
+body {/*background-color: rgba(208, 201, 202, 1);*/
     font-family: arial, sans-serif;
     font-size: 14px;
 }
@@ -19,7 +19,7 @@ table.comments body {
 }
 
 a {color:#000060; font-weight: bold;}
-h1 {font-size:32px; color: #0099FF}
+/*h1 {font-size:32px; color: #0099FF}*/
 h2 {ont-size:20px}
 p {color: #600000; font-size:14px}
 p.bigger{color: #600000; font-size:large; font-family: serif }
@@ -58,6 +58,7 @@ textarea {
     display: block;
     width: 19em;
 }
+/*
 .table {
     border-collapse: collapse;
     font-family: arial, sans-serif;
@@ -85,11 +86,15 @@ textarea {
 .table-row td {
     border: 1px solid #000000;
     background: repeat #B9C9FE;
-}
+}*/
 .reference:link {
     color: white;
 }
 
 .reference:visited {
     color: green;
+}
+
+div.container{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

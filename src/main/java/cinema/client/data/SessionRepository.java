@@ -4,6 +4,7 @@ import cinema.client.entity.Cinema;
 import cinema.client.entity.Film;
 import cinema.client.entity.Hall;
 import cinema.client.entity.Session;
+import org.hibernate.sql.Select;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -28,4 +29,5 @@ public interface SessionRepository extends CrudRepository<Session, Long> {
     List<Session> findByDateBetween(LocalDate startDate, LocalDate finishDate);
 
     Session findByHallAndFilmAndCinemaAndDateAndTime(Hall hall, Film film, Cinema cinema, LocalDate date, LocalTime time);
+
 }

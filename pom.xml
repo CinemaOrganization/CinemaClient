@@ -35,11 +35,32 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.3.13.v20161014</version>
+                <!--<configuration>-->
+                    <!--<stopPort>8888</stopPort>-->
+                    <!--<stopKey>foo</stopKey>-->
+                    <!--<webApp>-->
+                        <!--<contextPath>cinema</contextPath>-->
+                    <!--</webApp>-->
+                    <!--&lt;!&ndash;<httpConnector>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<port>8888</port>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</httpConnector>&ndash;&gt;-->
+                <!--</configuration>-->
+            </plugin>
         </plugins>
     </build>
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+            <scope>provided</scope>
+        </dependency>
         <!--Spring-->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -146,11 +167,6 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
         </dependency>
 

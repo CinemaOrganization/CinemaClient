@@ -6,6 +6,7 @@
     <definition name="base"
                 template="/WEB-INF/layout/page.jsp">
         <put-attribute name="title" value="" />
+        <put-attribute name="carousel" value="/WEB-INF/layout/carousel.jsp" />
         <put-attribute name="header"
                        value="/WEB-INF/layout/header.jsp"/>
         <put-attribute name="login"
