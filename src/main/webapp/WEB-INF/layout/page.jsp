@@ -32,5 +32,6 @@
 
 <script src="/resources/js/bootstrap.min.js" type=""></script>
 <script src="/resources/js/carousel.js" type=""></script>
+<script src="/resources/js/addinputclass.js" type=""></script>
 </body>
 </html>
