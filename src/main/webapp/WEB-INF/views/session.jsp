@@ -36,7 +36,7 @@
     </form>
 </div>
 <table class="table">
-    <tr>
+    <tr class="info">
         <th><spring:message code="session.cinema"/></th>
         <th><spring:message code="session.sessions"/></th>
     </tr>
@@ -45,8 +45,8 @@
             <td><c:out value="${cinema.name}"/></td>
             <td>
                 <table class="table">
-                    <tr>
-                        <th><spring:message code="session.hall"/></th>
+                    <tr class="info">
+                        <th class="width"><spring:message code="session.hall"/></th>
                     </tr>
                     <c:forEach items="${hallList}" var="hall">
                         <c:if test="${hall.cinema == cinema}">
@@ -56,8 +56,10 @@
                                         <br><spring:message code="session.3d"/>
                                     </c:if>
                                 </td>
+                                <c:set var="colCount" value="0"/>
                                 <c:forEach items="${sessionList}" var="session">
                                     <c:if test="${session.hall == hall}">
+                                        <c:set var="colCount" value="${colCount + 1}"/>
                                         <td>
                                             <sec:authorize access="isAnonymous()">
                                                 <spring:message code="session.time"/> ${session.time}
@@ -74,6 +76,11 @@
                                         <c:remove var="session"/>
                                     </c:if>
                                 </c:forEach>
+                                <c:if test="${maxCol > colCount}">
+                                     <c:forEach begin="1" end="${maxCol - colCount}">
+                                        <td></td>
+                                     </c:forEach>
+                                </c:if>
                                 <c:remove var="hall"/>
                             </tr>
                         </c:if>

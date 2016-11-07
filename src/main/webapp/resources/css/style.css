@@ -3,7 +3,7 @@ body {/*background-color: rgba(208, 201, 202, 1);*/
     font-family: arial, sans-serif;
     font-size: 14px;
 }
-
+/*
 table.comments td, th {
     width: 4rem;
     height: 2rem;
@@ -16,7 +16,7 @@ table.comments th {
 }
 table.comments body {
     padding: 1rem;
-}
+}*/
 
 a {color:#000060; font-weight: bold;}
 /*h1 {font-size:32px; color: #0099FF}*/
@@ -99,6 +99,10 @@ div.container{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-button{
-
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.bot4 { margin-bottom: 4%; }
+
+.width { width: 100px;}

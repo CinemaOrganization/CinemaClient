@@ -27,34 +27,40 @@
     <input type="submit" value="<s:message code="home.button.choose"/>">
 </form>
 <h3><s:message code="home.chooseFilm"/></h3>
-<table>
+
     <c:forEach begin="0" end="${filmList.size()/3}" var="rCount">
-        <tr>
-            <c:forEach begin="${rCount*3}" end="${rCount*3+2}" var="CurFilm">
-                <c:if test="${CurFilm < filmList.size()}">
-                    <s:url value="/session?film_id=${filmList[CurFilm].id}" var="sessions"/>
-                    <td>
-                        <td>
-                            <a class="h1_title" href="${sessions}">
-                                <img src="resources/img/films/${filmList[CurFilm].imageId}.jpg"
-                                     width="189"
-                                     height="255">
-                            </a>
-                        </td>
-                        <td>
-                            <a class="h1_title" href="${sessions}">
-                                <h4> ${filmList[CurFilm].name} </h4>
-                            </a>
-                            <h4> <s:message code="home.year"/> ${filmList[CurFilm].year}</h4>
-                            <h4> <s:message code="home.duration"/> ${filmList[CurFilm].duration}</h4>
-                            <h4> <s:message code="home.studio"/> ${filmList[CurFilm].studio}</h4>
-                        </td>
-                    </td>
-                </c:if>
-            </c:forEach>
-        </tr>
+             <%--       <div class="container"> --%>
+                        <div class="row">
+                                 <c:forEach begin="${rCount*3}" end="${rCount*3+2}" var="CurFilm">
+                                        <div class="col-md-4 bot4">
+                                                <c:if test="${CurFilm < filmList.size()}">
+                                                    <s:url value="/session?film_id=${filmList[CurFilm].id}" var="sessions"/>
+                                                    <table class="card">
+                                                        <td>
+                                                            <td>
+                                                                <a class="h1_title" href="${sessions}">
+                                                                    <img src="resources/img/films/${filmList[CurFilm].imageId}.jpg"
+                                                                         width="189"
+                                                                         height="255">
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="h1_title" href="${sessions}">
+                                                                    <h4> ${filmList[CurFilm].name} </h4>
+                                                                </a>
+                                                                <h4> <s:message code="home.year"/> ${filmList[CurFilm].year}</h4>
+                                                                <h4> <s:message code="home.duration"/> ${filmList[CurFilm].duration}</h4>
+                                                                <h4> <s:message code="home.studio"/> ${filmList[CurFilm].studio}</h4>
+                                                            </td>
+                                                        </td>
+                                                    </table>
+                                                </c:if>
+                                        </div>
+                                 </c:forEach>
+
+                        </div>
+            <%--        </div> --%>
     </c:forEach>
-</table>
 </body>
 <script type="text/javascript">
     $(".datepicker").datepicker({

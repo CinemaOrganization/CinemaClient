@@ -16,7 +16,7 @@
         <h3><spring:message code="userArea.Panel"/></h3>
     </a>
 </sec:authorize>
-<table class="simple-little-table">
+<table class="table table-hover">
     <tr>
         <th><spring:message code="userArea.film"/></th>
         <th><spring:message code="userArea.cinema"/></th>
@@ -41,7 +41,7 @@
                 <td>${ticket1.session.cost}</td>
                 <input type="hidden" name="id" value="${ticket1.id}"/>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <td><input name="remove" type="submit" value="Удалить"></td>
+                <td><input name="remove" type="submit" value="<spring:message code="userArea.removeBooking"/>"></td>
             </form>
         </tr>
     </s:forEach>

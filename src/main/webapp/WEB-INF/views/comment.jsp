@@ -13,7 +13,7 @@
     </sec:authorize>
     <sec:authorize access="!isAnonymous()">
         <form:form modelAttribute="comment" method="POST" enctype="utf8">
-            <form:textarea required="true" path="text" value="" wrap="hard" cols="60" rows="7" maxlength="255"/><br>
+            <form:textarea class="form-control" required="true" path="text" value="" wrap="hard" cols="60" rows="7" maxlength="255"/><br>
             <form:hidden path="film.id" value="${film.id}"/>
             <form:errors path="text" class="error"/>
             <br>
@@ -23,7 +23,7 @@
         </form:form>
     </sec:authorize>
 
-    <table class="simple-little-table" width="50%">
+    <table class="table table-hover" width="50%">
         <c:forEach items="${commentList}" var="current_comment">
             <tr>
                 <td>${current_comment.user.username}<br>

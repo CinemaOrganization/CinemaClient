@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
+import java.util.OptionalInt;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.*;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -88,6 +93,13 @@ public class SessionController {
         Film requiredFilm = filmService.findOne(film_id);
         List<LocalDate> dates = sessionService.getAllSessionsByFilmDatesAsStrings(requiredFilm);
         List<Comment> comments = commentService.findByFilmAndOrderByTime(film_id);
+
+        Map<Hall, Integer> collect = sessions.stream().collect(groupingBy(s -> s.getHall()
+                , collectingAndThen(summingInt(s -> 1), Function.identity())));
+        OptionalInt max = collect.values().stream().mapToInt(v -> v).max();
+        if (max.isPresent()){
+            model.addAttribute("maxCol",max.getAsInt());
+        }
 
         model.addAttribute(sessions);
         model.addAttribute(halls);

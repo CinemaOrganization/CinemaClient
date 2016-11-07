@@ -11,9 +11,9 @@
 <body>
 <div class="container">
     <table width="100%">
-        <tr>
+    <%--    <tr>
             <td colspan="2"><tiles:insertAttribute name="carousel"/></td>
-        </tr>
+        </tr> --%>
         <tr>
             <td width="80%"><tiles:insertAttribute name="header"/></td>
             <td width="20%"><tiles:insertAttribute name="login"/></td>

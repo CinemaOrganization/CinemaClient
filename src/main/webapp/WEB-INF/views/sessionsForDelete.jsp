@@ -36,7 +36,7 @@
         <input type="submit" value="<spring:message code="session.button.watchDate"/>">
     </form>
 </div>
-<table>
+<table class="table">
     <tr>
         <th><spring:message code="session.cinema"/></th>
         <th><spring:message code="session.sessions"/></th>
@@ -45,7 +45,7 @@
         <tr>
             <td><c:out value="${cinema.name}"/></td>
             <td>
-                <table>
+                <table class="table">
                     <tr>
                         <th><spring:message code="session.hall"/></th>
                     </tr>
