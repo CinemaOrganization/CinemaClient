@@ -8,4 +8,7 @@ for (var i=0; i<elements.length; i++)
   if (el.getAttribute("type") == "submit"){
           el.setAttribute( "class", el.getAttribute("class") + " btn btn-primary" );
   }
+  if (el.getAttribute("type") == "checkbox"){
+            el.setAttribute( "class", el.getAttribute("class") + " checkbox" );
+    }
 }
