@@ -15,7 +15,7 @@
 <body>
 <table>
     <tr>
-        <td><img src="resources/img/films/${film.imageId}.jpg" width="189" height="255"></td>
+        <td><img src="/resources/img/films/${film.imageId}.jpg" width="189" height="255"></td>
         <td>
             <h1> ${film.name} </h1>
             <h4> <spring:message code="session.studio"/> ${film.studio}</h4>
@@ -29,7 +29,7 @@
 
 <h1><spring:message code="session.text"/> <c:out value="${film.name}"/> на <c:out value="${sessionList[0].date}"/></h1>
 <div>
-    <form action="/session">
+    <form action="/session" class="form form-inline">
         <input type="hidden" name="film_id" value="<c:out value="${param.film_id}"/>"><br/>
         <spring:message code="session.chooseDate"/> <input type="text" id="datepicker" name="strDate" readonly/>
         <input type="submit" value="<spring:message code="session.button.watchDate"/>">

@@ -12,3 +12,17 @@ for (var i=0; i<elements.length; i++)
             el.setAttribute( "class", el.getAttribute("class") + " checkbox" );
     }
 }
+
+var elements = document.getElementsByTagName("select");
+for (var i=0; i<elements.length; i++)
+{
+  var el = elements[i];
+  el.setAttribute( "class", el.getAttribute("class") + " form-control" );
+}
+
+var elements = document.getElementsByTagName("textarea");
+for (var i=0; i<elements.length; i++)
+{
+  var el = elements[i];
+  el.setAttribute( "class", el.getAttribute("class") + " form-control" );
+}

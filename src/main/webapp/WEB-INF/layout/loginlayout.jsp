@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div style="float: right">
-    <table>
+    <table style="border-spacing: 10px; border-collapse: separate;">
         <tr>
             <sec:authorize access="isAnonymous()">
                 <td><a href="<c:url value="/user/login"/>"><sp:message code="loginlayout.SingIn"/></a></td>

@@ -15,7 +15,7 @@
 <body>
 <table>
     <tr>
-        <td><img src="resources/img/films/${film.id}.jpg" width="189" height="255"></td>
+        <td><img src="/resources/img/films/${film.imageId}.jpg" width="189" height="255"></td>
         <td>
             <h1> ${film.name} </h1>
             <h4> <spring:message code="session.studio"/> ${film.studio}</h4>
@@ -30,14 +30,14 @@
 <h1><spring:message code="session.text"/> <c:out value="${film.name}"/> на <c:out value="${sessionList[0].date}"/></h1>
 <a href="/manage/session/filmsForDel"><spring:message code="manage.GoBack"/></a>
 <div>
-    <form action="">
+    <form action="" class="form form-inline">
         <input type="hidden" name="film_id" value="<c:out value="${param.film_id}"/>"><br/>
         <spring:message code="session.chooseDate"/> <input type="text" id="datepicker" name="strDate" readonly/>
         <input type="submit" value="<spring:message code="session.button.watchDate"/>">
     </form>
 </div>
-<table>
-    <tr>
+<table class="table">
+    <tr class="info">
         <th><spring:message code="session.cinema"/></th>
         <th><spring:message code="session.sessions"/></th>
     </tr>
@@ -45,9 +45,9 @@
         <tr>
             <td><c:out value="${cinema.name}"/></td>
             <td>
-                <table>
-                    <tr>
-                        <th><spring:message code="session.hall"/></th>
+                <table class="table">
+                    <tr class="info">
+                        <th class="width"><spring:message code="session.hall"/></th>
                     </tr>
                     <c:forEach items="${hallList}" var="hall">
                         <c:if test="${hall.cinema == cinema}">
@@ -57,8 +57,10 @@
                                         <br><spring:message code="session.3d"/>
                                     </c:if>
                                 </td>
+                                <c:set var="colCount" value="0"/>
                                 <c:forEach items="${sessionList}" var="session">
                                     <c:if test="${session.hall == hall}">
+                                        <c:set var="colCount" value="${colCount + 1}"/>
                                         <td>
                                             <a href="/manage/session/filmsForUp/sessions/update?session_id=${session.id}">
                                                 <spring:message code="session.time"/> ${session.time}
@@ -70,6 +72,11 @@
                                         <c:remove var="session"/>
                                     </c:if>
                                 </c:forEach>
+                                <c:if test="${maxCol > colCount}">
+                                    <c:forEach begin="1" end="${maxCol - colCount}">
+                                        <td></td>
+                                    </c:forEach>
+                                </c:if>
                                 <c:remove var="hall"/>
                             </tr>
                         </c:if>

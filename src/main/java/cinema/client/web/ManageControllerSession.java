@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Function;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -116,6 +117,13 @@ public class ManageControllerSession {
         Film requiredFilm = filmService.findOne(film_id);
         List<LocalDate> dates = sessionService.getAllSessionsByFilmDatesAsStrings(requiredFilm);
 
+        Map<Hall, Integer> collect = sessions.stream().collect(groupingBy(s -> s.getHall()
+                , collectingAndThen(summingInt(s -> 1), Function.identity())));
+        OptionalInt max = collect.values().stream().mapToInt(v -> v).max();
+        if (max.isPresent()){
+            model.addAttribute("maxCol",max.getAsInt());
+        }
+
         model.addAttribute(sessions);
         model.addAttribute(halls);
         model.addAttribute(cinemas);
@@ -186,6 +194,13 @@ public class ManageControllerSession {
         Set<Cinema> cinemas = cinemaService.findBySessions(sessions);
         Film requiredFilm = filmService.findOne(film_id);
         List<LocalDate> dates = sessionService.getAllSessionsByFilmDatesAsStrings(requiredFilm);
+
+        Map<Hall, Integer> collect = sessions.stream().collect(groupingBy(s -> s.getHall()
+                , collectingAndThen(summingInt(s -> 1), Function.identity())));
+        OptionalInt max = collect.values().stream().mapToInt(v -> v).max();
+        if (max.isPresent()){
+            model.addAttribute("maxCol",max.getAsInt());
+        }
 
         model.addAttribute(sessions);
         model.addAttribute(halls);

@@ -13,7 +13,7 @@
     </sec:authorize>
     <sec:authorize access="!isAnonymous()">
         <form:form modelAttribute="comment" method="POST" enctype="utf8">
-            <form:textarea class="form-control" required="true" path="text" value="" wrap="hard" cols="60" rows="7" maxlength="255"/><br>
+            <form:textarea required="true" path="text" value="" wrap="hard" cols="60" rows="7" maxlength="255"/><br>
             <form:hidden path="film.id" value="${film.id}"/>
             <form:errors path="text" class="error"/>
             <br>

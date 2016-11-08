@@ -7,7 +7,7 @@
 
 </head>
 <body>
-    <form:form modelAttribute="film" method="POST" acceptCharset="UTF-8" enctype="utf-8">
+    <form:form modelAttribute="film" method="POST" acceptCharset="UTF-8" enctype="utf-8" class="form form-inline">
         <table>
             <tr>
                 <td><sp:message code="manage.film.update.name"/></td>
