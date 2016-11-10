@@ -10,7 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -20,6 +28,12 @@ public class TicketServiceImpl implements TicketService {
     private JsonTicketConverter jsonTicketConverter;
     private UserService userService;
     static Logger logger = Logger.getLogger(TicketServiceImpl.class);
+    private ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+
+    @Override
+    public void save(Ticket ticket) {
+        ticketRepository.save(ticket);
+    }
 
     @Autowired
     public TicketServiceImpl(TicketRepository ticketRepository,
@@ -40,15 +54,41 @@ public class TicketServiceImpl implements TicketService {
         return ticketsInJson;
     }
 
+    @Override
+    public Ticket findOne(long id) {
+        return ticketRepository.findOne(id);
+    }
+
     @Transactional
     @Override
-    public void bookTickets(String ticketsJson) {
+    public boolean bookTickets(String ticketsJson) {
         List<Ticket> tickets = jsonTicketConverter.toObjects(ticketsJson);
         tickets = fillTickets(tickets);
-        ticketRepository.save(tickets);
-        for (Ticket ticket : tickets){
+        Ticket anyTicket = tickets.get(0);
+        LocalDate date = anyTicket.getSession().getDate();
+        LocalTime time = anyTicket.getSession().getTime();
+        LocalDateTime localDateTime = LocalDateTime.of(date.getYear(),date.getMonth(),
+                                                            date.getDayOfMonth(),time.getHour(),
+                                                            time.getMinute());
+
+        long  unbookTime = Duration.between(LocalDateTime.now(),localDateTime).toMinutes() - 20;
+        if (unbookTime <0){
+            return false;
+        }
+        for (Ticket ticket : tickets) {
+            if (ticket.getUser().getAuthorities().contains("ADMIN")){
+                ticket.setAccepted(true);
+            }
+            ticketRepository.save(ticket);
+            service.schedule(() ->{
+                Ticket one = ticketRepository.findOne(ticket.getId());
+                if (!one.isAccepted()){
+                    ticketRepository.delete(ticket.getId());
+                }
+            },unbookTime, TimeUnit.MINUTES);
             logger.info("Забронирован билет " + ticket);
         }
+        return true;
     }
 
     @Override
@@ -62,6 +102,11 @@ public class TicketServiceImpl implements TicketService {
 
         ticketRepository.delete(id);
         logger.info("Удалён билет с ИД = " + id);
+    }
+
+    @Override
+    public Iterable<Ticket> findAll() {
+        return ticketRepository.findAll();
     }
 
     private List<Ticket> fillTickets(List<Ticket> tickets) {

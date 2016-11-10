@@ -41,6 +41,19 @@ public class Ticket {
     @JoinColumn(name = "id_user")
     private User user;
 
+
+
+    @Column(name = "accpeted")
+    private boolean accepted;
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
+    }
+
     public long getId() {
         return id;
     }

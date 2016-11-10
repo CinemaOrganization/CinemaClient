@@ -106,3 +106,9 @@ div.container{
 .bot4 { margin-bottom: 4%; }
 
 .width { width: 100px;}
+
+.slider{
+   width: 100%;
+   max-height: 400px !important;
+}
+

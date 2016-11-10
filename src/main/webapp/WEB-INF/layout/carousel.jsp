@@ -7,23 +7,23 @@
           <li data-target="#carousel-example-generic" data-slide-to="2"></li>
        </ol>
 
-       <div class="carousel-inner">
-         <div class="item active">
-           <img src="resources/img/carusel/1.jpg" width="1200" height="400" alt="First Slide">
+       <div class="carousel-inner myInner">
+         <div class="item active ">
+                <img class="slider" src="/resources/img/carusel/1.jpg" alt="First Slide">
          </div>
-         <div class="item">
-                <img src="resources/img/carusel/2.jpg" width="1200" height="400" alt="Second Slide">
+         <div class="item ">
+                <img class="slider" src="/resources/img/carusel/2.jpg"  alt="Second Slide">
          </div>
-         <div class="item">
-                <img src="resources/img/carusel/3.jpg" width="1200" height="400" alt="Third Slide">
+         <div class="item ">
+                <img class="slider" src="/resources/img/carusel/3.jpg"  alt="Third Slide">
          </div>
        </div>
 
        <!-- Controls -->
-   <%--    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+       <a class="left carousel-control" href="#carouselOnTop" data-slide="prev">
          <span class="glyphicon glyphicon-chevron-left"></span>
        </a>
-       <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+       <a class="right carousel-control" href="#carouselOnTop" data-slide="next">
          <span class="glyphicon glyphicon-chevron-right"></span>
-       </a> --%>
+       </a>
     </div>
