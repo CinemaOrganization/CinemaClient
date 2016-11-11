@@ -6,7 +6,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.io.File;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -50,9 +49,10 @@ public class Film {
     @Column
     private String imageId;
 
-    @Transient
-    private File image;
-
+    @Basic(fetch = FetchType.LAZY)
+    @Lob
+    @Column(name = "image")
+    private byte[] image;
 
     public Film() {}
 
@@ -72,11 +72,11 @@ public class Film {
         this.imageId = imageId;
     }
 
-    public File getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(File image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 

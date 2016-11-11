@@ -6,7 +6,7 @@
 <head>
 </head>
 <body>
-<form:form modelAttribute="film" method="POST" acceptCharset="UTF-8" class="form form-inline">
+<form:form action="./create?${_csrf.parameterName}=${_csrf.token}" modelAttribute="film" method="POST" acceptCharset="UTF-8" class="form form-inline" enctype="multipart/form-data">
     <table>
         <tr>
             <td><sp:message code="manage.film.create.name"/></td>
@@ -57,6 +57,11 @@
             <td>
                 <form:textarea path="description" type="textarea" cols="50" rows="7"/>
                 <form:errors path="description" cssClass="error"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input name="file" type="file"/>
             </td>
         </tr>
         <tr>

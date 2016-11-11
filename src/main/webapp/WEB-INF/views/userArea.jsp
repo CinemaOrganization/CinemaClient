@@ -32,7 +32,9 @@
         <th><spring:message code="userArea.place"/></th>
         <th><spring:message code="userArea.cost"/></th>
         <th><spring:message code="userArea.removeBooking"/></th>
-        <th><spring:message code="userArea.accept"/></th>
+        <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <th><spring:message code="userArea.accept"/></th>
+        </sec:authorize>
     </tr>
     <s:forEach items="${ticketList}" var="ticket1">
         <tr>
@@ -55,12 +57,14 @@
             <form method="POST">
                 <input type="hidden" name="id" value="${ticket1.id}"/>
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                <s:if test="${ticket1.accepted}">
-                      <td><input name="accept" type="submit" value="<spring:message code="userArea.accept"/>" disabled></td>
-                </s:if>
-                      <s:if test="${!ticket1.accepted}">
-                      <td><input name="accept" type="submit" value="<spring:message code="userArea.accept"/>"></td>
-                </s:if>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <s:if test="${ticket1.accepted}">
+                          <td><input name="accept" type="submit" value="<spring:message code="userArea.accept"/>" disabled></td>
+                    </s:if>
+                          <s:if test="${!ticket1.accepted}">
+                          <td><input name="accept" type="submit" value="<spring:message code="userArea.accept"/>"></td>
+                    </s:if>
+                </sec:authorize>
             </form>
         </tr>
     </s:forEach>

@@ -2,14 +2,18 @@ package cinema.client.web;
 
 import cinema.client.entity.Film;
 import cinema.client.service.FilmService;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+
+import javax.servlet.http.Part;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,7 +44,8 @@ public class ManageControllerFilm {
     }
 
     @RequestMapping(value = "create",method = POST)
-    public String createFilm(@Valid Film film, BindingResult bindingResult, Model model)
+    public String createFilm(@Valid Film film, BindingResult bindingResult, Model model,
+                            @RequestParam(value="file", required=false) Part file)
     {
         boolean isExistedFilm = filmService.isExistedFilm(film);
         if (bindingResult.hasErrors() || isExistedFilm){
@@ -50,8 +55,25 @@ public class ManageControllerFilm {
             return "createFilm";
         }
 
+        if (file != null) {
+            byte[] fileContent = null;
+            try {
+                InputStream inputStream = file.getInputStream();
+                fileContent = IOUtils.toByteArray(inputStream);
+                film.setImage(fileContent);
+            } catch (IOException е) {
+
+            }
+        }
         filmService.saveFilms(Arrays.asList(film));
         return "redirect:/manage/film";
+    }
+
+    @RequestMapping(value = "/image/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public byte [] downloadPhoto (@PathVariable( "id") Long id){
+        Film film = filmService.findOne(id);
+        return film.getImage();
     }
 
     @RequestMapping(value = "chooseup/update",method = POST)

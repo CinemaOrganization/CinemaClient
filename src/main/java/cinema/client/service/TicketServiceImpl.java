@@ -7,6 +7,9 @@ import cinema.client.entity.Ticket;
 import cinema.client.entity.User;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +18,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -75,9 +77,12 @@ public class TicketServiceImpl implements TicketService {
         if (unbookTime <0){
             return false;
         }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         for (Ticket ticket : tickets) {
-            if (ticket.getUser().getAuthorities().contains("ADMIN")){
-                ticket.setAccepted(true);
+            for (GrantedAuthority grantedAuthority : auth.getAuthorities()){
+                if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+                    ticket.setAccepted(true);
+                }
             }
             ticketRepository.save(ticket);
             service.schedule(() ->{
