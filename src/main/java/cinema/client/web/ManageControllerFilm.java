@@ -62,7 +62,6 @@ public class ManageControllerFilm {
                 fileContent = IOUtils.toByteArray(inputStream);
                 film.setImage(fileContent);
             } catch (IOException е) {
-
             }
         }
         filmService.saveFilms(Arrays.asList(film));

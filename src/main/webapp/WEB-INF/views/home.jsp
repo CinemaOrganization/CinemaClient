@@ -26,7 +26,6 @@
     <input type="submit" value="<s:message code="home.button.choose"/>">
 </form>
 <h3><s:message code="home.chooseFilm"/></h3>
-
     <c:forEach begin="0" end="${filmList.size()/3}" var="rCount">
              <%--       <div class="container"> --%>
                         <div class="row">
