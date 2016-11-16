@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class FilmService {
 
     FilmRepository filmRepository;
@@ -29,6 +30,7 @@ public class FilmService {
         this.sessionRepository = sessionRepository;
         this.imageService = imageService;
     }
+
 
     public List<Film> findAll() {
         return filmRepository.findAll();
@@ -57,21 +59,21 @@ public class FilmService {
         }
     }
 
-    @Transactional
+
     public void saveFilms(Iterable<Film> films) {
-       // saveImagesForFilms(films);
+        saveImagesForFilms(films);
         filmRepository.save(films);
         for (Film film : films) {
             logger.info("Добавлен/изменён фильм " + film);
         }
     }
 
-//    private void saveImagesForFilms(Iterable<Film> films) {
-//        for (Film currentFilm : films) {
-//            String imageId = imageService.saveImage(currentFilm.getImage());
-//            currentFilm.setImageId(imageId);
-//        }
-//    }
+    private void saveImagesForFilms(Iterable<Film> films) {
+        for (Film currentFilm : films) {
+ //           String imageId = imageService.saveImage(currentFilm.getImage());
+            currentFilm.setImageId("-1");
+        }
+    }
 
     public void deleteFilm(long id) {
         filmRepository.delete(id);

@@ -37,7 +37,7 @@
                                                         <td>
                                                             <td>
                                                                 <a class="h1_title" href="${sessions}">
-                                                                    <img src="resources/img/films/${filmList[CurFilm].imageId}.jpg"
+                                                                    <img src="image/${filmList[CurFilm].id}"
                                                                          width="189"
                                                                          height="255">
                                                                 </a>

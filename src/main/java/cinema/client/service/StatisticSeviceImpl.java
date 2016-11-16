@@ -7,6 +7,9 @@ import cinema.client.data.TicketRepository;
 import cinema.client.entity.Film;
 import cinema.client.entity.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -15,6 +18,8 @@ import java.util.Map;
 
 import static java.util.stream.Collectors.*;
 
+@Service
+@Transactional
 public class StatisticSeviceImpl implements IStatisticService {
 
     @Autowired

@@ -1,12 +1,14 @@
 package cinema.client.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class ImageServiceImpl implements ImageService {
 
     private final static String noImageDefaultId = "-1";

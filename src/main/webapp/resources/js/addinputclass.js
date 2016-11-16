@@ -2,7 +2,7 @@ var elements = document.getElementsByTagName("input");
 for (var i=0; i<elements.length; i++)
 {
   var el = elements[i];
-  if (el.getAttribute("type") != "submit" && el.getAttribute("type") != "checkbox"){
+  if (el.getAttribute("type") != "submit" && el.getAttribute("type") != "checkbox" && el.getAttribute("type") != "file"){
         el.setAttribute( "class", el.getAttribute("class") + " form-control" );
   }
   if (el.getAttribute("type") == "submit"){

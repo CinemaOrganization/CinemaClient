@@ -14,7 +14,7 @@
 <body>
 <table>
     <tr>
-        <td><img src="/resources/img/films/${film.imageId}.jpg" width="189" height="255"></td>
+        <td><img src="image/${film.id}" width="189" height="255"></td>
         <td>
             <h1> ${film.name} </h1>
             <h4> <spring:message code="session.studio"/> ${film.studio}</h4>

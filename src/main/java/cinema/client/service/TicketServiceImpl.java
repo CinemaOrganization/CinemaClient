@@ -23,6 +23,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@Transactional
 public class TicketServiceImpl implements TicketService {
 
     private TicketRepository ticketRepository;

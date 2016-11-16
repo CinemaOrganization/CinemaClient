@@ -17,6 +17,7 @@ import java.util.HashSet;
 
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;

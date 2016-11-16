@@ -2,10 +2,15 @@ package cinema.client.entity;
 
 import cinema.client.secure.validation.annotation.NotEmptyLocalTime;
 import cinema.client.secure.validation.annotation.ValidName;
+import org.apache.commons.io.IOUtils;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.springframework.data.repository.query.parser.Part;
+
 
 import javax.persistence.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -64,6 +69,17 @@ public class Film {
         this.year = year;
     }
 
+    public void uploadImage(javax.servlet.http.Part file){
+        if (file != null) {
+            byte[] fileContent = null;
+            try {
+                InputStream inputStream = file.getInputStream();
+                fileContent = IOUtils.toByteArray(inputStream);
+                setImage(fileContent);
+            } catch (IOException е) {
+            }
+        }
+    }
     public String getImageId() {
         return imageId;
     }

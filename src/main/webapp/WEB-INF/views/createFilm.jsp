@@ -63,7 +63,6 @@
             <td>
                 <input name="file" type="file"/>
             </td>
-        </tr>
         <tr>
             <td>
                 <input name="submit" type="submit" value="<sp:message code="manage.film.create.button.submit"/>"/>

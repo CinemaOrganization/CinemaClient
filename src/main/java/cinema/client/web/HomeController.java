@@ -1,11 +1,11 @@
 package cinema.client.web;
 
+import cinema.client.entity.Film;
 import cinema.client.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -27,6 +27,13 @@ public class HomeController {
         model.addAttribute("filmList",
                 filmService.findByDates(date1,date2));
         return "home";
+    }
+
+    @RequestMapping(value = "/image/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public byte [] getImage (@PathVariable( "id") Long id){
+        Film film = filmService.findOne(id);
+        return film.getImage();
     }
 
 }

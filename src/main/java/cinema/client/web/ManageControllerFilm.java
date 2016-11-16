@@ -55,28 +55,16 @@ public class ManageControllerFilm {
             return "createFilm";
         }
 
-        if (file != null) {
-            byte[] fileContent = null;
-            try {
-                InputStream inputStream = file.getInputStream();
-                fileContent = IOUtils.toByteArray(inputStream);
-                film.setImage(fileContent);
-            } catch (IOException е) {
-            }
-        }
+        film.uploadImage(file);
         filmService.saveFilms(Arrays.asList(film));
         return "redirect:/manage/film";
     }
 
-    @RequestMapping(value = "/image/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public byte [] downloadPhoto (@PathVariable( "id") Long id){
-        Film film = filmService.findOne(id);
-        return film.getImage();
-    }
+
 
     @RequestMapping(value = "chooseup/update",method = POST)
-    public String filmUpdate(@Valid Film film, BindingResult bindingResult,Model model){
+    public String filmUpdate(@Valid Film film, BindingResult bindingResult,Model model,
+                             @RequestParam(value="file", required=false) Part file){
 
         boolean isAnotherExistedFilm = filmService.isAnotherExistedFilm(film);
         if (bindingResult.hasErrors() || isAnotherExistedFilm){
@@ -85,6 +73,7 @@ public class ManageControllerFilm {
             }
             return "filmUpdate";
         }
+        film.uploadImage(file);
         filmService.saveFilms(Arrays.asList(film));
         return "redirect:/manage/film";
     }

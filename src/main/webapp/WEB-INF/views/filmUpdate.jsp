@@ -7,7 +7,7 @@
 
 </head>
 <body>
-    <form:form modelAttribute="film" method="POST" acceptCharset="UTF-8" enctype="utf-8" class="form form-inline">
+    <form:form modelAttribute="film" method="POST" acceptCharset="UTF-8" class="form form-inline" enctype="multipart/form-data">
         <table>
             <tr>
                 <td><sp:message code="manage.film.update.name"/></td>
@@ -59,6 +59,11 @@
                     <form:textarea path="description" cols="50" rows="7"/>
                     <form:errors path="description" cssClass="error"/>
                 </td>
+            </tr>
+            <tr>
+                 <td>
+                    <input name="file" type="file"/>
+                 </td>
             </tr>
             <tr>
                 <form:input path="id" type="hidden"/>
